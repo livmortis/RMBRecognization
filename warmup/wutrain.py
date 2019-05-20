@@ -62,6 +62,7 @@ if __name__ =="__main__":
   for epoch_index in range(wuconfig.epoch):
 
     print("\nbegin the "+str(epoch_index)+" epoch train")
+    model.train()
     for index, (i,j) in tqdm(enumerate(trainDataloader, 0)):
       # i是x，j是y
       # print("this batch pic is:"+str(i.shape) + "\nthis batch label is:"+ str(j.shape))
@@ -87,15 +88,17 @@ if __name__ =="__main__":
 
 
     print("\nbegin the "+str(epoch_index)+" epoch valid")
-    for index, (x,y) in tqdm(enumerate(validDataloader, 0)):
-      if  wuconfig.USE_GPU:
-        model = model.cuda()
-        x = x.cuda()
-        y = y.cuda()
+    with torch.no_grad():  # 解决了验证时oom问题
+      model.eval()
+      for index, (x,y) in tqdm(enumerate(validDataloader, 0)):
+        if  wuconfig.USE_GPU:
+          model = model.cuda()
+          x = x.cuda()
+          y = y.cuda()
 
-      pred = model(x)
-      lossvalid = loss(pred, y)
-      print("\nthe "+ str(index)+" batch valid loss is " + str(lossvalid.data))
-      accuracy = calAccuracy(pred, y)
-      print("\nthe "+ str(index)+" batch valid accuracy is " + str(accuracy))
+        pred = model(x)
+        lossvalid = loss(pred, y)
+        print("\nthe "+ str(index)+" batch valid loss is " + str(lossvalid.data))
+        accuracy = calAccuracy(pred, y)
+        print("\nthe "+ str(index)+" batch valid accuracy is " + str(accuracy))
 

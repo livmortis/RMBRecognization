@@ -12,17 +12,19 @@ if __name__ == "__main__":
   model_path = wuconfig.model_saved_path + "epoch_"+str(wuconfig.used_to_test_model_num)+"_saved_model.pkl"
   model = torch.load(model_path)
 
-  preds = []
-  image_names = []
-  print("\nbegin to test")
-  for index , (x, y) in tqdm(enumerate(testDataLoader, 0)):
-    print("\nbegin test batch: "+str(index))
-    if wuconfig.USE_GPU:
-      x = x.cuda()
-      model = model.cuda()
-    pred = model(x)
-    preds.extend(pred)
-    image_names.extend(y)
+  with torch.no_grad():   #解决了测试时oom问题
+    model.eval()
+    preds = []
+    image_names = []
+    print("\nbegin to test")
+    for index , (x, y) in tqdm(enumerate(testDataLoader, 0)):
+      print("\nbegin test batch: "+str(index))
+      if wuconfig.USE_GPU:
+        x = x.cuda()
+        model = model.cuda()
+      pred = model(x)
+      preds.extend(pred)
+      image_names.extend(y)
 
   print("\ntest have done")
   # 预测向量变为预测标签索引
@@ -43,6 +45,6 @@ if __name__ == "__main__":
   df = pd.DataFrame({'name':image_names,'label':pred_rmb})
   column_order = ['name','label']
   df = df[column_order]
-  df.to_csv(wuconfig.pred_result_file)
+  df.to_csv(wuconfig.pred_result_file, index=False)
 
   print("\nover")
