@@ -23,12 +23,21 @@ def label_to_onehot(label_np):
   #   label_mask[index] = 1
   #   labels_np_hot.append(label_mask)
 
+  # 这样会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。
+  # labels_np_index = []
+  # for label in label_np:
+  #   index = wuconfig.map_dict_forward[label]
+  #   index = np.asarray(index)
+  #   labels_np_index.append(index)
 
-  labels_np_index = []
+
+  labels_np_index = np.zeros([len(label_np), 1])
+  k = 0
   for label in label_np:
     index = wuconfig.map_dict_forward[label]
     index = np.asarray(index)
-    labels_np_index.append(index)
+    labels_np_index[k,:] = index
+    k += 1
 
 
   # return labels_np_hot
