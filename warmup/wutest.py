@@ -16,6 +16,7 @@ if __name__ == "__main__":
   image_names = []
   print("\nbegin to test")
   for index , (x, y) in tqdm(enumerate(testDataLoader, 0)):
+    print("\nbegin test batch: "+str(index))
     if wuconfig.USE_GPU:
       x = x.cuda()
       model = model.cuda()

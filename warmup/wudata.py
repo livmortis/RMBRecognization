@@ -15,6 +15,7 @@ def label_to_onehot(label_np):
   if wuconfig.TEST_WITH_LITTLE_DATA:
     label_np = label_np[0:wuconfig.TEST_NUM]
 
+  # 更新：弃用。  one-hot必须在dataloader读出来以后再改回index，那是数据已经是Tensor，再该还必须改回numpy——转index——改回Tensor，还涉及cuda，太不合理
   # 这是one-hot
   # crossEntropyLoss不需要one-hot.....
   # 但是，由于下面两者的原因，仍然得用one-hot过渡。
@@ -26,7 +27,9 @@ def label_to_onehot(label_np):
   #   labels_np_hot.append(label_mask)
 
 
-
+  # 更新：最终结果——采用。  label可以为list，但list的元素必须是numpy。 labels = list[np, np, np]是可以的，
+  #       但labels转换一次numpy，就会变成labels = np([int64, int64, int64])，这样就会出错__getItem__中转换Tensor时出错。
+  #       而存储npy文件意味着一定会转换一次numpy。  所以补救措施为，load出npy文件后，再遍历np，把每个元素变为np，即labels = np([np, np, np])，即可。
   # 这样会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用
   labels_np_index = []
   for label in label_np:
@@ -36,6 +39,7 @@ def label_to_onehot(label_np):
     labels_np_index.append(index)
 
 
+  # 更新：最终结果——弃用。  这样会使得label为二维numpy形式，在交叉熵损失函数中，label不能有二维。
   # 该成numpy.zeros扩展的方式死，仍然会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用——用回one-hot
   # labels_np_index = np.zeros([len(label_np), 1])
   # k = 0
