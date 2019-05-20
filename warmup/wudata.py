@@ -15,6 +15,7 @@ def label_to_onehot(label_np):
   if wuconfig.TEST_WITH_LITTLE_DATA:
     label_np = label_np[0:wuconfig.TEST_NUM]
 
+  # 这是one-hot
   # crossEntropyLoss不需要one-hot.....
   # 但是，由于下面两者的原因，仍然得用one-hot过渡。
   # labels_np_hot = []
@@ -27,22 +28,22 @@ def label_to_onehot(label_np):
 
 
   # 这样会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用
-  # labels_np_index = []
-  # for label in label_np:
-  #   index = wuconfig.map_dict_forward[label]
-  #   index = np.asarray(index)
-  #   # index = np.ndarray(index) #不行！！
-  #   labels_np_index.append(index)
-
-
-  # 该成numpy.zeros扩展的方式死，仍然会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用——用回one-hot
-  labels_np_index = np.zeros([len(label_np), 1])
-  k = 0
+  labels_np_index = []
   for label in label_np:
     index = wuconfig.map_dict_forward[label]
     index = np.asarray(index)
-    labels_np_index[k,:] = index
-    k += 1
+    # index = np.ndarray(index) #不行！！
+    labels_np_index.append(index)
+
+
+  # 该成numpy.zeros扩展的方式死，仍然会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用——用回one-hot
+  # labels_np_index = np.zeros([len(label_np), 1])
+  # k = 0
+  # for label in label_np:
+  #   index = wuconfig.map_dict_forward[label]
+  #   index = np.asarray(index)
+  #   labels_np_index[k,:] = index
+  #   k += 1
 
 
   # return labels_np_hot
@@ -105,6 +106,7 @@ def load_test():
 
   np.save(wuconfig.testData_npy_saved_file, test_images) # 存储数据以便下次使用
   np.save(wuconfig.testName_npy_saved_file, test_name_np_list) # 存储数据以便下次使用
+  print ("\ntest npy has saved")
 
   return test_images, test_name_np_list
 
@@ -148,11 +150,12 @@ def load_train ():
 
   # print(train_images[0].shape)
   train_images_np = np.asarray(train_images)
-  label_index_np = np.asarray(label_index)
+  # label_index_np = np.asarray(label_index)
 
   np.save(wuconfig.trainData_npy_saved_file, train_images_np)  # 存储数据以便下次使用
-  np.save(wuconfig.trainLabel_npy_saved_file, label_index_np)  # 存储数据以便下次使用
-  return train_images_np, label_index_np
+  np.save(wuconfig.trainLabel_npy_saved_file, label_index)  # 存储数据以便下次使用
+  print ("\ntrain npy has saved")
+  return train_images_np, label_index
 
 class datasetClass(Data.Dataset):
     def __init__(self, type):
@@ -161,6 +164,8 @@ class datasetClass(Data.Dataset):
         if wuconfig.EXIST_TEST_DATA_NPY:
           test_images_np = np.load(wuconfig.testData_npy_saved_file)
           test_name_list_np = np.load(wuconfig.testName_npy_saved_file)
+          print("\nsucess load test npy")
+
         else:
           test_images_np, test_name_list_np = load_test()
         self.l = len(test_images_np)
@@ -170,7 +175,15 @@ class datasetClass(Data.Dataset):
       else:
         if wuconfig.EXIST_TRAIN_DATA_NPY:   # 只要不是第一次在主机上训练，都可以跳过load_train()方法。
           train_valid_images_np = np.load(wuconfig.trainData_npy_saved_file)
-          label_index = np.load(wuconfig.trainLabel_npy_saved_file)
+          label_index_list = np.load(wuconfig.trainLabel_npy_saved_file)
+
+          # 严重bug解决方法。
+          label_index = []
+          for i in label_index_list:
+            i_np = np.asarray(i)
+            label_index.append(i_np)
+
+          print("\nsucess load train npy")
         else:
           train_valid_images_np, label_index = load_train()
 

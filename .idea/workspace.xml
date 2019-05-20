@@ -16,8 +16,8 @@
       <file leaf-file-name="wutrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="64" column="54" lean-forward="false" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="54" />
+            <state relative-caret-position="237">
+              <caret line="70" column="20" lean-forward="true" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wudata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wudata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="80">
+              <caret line="163" column="19" lean-forward="false" selection-start-line="163" selection-start-column="11" selection-end-line="163" selection-end-column="19" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -37,10 +37,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wuconfig.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wuconfig.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="462">
               <caret line="44" column="44" lean-forward="false" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
               <folding />
             </state>
@@ -96,14 +96,14 @@
       <find>test_name_list</find>
       <find>test_name_np_list</find>
       <find>one_test_image</find>
-      <find>wuconfig</find>
       <find>load_train</find>
       <find>print</find>
       <find>label_hot</find>
-      <find>label_index</find>
-      <find>j</find>
       <find>train_label_index</find>
       <find>EXIST_TRAIN_DATA_NPY</find>
+      <find>label_index</find>
+      <find>j</find>
+      <find>wuconfig</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,8 +121,8 @@
         <option value="$PROJECT_DIR$/warmup/wumodel.py" />
         <option value="$PROJECT_DIR$/warmup/wutest.py" />
         <option value="$PROJECT_DIR$/warmup/wutrain.py" />
-        <option value="$PROJECT_DIR$/warmup/wuconfig.py" />
         <option value="$PROJECT_DIR$/warmup/wudata.py" />
+        <option value="$PROJECT_DIR$/warmup/wuconfig.py" />
       </list>
     </option>
   </component>
@@ -293,7 +293,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13530655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3700121" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2031439" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -340,7 +340,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/warmup/wudata.py</url>
-          <line>207</line>
+          <line>220</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -603,29 +603,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="64" column="54" lean-forward="false" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="54" />
+        <state relative-caret-position="237">
+          <caret line="70" column="20" lean-forward="true" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="44" column="44" lean-forward="false" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+        <state relative-caret-position="80">
+          <caret line="163" column="19" lean-forward="false" selection-start-line="163" selection-start-column="11" selection-end-line="163" selection-end-column="19" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="44" column="44" lean-forward="false" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
