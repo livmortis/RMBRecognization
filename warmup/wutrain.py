@@ -8,16 +8,18 @@ import wumodel as wumodel
 import numpy as np
 from tqdm import tqdm
 import os
+import sklearn
 
-def calAccuracy(pred, label):
+def calAccuracy(pred, label, type) :
   totalSum = len(label)
-  softmax = torch.nn.Softmax()
-  predFloat = softmax(pred)
-
-  if  wuconfig.USE_GPU:
-    predFloat = predFloat.detach().cpu().numpy()
-  else:
-    predFloat = predFloat.detach().numpy()  #variable要转换成numpy
+  # softmax = torch.nn.Softmax()
+  # predFloat = softmax(pred)       #试试去掉softmax？？
+  predFloat = pred
+  if type == "batch":
+    if  wuconfig.USE_GPU:
+      predFloat = predFloat.detach().cpu().numpy()
+    else:
+      predFloat = predFloat.detach().numpy()  #variable要转换成numpy
   i = 0
   truNum = 0
   for onePredFloat in predFloat:
@@ -76,18 +78,18 @@ if __name__ =="__main__":
       losstrain = loss(pred, j)
       losstrain.backward()
       optm.step()
-      print("\nthe "+ str(index)+" batch train loss is " + str(losstrain.data))
-      accuracy = calAccuracy(pred, j)
-      print("  accuracy is " + str(accuracy))
+      accuracy = calAccuracy(pred, j, "batch")
+      print("\nthe "+ str(index)+" batch train loss is " + str(losstrain.detach())+"  accuracy is " + str(accuracy))
 
     #比如当前训练的模型是18（从配置文件中读取），此次保存为19.pkl，然后变为20，以便下次保存为20.
     will_save_model_path = str(wuconfig.model_saved_path)+"epoch_"+str(now_newest_and_saved_model)+"_saved_model.pkl"
     torch.save(model,will_save_model_path)   #保存模型
-    print("\nthe "+str(epoch_index)+" epoch model has saved to "+ will_save_model_path)
+    print("\nthe "+str(now_newest_and_saved_model)+" epoch model has saved to "+ will_save_model_path)
     now_newest_and_saved_model += 1
 
-
-    print("\nbegin the "+str(epoch_index)+" epoch valid")
+    total_data_pred = []
+    total_label = []
+    print("\nbegin the "+str(now_newest_and_saved_model)+" epoch valid")
     with torch.no_grad():  # 解决了验证时oom问题
       model.eval()
       for index, (x,y) in tqdm(enumerate(validDataloader, 0)):
@@ -98,9 +100,18 @@ if __name__ =="__main__":
 
         pred = model(x)
         lossvalid = loss(pred, y)
-        print("\nthe "+ str(index)+" batch valid loss is " + str(lossvalid.data))
-        accuracy = calAccuracy(pred, y)
-        print(" batch valid accuracy is " + str(accuracy))
+        accuracy = calAccuracy(pred, y, "batch")
+        print("\nthe "+ str(index)+" batch valid loss is " + str(lossvalid.data)+ " accuracy is " + str(accuracy))
+        total_data_pred.extend(pred)
+        total_label.extend(y)
+
+    # 一个epoch后，整体验证集数据的准确度
+    total_accuracy = calAccuracy(total_data_pred, total_label, "epoch")
+    print("\n\nthe epoch "+str(now_newest_and_saved_model)+" total accuracy is "+ str(total_accuracy))
+
+    # 一个epoch后，整体验证集数据的混淆矩阵
+
+
 
     lrSchedule.step()
     print("lr is: "+str(lrSchedule.get_lr()[0]))
