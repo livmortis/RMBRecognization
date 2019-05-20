@@ -22,17 +22,17 @@ def calAccuracy(pred, label):
   truNum = 0
   for onePredFloat in predFloat:
     # onePredFloat = np.asarray(onePredFloat)
-    print("\npred  "+ str(onePredFloat))
+    # print("\npred  "+ str(onePredFloat))
     predIndex = onePredFloat.argmax()
     labelIndex = label[i]
-    print("\nlabel   "+str(labelIndex))
+    # print("\nlabel   "+str(labelIndex))
 
     if predIndex == labelIndex:
       truNum += 1
 
     i += 1
-  print("\ntruNum is "+str(truNum))
-  print("\ntotalSum is "+str(totalSum))
+  # print("\ntruNum is "+str(truNum))
+  # print("\ntotalSum is "+str(totalSum))
   accuracy = truNum/totalSum
   return accuracy
 
