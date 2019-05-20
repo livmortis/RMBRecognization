@@ -87,6 +87,10 @@ def load_test():
     i+=1
   test_images = np.asarray(test_images)
   test_name_np_list = np.asarray(test_name_np_list)
+
+  np.save(wuconfig.testData_npy_saved_file, test_images) # 存储数据以便下次使用
+  np.save(wuconfig.testName_npy_saved_file, test_name_np_list) # 存储数据以便下次使用
+
   return test_images, test_name_np_list
 
 
@@ -127,22 +131,33 @@ def load_train ():
 
 
 
-
   # print(train_images[0].shape)
   train_images_np = np.asarray(train_images)
+
+  np.save(wuconfig.trainData_npy_saved_file, train_images_np)  # 存储数据以便下次使用
+  np.save(wuconfig.trainLabel_npy_saved_file, label_index)  # 存储数据以便下次使用
   return train_images_np, label_index
 
 class datasetClass(Data.Dataset):
     def __init__(self, type):
       self.t = type
       if type == "test":
-        test_images_np, test_name_list_np = load_test()
+        if wuconfig.EXIST_TEST_DATA_NPY:
+          test_images_np = np.load(wuconfig.testData_npy_saved_file)
+          test_name_list_np = np.load(wuconfig.testName_npy_saved_file)
+        else:
+          test_images_np, test_name_list_np = load_test()
         self.l = len(test_images_np)
         self.x = test_images_np
         self.y = test_name_list_np
 
       else:
-        train_valid_images_np, label_index = load_train()
+        if wuconfig.EXIST_TRAIN_DATA_NPY:   # 只要不是第一次在主机上训练，都可以跳过load_train()方法。
+          train_valid_images_np = np.load(wuconfig.trainData_npy_saved_file)
+          label_index = np.load(wuconfig.trainLabel_npy_saved_file)
+        else:
+          train_valid_images_np, label_index = load_train()
+
         total_num = len(label_index)
         train_images_np = train_valid_images_np[: int(total_num * 0.7)]
         train_label_index = label_index[: int(total_num * 0.7)]

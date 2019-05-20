@@ -24,6 +24,10 @@ test_data_path = '../../dataset_warm_up/public_test_data/'
 csv_file = '../../dataset_warm_up/train_face_value_label.csv'
 model_saved_path = '../../dataset_warm_up/saved_model/'
 pred_result_file = '../../dataset_warm_up/pred_result/result.csv'
+trainData_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/trainData.npy'
+trainLabel_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/trainLabel.npy'
+testData_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/testData.npy'
+testName_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/testName.npy'
 image_size = 224
 batch_size = 128
 # batch_size = 32
@@ -32,11 +36,13 @@ weight_decay =  0.0001
 lr_exponential_gamma = 0.9
 epoch = 15
 
+
+# 训练时需要修改：
 TEST_WITH_LITTLE_DATA =False
 TEST_NUM = 50
 USE_GPU = True
-
-
+EXIST_TRAIN_DATA_NPY = False    # 只在云主机上第一次训练读取数据时，设为False。之后.npy文件只要存在，都设为True。
+EXIST_TEST_DATA_NPY = False    # 只在云主机上第一次测试读取数据时，设为False。之后.npy文件只要存在，都设为True。
 
 newest_model_num = 0  # 手动更改为当前已有的最新模型编号！
 used_to_test_model_num = 0 #手动更改为需要用来测试的模型的编号！
