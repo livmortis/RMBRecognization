@@ -61,7 +61,7 @@ if __name__ =="__main__":
   print("\nbegin to train")
   for epoch_index in range(wuconfig.epoch):
 
-    print("\nbegin the "+str(epoch_index)+" epoch train")
+    # print("\nbegin the "+str(epoch_index)+" epoch train")
     model.train()
     for index, (i,j) in tqdm(enumerate(trainDataloader, 0)):
       # i是x，j是y
@@ -78,7 +78,7 @@ if __name__ =="__main__":
       optm.step()
       print("\nthe "+ str(index)+" batch train loss is " + str(losstrain.data))
       accuracy = calAccuracy(pred, j)
-      print("\nthe "+ str(index)+" batch train accuracy is " + str(accuracy))
+      print("  accuracy is " + str(accuracy))
 
     #比如当前训练的模型是18（从配置文件中读取），此次保存为19.pkl，然后变为20，以便下次保存为20.
     will_save_model_path = str(wuconfig.model_saved_path)+"epoch_"+str(now_newest_and_saved_model)+"_saved_model.pkl"
@@ -100,5 +100,7 @@ if __name__ =="__main__":
         lossvalid = loss(pred, y)
         print("\nthe "+ str(index)+" batch valid loss is " + str(lossvalid.data))
         accuracy = calAccuracy(pred, y)
-        print("\nthe "+ str(index)+" batch valid accuracy is " + str(accuracy))
+        print(" batch valid accuracy is " + str(accuracy))
 
+    lrSchedule.step()
+    print("lr is: "+str(lrSchedule.get_lr()[0]))
