@@ -23,6 +23,7 @@ def label_to_onehot(label_np):
   #   label_mask[index] = 1
   #   labels_np_hot.append(label_mask)
 
+
   labels_np_index = []
   for label in label_np:
     index = wuconfig.map_dict_forward[label]
@@ -133,10 +134,11 @@ def load_train ():
 
   # print(train_images[0].shape)
   train_images_np = np.asarray(train_images)
+  label_index_np = np.asarray(label_index)
 
   np.save(wuconfig.trainData_npy_saved_file, train_images_np)  # 存储数据以便下次使用
-  np.save(wuconfig.trainLabel_npy_saved_file, label_index)  # 存储数据以便下次使用
-  return train_images_np, label_index
+  np.save(wuconfig.trainLabel_npy_saved_file, label_index_np)  # 存储数据以便下次使用
+  return train_images_np, label_index_np
 
 class datasetClass(Data.Dataset):
     def __init__(self, type):

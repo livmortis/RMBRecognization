@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/warmup/wutrain.py" afterPath="$PROJECT_DIR$/warmup/wutrain.py" />
+      <change beforePath="$PROJECT_DIR$/warmup/wudata.py" afterPath="$PROJECT_DIR$/warmup/wudata.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wutrain.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wutrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wudata.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wudata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="151" column="34" lean-forward="true" selection-start-line="151" selection-start-column="34" selection-end-line="151" selection-end-column="34" />
+            <state relative-caret-position="347">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -40,8 +40,8 @@
       <file leaf-file-name="wuconfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="29" column="50" lean-forward="false" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,6 +99,7 @@
       <find>wuconfig</find>
       <find>load_train</find>
       <find>print</find>
+      <find>label_hot</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,14 +117,15 @@
         <option value="$PROJECT_DIR$/warmup/wumodel.py" />
         <option value="$PROJECT_DIR$/warmup/wutest.py" />
         <option value="$PROJECT_DIR$/warmup/wuconfig.py" />
-        <option value="$PROJECT_DIR$/warmup/wudata.py" />
         <option value="$PROJECT_DIR$/warmup/wutrain.py" />
+        <option value="$PROJECT_DIR$/warmup/wudata.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -332,8 +334,13 @@
           <url>file://$PROJECT_DIR$/warmup/wutrain.py</url>
           <line>83</line>
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/warmup/wudata.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -590,30 +597,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="151" column="34" lean-forward="true" selection-start-line="151" selection-start-column="34" selection-end-line="151" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="50" lean-forward="false" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="11" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
