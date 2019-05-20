@@ -101,21 +101,33 @@ def load_train ():
   train_images = []
   print("begin to load image")
   for i in tqdm(range(pic_names.size)):
-    # cv2
-    # train_image_cv = cv2.imread(train_data_path + str(pic_names[i]))
-    # if (train_image_cv.shape[2] != 3):
-    #   print('this image is not three channel: ' + str(pic_names[i]))
-    # train_image_cv = cv2.resize(train_image_cv, (wuconfig.image_size, wuconfig.image_size), interpolation=cv2.INTER_AREA)  #cv2
+    try:
+      # cv2
+      # train_image_cv = cv2.imread(train_data_path + str(pic_names[i]))
+      # if (train_image_cv.shape[2] != 3):
+      #   print('this image is not three channel: ' + str(pic_names[i]))
+      # train_image_cv = cv2.resize(train_image_cv, (wuconfig.image_size, wuconfig.image_size), interpolation=cv2.INTER_AREA)  #cv2
 
-    # PIL
-    train_image_cv = Image.open(train_data_path + str(pic_names[i]))
-    if train_image_cv.mode != "RGB":
-      train_image_cv.covert("RGB")
-    train_image_cv = train_image_cv.resize((wuconfig.image_size, wuconfig.image_size))
+      # PIL
+      train_image_cv = Image.open(train_data_path + str(pic_names[i]))
+      if train_image_cv.mode != "RGB":
+        train_image_cv.covert("RGB")
+      train_image_cv = train_image_cv.resize((wuconfig.image_size, wuconfig.image_size))
 
-    train_np = np.asarray(train_image_cv)
-    train_np = train_np.transpose([2,0,1])  #一般读取图片为HWC，pytorch需要该成CHW。
-    train_images.append(train_np)
+      train_np = np.asarray(train_image_cv)
+      train_np = train_np.transpose([2,0,1])  #一般读取图片为HWC，pytorch需要该成CHW。
+      train_images.append(train_np)
+    except:
+      print("\n image broken when load trainDataset: "+ str(pic_names[i]))
+      replace_image = Image.open(train_data_path + str(pic_names[0]))
+      replace_image = replace_image.resize((wuconfig.image_size, wuconfig.image_size))
+      replace_image = np.asarray(replace_image)
+      replace_image = replace_image.transpose([2,0,1])
+      train_images.append(replace_image)
+
+
+
+
   # print(train_images[0].shape)
   train_images_np = np.asarray(train_images)
   return train_images_np, label_index
