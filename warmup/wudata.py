@@ -12,7 +12,7 @@ import os
 #共有9种面值，分别编号为 0.1，0.2，0.5，1，2，5，10，50，100
 def label_to_onehot(label_np):
 
-  if wuconfig.TEST_without_GPU:
+  if wuconfig.TEST_WITH_LITTLE_DATA:
     label_np = label_np[0:wuconfig.TEST_NUM]
 
   # crossEntropyLoss不需要one-hot.....
@@ -56,7 +56,7 @@ def read_csv ():
 def load_test():
   test_data_path = wuconfig.test_data_path
   test_name_list = os.listdir(test_data_path)
-  # if wuconfig.TEST_without_GPU:
+  # if wuconfig.TEST_WITH_LITTLE_DATA:
   #   test_name_list = test_name_list[0:wuconfig.TEST_NUM]
   test_images = []
   test_name_np_list = []
@@ -96,7 +96,7 @@ def load_train ():
   train_data_path = wuconfig.train_data_path
   pic_names ,label_index= read_csv()
 
-  if wuconfig.TEST_without_GPU:
+  if wuconfig.TEST_WITH_LITTLE_DATA:
     pic_names = pic_names[0:wuconfig.TEST_NUM]
   train_images = []
   print("begin to load image")

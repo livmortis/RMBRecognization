@@ -25,15 +25,16 @@ csv_file = '../../dataset_warm_up/train_face_value_label.csv'
 model_saved_path = '../../dataset_warm_up/saved_model/'
 pred_result_file = '../../dataset_warm_up/pred_result/result.csv'
 image_size = 224
-# batch_size = 128
-batch_size = 32
+batch_size = 128
+# batch_size = 32
 lr = 0.01
 weight_decay =  0.0001
 lr_exponential_gamma = 0.9
 epoch = 15
 
-TEST_without_GPU =True
+TEST_WITH_LITTLE_DATA =False
 TEST_NUM = 50
+USE_GPU = True
 
 
 

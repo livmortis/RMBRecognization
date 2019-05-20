@@ -14,7 +14,7 @@ def calAccuracy(pred, label):
   softmax = torch.nn.Softmax()
   predFloat = softmax(pred)
 
-  if not wuconfig.TEST_without_GPU:
+  if  wuconfig.USE_GPU:
     predFloat = predFloat.detach().cpu().numpy()
   else:
     predFloat = predFloat.detach().numpy()  #variable要转换成numpy
@@ -65,7 +65,7 @@ if __name__ =="__main__":
     for index, (i,j) in tqdm(enumerate(trainDataloader, 0)):
       # i是x，j是y
       # print("this batch pic is:"+str(i.shape) + "\nthis batch label is:"+ str(j.shape))
-      if not wuconfig.TEST_without_GPU:
+      if  wuconfig.USE_GPU:
         model = model.cuda()
         i = i.cuda()
         j = j.cuda()
@@ -88,7 +88,7 @@ if __name__ =="__main__":
 
     print("\nbegin the "+str(epoch_index)+" epoch valid")
     for index, (x,y) in tqdm(enumerate(validDataloader, 0)):
-      if not wuconfig.TEST_without_GPU:
+      if  wuconfig.USE_GPU:
         model = model.cuda()
         x = x.cuda()
         y = y.cuda()

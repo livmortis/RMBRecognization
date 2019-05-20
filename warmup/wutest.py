@@ -16,7 +16,7 @@ if __name__ == "__main__":
   image_names = []
   print("\nbegin to test")
   for index , (x, y) in tqdm(enumerate(testDataLoader, 0)):
-    if not wuconfig.TEST_without_GPU:
+    if wuconfig.USE_GPU:
       x = x.cuda()
       model = model.cuda()
     pred = model(x)
@@ -27,7 +27,7 @@ if __name__ == "__main__":
   # 预测向量变为预测标签索引
   pred_rmb = []
   for one_pred in preds:
-    if not wuconfig.TEST_without_GPU:
+    if wuconfig.USE_GPU:
       one_pred_np = one_pred.detach().cpu().numpy()
     else:
       one_pred_np = one_pred.detach().numpy()
