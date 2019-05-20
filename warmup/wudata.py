@@ -16,6 +16,7 @@ def label_to_onehot(label_np):
     label_np = label_np[0:wuconfig.TEST_NUM]
 
   # crossEntropyLoss不需要one-hot.....
+  # 但是，由于下面两者的原因，仍然得用one-hot过渡。
   # labels_np_hot = []
   # for label in label_np:
   #   label_mask = np.zeros(9)
@@ -23,21 +24,25 @@ def label_to_onehot(label_np):
   #   label_mask[index] = 1
   #   labels_np_hot.append(label_mask)
 
-  # 这样会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。
-  # labels_np_index = []
+
+
+  # 这样会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用
+  labels_np_index = []
+  for label in label_np:
+    index = wuconfig.map_dict_forward[label]
+    # index = np.asarray(index)
+    index = np.ndarray(index)
+    labels_np_index.append(index)
+
+
+  # 该成numpy.zeros扩展的方式死，仍然会使labels_np_index的元素index为numpy.int64,而不是np.ndarray，转换Tensor时报错。弃用——用回one-hot
+  # labels_np_index = np.zeros([len(label_np), 1])
+  # k = 0
   # for label in label_np:
   #   index = wuconfig.map_dict_forward[label]
   #   index = np.asarray(index)
-  #   labels_np_index.append(index)
-
-
-  labels_np_index = np.zeros([len(label_np), 1])
-  k = 0
-  for label in label_np:
-    index = wuconfig.map_dict_forward[label]
-    index = np.asarray(index)
-    labels_np_index[k,:] = index
-    k += 1
+  #   labels_np_index[k,:] = index
+  #   k += 1
 
 
   # return labels_np_hot
@@ -192,8 +197,11 @@ class datasetClass(Data.Dataset):
         return self.l
 
     def __getitem__(self, index):
+      # 关于x
       x = torch.from_numpy(self.x[index])
       x = x.type(torch.FloatTensor)
+
+      # 关于y
       if self.t == "test":
         y = self.y[index]
       else:

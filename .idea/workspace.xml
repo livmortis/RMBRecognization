@@ -16,8 +16,8 @@
       <file leaf-file-name="wutrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="11" />
+            <state relative-caret-position="105">
+              <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -28,11 +28,10 @@
       <file leaf-file-name="wudata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="57" column="19" lean-forward="true" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+            <state relative-caret-position="2112">
+              <caret line="149" column="25" lean-forward="true" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
               </folding>
             </state>
           </provider>
@@ -101,6 +100,8 @@
       <find>load_train</find>
       <find>print</find>
       <find>label_hot</find>
+      <find>label_index</find>
+      <find>j</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,8 +119,8 @@
         <option value="$PROJECT_DIR$/warmup/wumodel.py" />
         <option value="$PROJECT_DIR$/warmup/wutest.py" />
         <option value="$PROJECT_DIR$/warmup/wuconfig.py" />
-        <option value="$PROJECT_DIR$/warmup/wutrain.py" />
         <option value="$PROJECT_DIR$/warmup/wudata.py" />
+        <option value="$PROJECT_DIR$/warmup/wutrain.py" />
       </list>
     </option>
   </component>
@@ -337,7 +338,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/warmup/wudata.py</url>
-          <line>199</line>
+          <line>207</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -362,7 +363,6 @@
           <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="59" selection-end-column="42" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -399,7 +399,6 @@
           <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="59" selection-end-column="40" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -482,7 +481,6 @@
           <caret line="116" column="34" lean-forward="false" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="34" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -503,7 +501,6 @@
           <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -602,16 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -620,13 +607,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="57" column="19" lean-forward="true" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+        <state relative-caret-position="2112">
+          <caret line="149" column="25" lean-forward="true" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1558346290327" expanded="true" signature="892:1038" ph="..." />
           </folding>
         </state>
       </provider>
