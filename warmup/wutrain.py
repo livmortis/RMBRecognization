@@ -8,7 +8,35 @@ import wumodel as wumodel
 import numpy as np
 from tqdm import tqdm
 import os
-import sklearn
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+def plotConfuseMatrix(pred, label):
+  print("value type number is: " + str(wuconfig.value_num))
+
+  predIndexes = []
+  labelIndexes = []
+  i = 0
+
+  for onePredFloat in pred:
+    predIndex = onePredFloat.argmax()
+    predIndex = predIndex.detach().numpy()
+    # predIndex = float(predIndex / wuconfig.value_num)  # 归一化。更新：取消绘制矩形图，改为保存numpy
+    predIndexes.append(predIndex)
+
+    labelOne = label[i]
+    labelOne = labelOne.detach().numpy()
+    # labelNorm = float(labelOne / wuconfig.value_num)  #归一化。更新：取消绘制矩形图，改为保存numpy
+    labelIndexes.append(labelOne)
+    i += 1
+
+  cm = confusion_matrix(predIndexes,labelIndexes)
+  # cm =np.fill_diagonal(cm, 0) #归一化后才能让对角为0有意义。  # 归一化。更新：取消绘制矩形图，改为保存numpy
+  cm_np = np.asarray(cm)
+  np.save(wuconfig.cm_saved_file,cm_np)
+  print(cm_np)
+
+
+
 
 def calAccuracy(pred, label, type) :
   totalSum = len(label)
@@ -24,17 +52,13 @@ def calAccuracy(pred, label, type) :
   truNum = 0
   for onePredFloat in predFloat:
     # onePredFloat = np.asarray(onePredFloat)
-    # print("\npred  "+ str(onePredFloat))
     predIndex = onePredFloat.argmax()
     labelIndex = label[i]
-    # print("\nlabel   "+str(labelIndex))
 
     if predIndex == labelIndex:
       truNum += 1
 
     i += 1
-  # print("\ntruNum is "+str(truNum))
-  # print("\ntotalSum is "+str(totalSum))
   accuracy = truNum/totalSum
   return accuracy
 
@@ -110,7 +134,7 @@ if __name__ =="__main__":
     print("\n\nthe epoch "+str(now_newest_and_saved_model)+" total accuracy is "+ str(total_accuracy))
 
     # 一个epoch后，整体验证集数据的混淆矩阵
-
+    plotConfuseMatrix(total_data_pred, total_label)
 
 
     lrSchedule.step()

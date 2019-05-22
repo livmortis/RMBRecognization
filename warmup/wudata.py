@@ -76,7 +76,6 @@ def read_csv ():
 def load_test():
   test_data_path = wuconfig.test_data_path
   test_name_list = os.listdir(test_data_path)
-  print("6666666666"+str(test_name_list[0:10]))
   if wuconfig.TEST_WITH_LITTLE_DATA:
     test_name_list = test_name_list[0:wuconfig.TEST_NUM]
   test_images = []
@@ -97,18 +96,13 @@ def load_test():
     one_test_image = one_test_image.resize([wuconfig.image_size,wuconfig.image_size])
     one_test_np = np.asarray(one_test_image)
     one_test_np = one_test_np.transpose([2,0,1])
-    # print("11111"+str(type(one_test_np)))
     test_images.append(one_test_np)
-    # print("333333"+str(type(one_test_name)))
 
     one_test_name_np = np.asarray(one_test_name)
-    # print("22222"+str(type(one_test_name_np)))
     test_name_np_list.append(one_test_name_np)
-    # test_name_np_list[i, :] = one_test_name_np
     i+=1
   test_images = np.asarray(test_images)
   test_name_np_list = np.asarray(test_name_np_list)
-  print("777777"+str(test_name_np_list[0:10]))
 
   np.save(wuconfig.testData_npy_saved_file, test_images) # 存储数据以便下次使用
   np.save(wuconfig.testName_npy_saved_file, test_name_np_list) # 存储数据以便下次使用
@@ -236,5 +230,5 @@ if __name__ == "__main__":
   # train_images = load_train()
   # pic_names ,label_np= read_csv()
   # label_to_onehot(label_np)
-  load_test()
+  # load_test()
   print('well down')
