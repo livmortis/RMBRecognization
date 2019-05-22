@@ -19,7 +19,11 @@ def plotConfuseMatrix(pred, label):
 
   for onePredFloat in pred:
     predIndex = onePredFloat.argmax()
-    predIndex = predIndex.detach().numpy()
+    if wuconfig.USE_GPU:
+      predIndex = predIndex.detach().cpu().numpy()
+    else:
+      predIndex = predIndex.detach().numpy()
+
     # predIndex = float(predIndex / wuconfig.value_num)  # 归一化。更新：取消绘制矩形图，改为保存numpy
     predIndexes.append(predIndex)
 
@@ -29,7 +33,7 @@ def plotConfuseMatrix(pred, label):
     labelIndexes.append(labelOne)
     i += 1
 
-  cm = confusion_matrix(predIndexes,labelIndexes)
+  cm = confusion_matrix(predIndexes,labelIndexes,labels=[0,1,2,3,4,5,6,7,8])
   # cm =np.fill_diagonal(cm, 0) #归一化后才能让对角为0有意义。  # 归一化。更新：取消绘制矩形图，改为保存numpy
   cm_np = np.asarray(cm)
   np.save(wuconfig.cm_saved_file,cm_np)
