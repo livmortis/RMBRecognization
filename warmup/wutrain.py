@@ -28,7 +28,10 @@ def plotConfuseMatrix(pred, label):
     predIndexes.append(predIndex)
 
     labelOne = label[i]
-    labelOne = labelOne.detach().numpy()
+    if wuconfig.USE_GPU:
+      labelOne = labelOne.detach().cpu().numpy()
+    else:
+      labelOne = labelOne.detach().numpy()
     # labelNorm = float(labelOne / wuconfig.value_num)  #归一化。更新：取消绘制矩形图，改为保存numpy
     labelIndexes.append(labelOne)
     i += 1
