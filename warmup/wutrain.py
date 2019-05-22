@@ -64,6 +64,8 @@ def calAccuracy(pred, label, type) :
 
     if predIndex == labelIndex:
       truNum += 1
+    else:
+      print("\n wrong value image is "+str(i)+" image,label should be "+str(label[i])+", but wrong predict to "+ str(predIndex))
 
     i += 1
   accuracy = truNum/totalSum

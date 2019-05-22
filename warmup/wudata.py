@@ -139,7 +139,7 @@ def load_train ():
       train_np = train_np.transpose([2,0,1])  #一般读取图片为HWC，pytorch需要该成CHW。
       train_images.append(train_np)
     except:
-      print("\n image broken when load trainDataset: "+ str(pic_names[i]))
+      print("\n image broken when load trainDataset: "+ str(pic_names[i]))    #WBNGQ9R7.jpg
       replace_image = Image.open(train_data_path + str(pic_names[0]))
       replace_image = replace_image.resize((wuconfig.image_size, wuconfig.image_size))
       replace_image = np.asarray(replace_image)
