@@ -37,7 +37,7 @@ if __name__ == "__main__":
     one_index = np.argmax(one_pred_np)
     # 预测标签索引变为预测人民币面值
     one_rmb = wuconfig.map_dict_reverse[one_index]
-    pred_rmb.append(one_rmb)
+    pred_rmb.append(str(one_rmb))
   pred_rmb = np.asarray(pred_rmb)
   image_names = np.asarray(image_names)
 
