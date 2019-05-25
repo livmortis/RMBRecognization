@@ -65,7 +65,8 @@ def calAccuracy(pred, label, type) :
     if predIndex == labelIndex:
       truNum += 1
     else:
-      print("\n wrong value image is "+str(i)+" image,label should be "+str(label[i])+", but wrong predict to "+ str(predIndex))
+      if type=="epoch":   #每个batch size训练/验证时，打印图片序号无意义，因为只是当前batch的序号，无法锁定到底是哪张图。
+        print("\n wrong value image is "+str(i)+" image,label should be "+str(label[i])+", but wrong predict to "+ str(predIndex))
 
     i += 1
   accuracy = truNum/totalSum
