@@ -37,7 +37,12 @@ if __name__ == "__main__":
         loss.backward()
         optm.step()
 
-        print("loss is "+str(loss))
+        if fdConfig.use_gpu:
+          loss_np = loss.detach().cpu().numpy()
+        else:
+          loss_np = loss.detach().numpy()
+
+        print("\nloss is "+str(loss_np))
 
       torch.save(model_R, fdConfig.model_saved+"detect_reg_model.pkl")
       print("model has saved")
