@@ -17,7 +17,8 @@ if __name__ == "__main__":
       model_R = fdModel_Regression.FdModelReg()
     criterion = nn.SmoothL1Loss()
     optm = Opt.Adam(model_R.parameters(),lr=fdConfig.LR,weight_decay=fdConfig.WEIGHT_DECAY)
-    lrSchedule = Opt.lr_scheduler.ExponentialLR(optm, fdConfig.lr_exponential_gamma)
+    # lrSchedule = Opt.lr_scheduler.ExponentialLR(optm, fdConfig.lr_exponential_gamma)  # 学习率下降太快，会使loss下降速度被减缓。而loss初始值太大(226),所以希望前期学习率不要变。
+    lrSchedule = Opt.lr_scheduler.ReduceLROnPlateau(optm,'min',0.5,10)
 
     dataset_R = fdData_Regression.FdTrainDataReg()
     trainDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=True )
