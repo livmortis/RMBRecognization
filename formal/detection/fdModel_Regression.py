@@ -19,7 +19,8 @@ class FdModelReg(Modules.Module):
     self.conv_3 = torch.nn.Conv2d(3072, 128, (1,1)) # 2048+512 = 2560,错！  2048+1024=3072!
     self.conv_2 = torch.nn.Conv2d(640, 64, (1,1))   # 128+512 = 640
     self.conv_1 = torch.nn.Conv2d(320, 32, (1,1))    # 64+256 = 320
-    self.gap = torch.nn.AdaptiveAvgPool2d((0,0))
+    # self.gap = torch.nn.AdaptiveAvgPool2d((0,0))  #云上会报错(pytorch)：RuntimeError: cannot reshape tensor of 0 elements into shape [-1, 0]
+    self.gap = torch.nn.AdaptiveAvgPool2d((1,1))
     self.linear = torch.nn.Linear(32, 4)
     self.sigm = torch.nn.Sigmoid()
 
@@ -90,6 +91,10 @@ class FdModelReg(Modules.Module):
       print("conv1 shape is: "+str(conv1.detach().numpy().shape))   #应该是(-1, 32, 56, 56)  (224*224的情况下)
 
     gap = self.gap(conv1)
+    if fdConfig.use_gpu:
+      print("gap shape is: "+str(gap.detach().cpu().numpy().shape))
+    else:
+      print("gap shape is: "+str(gap.detach().numpy().shape))
     liar = self.linear(gap)
     # prediction = self.sigm(liar)
 
