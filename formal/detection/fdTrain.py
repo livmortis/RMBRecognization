@@ -23,8 +23,8 @@ if __name__ == "__main__":
     trainDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=True )
 
     for epo in range(fdConfig.EPOCH):
-      print("begin "+str(epo)+" epoch")
-      for index, (x, y) in tqdm(enumerate(trainDataloader_R, 0)):
+      print("\nbegin "+str(epo)+" epoch")
+      for index, (x, y) in enumerate(trainDataloader_R, 0):
         if fdConfig.use_gpu:
           x = x.cuda()
           y = y.cuda()
@@ -42,9 +42,9 @@ if __name__ == "__main__":
         else:
           loss_np = loss.detach().numpy()
 
-        print("\nloss is "+str(loss_np))
+        print("loss is "+str(loss_np))
 
       torch.save(model_R, fdConfig.model_saved+"detect_reg_model.pkl")
-      print("model has saved")
+      # print("model has saved")
       lrSchedule.step()
-      print("lr is: " + str(lrSchedule.get_lr()[0]))
+      print("lr is: " + str(round(lrSchedule.get_lr()[0],2)))
