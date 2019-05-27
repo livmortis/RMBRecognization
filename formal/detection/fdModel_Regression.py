@@ -95,6 +95,12 @@ class FdModelReg(Modules.Module):
       print("gap shape is: "+str(gap.detach().cpu().numpy().shape))
     else:
       print("gap shape is: "+str(gap.detach().numpy().shape))
+
+    gap = gap.view(gap.size(0), -1)     # 切记！！！
+    if fdConfig.use_gpu:
+      print("gap after view shape is: "+str(gap.detach().cpu().numpy().shape))
+    else:
+      print("gap after view shape is: "+str(gap.detach().numpy().shape))
     liar = self.linear(gap)
     # prediction = self.sigm(liar)
 
