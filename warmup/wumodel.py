@@ -13,7 +13,7 @@ class ModelClass(nnM.Module):
 
     self.backbone = tvM.resnet50(pretrained=True)
 
-    # 固定输入尺寸224后才可用的全连接层
+    # 固定输入尺寸224后才可用的全连接层，无法多尺度训练
     # self.backbone.fc = nnM.Sequential(nnM.Linear(2048, 1024), nnM.Linear(1024, 9))
 
     #Expected 3-dimensional tensor, but got 2-dimensional tensor for argument #1 'self' (while checking arguments for adaptive_avg_pool1d)
@@ -70,7 +70,7 @@ class ModelClass(nnM.Module):
 
     #成功二、留下fc层，用GAP-2D代替原来的pool2d。
     self.backbone.avgpool = nnM.AdaptiveAvgPool2d((1,1))
-    self.backbone.fc = nnM.Linear(2048, 9)
+    self.backbone.fc = nnM.Sequential(nnM.Linear(2048, 1024), nnM.Linear(1024, 9))
     #标准的维度样子：
     # layer4 output is: (35, 2048, 7, 7)
     # avgpool output is: (35, 2048, 1, 1)
