@@ -26,10 +26,11 @@ class FdModelReg(Modules.Module):
 
   def forward(self, input):
     mid = self.resnet.conv1(input)
-    if fdConfig.use_gpu:
-      print("first output is: " + str(mid.detach().cpu().numpy().shape))
-    else:
-      print("first output is: " + str(mid.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("first output is: " + str(mid.detach().cpu().numpy().shape))
+      else:
+        print("first output is: " + str(mid.detach().numpy().shape))
 
     mid = self.resnet.bn1(mid)
     mid = self.resnet.relu(mid)
@@ -37,15 +38,17 @@ class FdModelReg(Modules.Module):
     layer1 = self.resnet.layer1(mid)
     layer2 = self.resnet.layer2(layer1)
     layer3 = self.resnet.layer3(layer2)
-    if fdConfig.use_gpu:
-      print("layer3 output is: " + str(layer3.detach().cpu().numpy().shape))
-    else:
-      print("layer3 output is: " + str(layer3.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("layer3 output is: " + str(layer3.detach().cpu().numpy().shape))
+      else:
+        print("layer3 output is: " + str(layer3.detach().numpy().shape))
     layer4 = self.resnet.layer4(layer3)
-    if fdConfig.use_gpu:
-      print("layer4 output is: " + str(layer4.detach().cpu().numpy().shape))
-    else:
-      print("layer4 output is: " + str(layer4.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("layer4 output is: " + str(layer4.detach().cpu().numpy().shape))
+      else:
+        print("layer4 output is: " + str(layer4.detach().numpy().shape))
 
     # l4_shape = layer4.detach().numpy().shape
 
@@ -54,53 +57,61 @@ class FdModelReg(Modules.Module):
     # un3 = torch.Tensor.resize_(layer4, (l4_shape[2] * 2 , l4_shape[3] * 2))   # cannot resize variables that require grad，弃掉
     un3 = self.unSample(layer4)
     cat3 = torch.cat([layer3,un3],1)   #在第二个维度（共四个）即channel方向进行concat。
-    if fdConfig.use_gpu:
-      print("cat3 shape is: "+str(cat3.detach().cpu().numpy().shape))
-    else:
-      print("cat3 shape is: "+str(cat3.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("cat3 shape is: "+str(cat3.detach().cpu().numpy().shape))
+      else:
+        print("cat3 shape is: "+str(cat3.detach().numpy().shape))
     conv3 = self.conv_3(cat3)
-    if fdConfig.use_gpu:
-      print("conv3 shape is: "+str(conv3.detach().cpu().numpy().shape))
-    else:
-      print("conv3 shape is: "+str(conv3.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("conv3 shape is: "+str(conv3.detach().cpu().numpy().shape))
+      else:
+        print("conv3 shape is: "+str(conv3.detach().numpy().shape))
 
     '''第二层concat'''
     un2 = self.unSample(conv3)
     cat2 = torch.cat([layer2,un2],1)
-    if fdConfig.use_gpu:
-      print("cat2 shape is: "+str(cat2.detach().cpu().numpy().shape))
-    else:
-      print("cat2 shape is: "+str(cat2.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("cat2 shape is: "+str(cat2.detach().cpu().numpy().shape))
+      else:
+        print("cat2 shape is: "+str(cat2.detach().numpy().shape))
     conv2 = self.conv_2(cat2)
-    if fdConfig.use_gpu:
-      print("conv2 shape is: "+str(conv2.detach().cpu().numpy().shape))
-    else:
-      print("conv2 shape is: "+str(conv2.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("conv2 shape is: "+str(conv2.detach().cpu().numpy().shape))
+      else:
+        print("conv2 shape is: "+str(conv2.detach().numpy().shape))
 
     '''第三层concat'''
     un1 = self.unSample(conv2)
     cat1 = torch.cat([layer1,un1],1)
-    if fdConfig.use_gpu:
-      print("cat1 shape is: "+str(cat1.detach().cpu().numpy().shape))
-    else:
-      print("cat1 shape is: "+str(cat1.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("cat1 shape is: "+str(cat1.detach().cpu().numpy().shape))
+      else:
+        print("cat1 shape is: "+str(cat1.detach().numpy().shape))
     conv1 = self.conv_1(cat1)
-    if fdConfig.use_gpu:
-      print("conv1 shape is: "+str(conv1.detach().cpu().numpy().shape))   #应该是(-1, 32, 56, 56)  (224*224的情况下)
-    else:
-      print("conv1 shape is: "+str(conv1.detach().numpy().shape))   #应该是(-1, 32, 56, 56)  (224*224的情况下)
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("conv1 shape is: "+str(conv1.detach().cpu().numpy().shape))   #应该是(-1, 32, 56, 56)  (224*224的情况下)
+      else:
+        print("conv1 shape is: "+str(conv1.detach().numpy().shape))   #应该是(-1, 32, 56, 56)  (224*224的情况下)
 
     gap = self.gap(conv1)
-    if fdConfig.use_gpu:
-      print("gap shape is: "+str(gap.detach().cpu().numpy().shape))
-    else:
-      print("gap shape is: "+str(gap.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("gap shape is: "+str(gap.detach().cpu().numpy().shape))
+      else:
+        print("gap shape is: "+str(gap.detach().numpy().shape))
 
     gap = gap.view(gap.size(0), -1)     # 切记！！！
-    if fdConfig.use_gpu:
-      print("gap after view shape is: "+str(gap.detach().cpu().numpy().shape))
-    else:
-      print("gap after view shape is: "+str(gap.detach().numpy().shape))
+    if fdConfig.LOG_FOR_NET_CONSTRUCTION:
+      if fdConfig.use_gpu:
+        print("gap after view shape is: "+str(gap.detach().cpu().numpy().shape))
+      else:
+        print("gap after view shape is: "+str(gap.detach().numpy().shape))
     liar = self.linear(gap)
     # prediction = self.sigm(liar)
 
