@@ -12,6 +12,7 @@ WHICH_MODEL = 'R'   #'R'是回归模型，'E'是EAST模型。
 LR = 0.001
 WEIGHT_DECAY =  0.0001
 lr_exponential_gamma = 0.9
+LOG_FOR_NET_CONSTRUCTION = False
 
 use_gpu = False
 is_test = True
