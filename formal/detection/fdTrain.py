@@ -18,7 +18,7 @@ if __name__ == "__main__":
     criterion = nn.SmoothL1Loss()
     optm = Opt.Adam(model_R.parameters(),lr=fdConfig.LR,weight_decay=fdConfig.WEIGHT_DECAY)
     # lrSchedule = Opt.lr_scheduler.ExponentialLR(optm, fdConfig.lr_exponential_gamma)  # 学习率下降太快，会使loss下降速度被减缓。而loss初始值太大(226),所以希望前期学习率不要变。
-    lrSchedule = Opt.lr_scheduler.ReduceLROnPlateau(optm,'min',0.5,10)
+    lrSchedule = Opt.lr_scheduler.ReduceLROnPlateau(optm,'min',0.5,10,verbose=True)
 
     dataset_R = fdData_Regression.FdTrainDataReg()
     trainDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=True )
@@ -47,5 +47,5 @@ if __name__ == "__main__":
 
       torch.save(model_R, fdConfig.model_saved+"detect_reg_model.pkl")
       # print("model has saved")
-      lrSchedule.step()
-      print("lr is: " + str(round(lrSchedule.get_lr()[0],2)))
+      lrSchedule.step(loss)
+      # print("lr is: " + str(round(lrSchedule.get_lr()[0],2)))   #指数衰减才有该方法，ReduceLROnPlateau改为设置参数verbose=True
