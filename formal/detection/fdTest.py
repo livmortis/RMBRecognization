@@ -35,7 +35,10 @@ if __name__ == "__main__":
         x = x.cuda()
         model_R = model_R.cuda()
       prediction = model_R(x)
-      pred_np = prediction.detach().numpy()
+      if fdConfig.use_gpu:
+        pred_np = prediction.detach().cpu().numpy()
+      else:
+        pred_np = prediction.detach().numpy()
       print(pred_np)
       print(y)
       drawRect(pred_np, y)
