@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdConfig.py" afterPath="$PROJECT_DIR$/formal/detection/fdConfig.py" />
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdModel_Regression.py" afterPath="$PROJECT_DIR$/formal/detection/fdModel_Regression.py" />
+      <change beforePath="$PROJECT_DIR$/formal/detection/fdTrain.py" afterPath="$PROJECT_DIR$/formal/detection/fdTrain.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fdTrain.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fdTrain.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+            <state relative-caret-position="220">
+              <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -68,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -151,11 +150,11 @@
         <option value="$PROJECT_DIR$/warmup/wuconfig.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdModel_EAST.py" />
         <option value="$PROJECT_DIR$/warmup/wutrain.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdTrain.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdData_Regression.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTest.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdModel_Regression.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdTrain.py" />
       </list>
     </option>
   </component>
@@ -853,14 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/fdData_Regression.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -893,6 +884,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
           <folding />
         </state>
       </provider>

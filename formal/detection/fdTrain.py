@@ -23,6 +23,7 @@ if __name__ == "__main__":
     trainDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=True )
 
     for epo in range(fdConfig.EPOCH):
+      print("begin "+str(epo)+" epoch")
       for index, (x, y) in tqdm(enumerate(trainDataloader_R, 0)):
         if fdConfig.use_gpu:
           x = x.cuda()
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         loss.backward()
         optm.step()
 
-        # print("loss is "+str(loss))
+        print("loss is "+str(loss))
 
       torch.save(model_R, fdConfig.model_saved+"detect_reg_model.pkl")
       print("model has saved")
