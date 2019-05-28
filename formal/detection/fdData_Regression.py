@@ -143,7 +143,7 @@ class FdTrainDataReg (Data.Dataset):
     img_list = []
     label_list = []
     if fdConfig.is_test:
-      txtList = txtList[:10]
+      txtList = txtList[:fdConfig.test_train_num]
     for txtName in txtList:
       img, label = readTxt(txtName)
       img_list.append(img)
@@ -198,7 +198,7 @@ class FdTestDataReg (Data.Dataset):
     img_list = []
     name_list = []
     if fdConfig.is_test:
-      trainList = trainList[:3]
+      trainList = trainList[:fdConfig.test_test_num]
     for imgName in trainList:
       img = readTrain(imgName)
       img_list.append(img)
