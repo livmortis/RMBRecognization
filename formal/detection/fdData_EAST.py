@@ -755,13 +755,16 @@ def readTrain(txtName):
   print(polyList.dtype) if fdConfig.LOG_FOR_EAST_DATA==True else None
   print(scale_rate.dtype) if fdConfig.LOG_FOR_EAST_DATA==True else None
   print("scale_rate is "+str(scale_rate)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("resize polylist before fix is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   polyList *= float(scale_rate)    #一句代码实现poly联动修改1
-  print("resize polylist is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("resize polylist after fix is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   text_poly = [[ float(polyList[0]), float(polyList[1]) ], [ float(polyList[2]), float(polyList[3]) ],
                [ float(polyList[6]), float(polyList[7]) ], [ float(polyList[4]), float(polyList[5]) ]]
   text_poly = np.asarray(text_poly)
   text_poly = text_poly.astype(np.float)
-  text_tag = False if str(polyList[8])=='1' else True
+  # text_tag = False if str(polyList[8])=='1' else True       #bug! 这里的1跟着poly缩放，变得不再是1，所以导致本应该是False的text_tag全成了True
+  text_tag = False                                           #bug! 这里的1跟着poly缩放，变得不再是1，所以导致本应该是False的text_tag全成了True
+  print("text_tag is: "+str(text_tag)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   #由于只有冠字号一个类别，这里全部是“1”。"1"表示可以识别————无模糊字符————不是难例，所以全是False。
 
 
