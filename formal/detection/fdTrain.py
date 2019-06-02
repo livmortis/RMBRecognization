@@ -4,8 +4,10 @@ import torch.optim as Opt
 import torch
 import numpy as np
 import fdData_Regression
+import fdData_EAST
 import fdConfig
 import fdModel_Regression
+import fdModel_EAST
 from tqdm import tqdm
 
 def calIou(pred_list , label_list):
@@ -98,3 +100,72 @@ if __name__ == "__main__":
       # print("model has saved")
       lrSchedule.step(loss)
       # print("lr is: " + str(round(lrSchedule.get_lr()[0],2)))   #指数衰减才有该方法，ReduceLROnPlateau改为设置参数verbose=True
+
+
+  elif fdConfig.WHICH_MODEL == 'E':
+    if fdConfig.need_load_model:
+      model_E = torch.load(fdConfig.model_saved+"detect_east_model.pkl")
+    else:
+      model_E = fdModel_EAST.FdModelEast()
+    # criterion = nn.SmoothL1Loss()
+    optm = Opt.Adam(model_E.parameters(),lr=fdConfig.LR,weight_decay=fdConfig.WEIGHT_DECAY)
+    lrSchedule = Opt.lr_scheduler.ReduceLROnPlateau(optm,'min',fdConfig.lr_shrink_factor,fdConfig.lr_patient,verbose=True)
+
+    dataset_E = fdData_EAST.FdTrainDataEAST()
+    trainDataloader_E = Dataloader.DataLoader(dataset_E, fdConfig.BATCH_SIZE, shuffle=True )
+
+    loss_E = fdModel_EAST.FdLossEast()
+
+    for epo in range(fdConfig.EPOCH):
+      print("\nbegin "+str(epo)+" epoch")
+      pred_list = []
+      label_list = []
+      for index, (x, score_map, geo_map, training_mask) in enumerate(trainDataloader_E, 0):
+        if fdConfig.use_gpu:
+          x = x.cuda()
+          score_map = score_map.cuda()
+          geo_map = geo_map.cuda()
+          training_mask = training_mask.cuda()
+          model_E = model_E.cuda()
+
+        F_score, F_geo = model_E(x)
+        optm.zero_grad()
+
+        criterionE =  loss_E(score_map, F_score, geo_map, F_geo, training_mask)
+        criterionE.backward()
+        optm.step()
+        print("loss is " + str(criterionE.detach().numpy()))
+
+
+      lrSchedule.step(criterionE)
+      torch.save(model_E, fdConfig.model_saved+"detect_east_model.pkl")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
