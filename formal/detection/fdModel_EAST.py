@@ -3,6 +3,8 @@ import torch.nn.modules as Modules
 import torch
 import fdConfig
 import numpy as np
+import cv2
+import PIL.Image as Image
 
 # resnet50 各layer输出层的channel：
 # layer1：256  layer2:512  layer3:1024  layer4:2048
@@ -14,16 +16,34 @@ class FdLossEast(torch.nn.Module):
   def forward(self, score_map, F_score, geo_map, F_geo, training_mask):
 
     # score map loss --- dice loss
-    print("score map shape is: "+str(score_map.shape))
-    print("F_score shape is: "+str(F_score.shape))
-    print("geo_map shape is: "+str(geo_map.shape))
-    print("F_geo shape is: "+str(F_geo.shape))
-    print("training_mask shape is: "+str(training_mask.shape))
+    print("score map shape is: "+str(score_map.shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("F_score shape is: "+str(F_score.shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("geo_map shape is: "+str(geo_map.shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("F_geo shape is: "+str(F_geo.shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("training_mask shape is: "+str(training_mask.shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+
+
+    # cv2.imshow('score map',score_map.detach().numpy()[4].transpose([1,2,0]))
+    # cv2.waitKey(0)
+    # cv2.imshow('F_score',F_score.detach().numpy()[4].transpose([1,2,0]))
+    # cv2.waitKey(0)
+    # cv2.imshow('training_mask',training_mask.detach().numpy()[4].transpose([1,2,0]))
+    # cv2.waitKey(0)
+
+    print("score_map sum is: "+str(score_map.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("F_score sum is: "+str(F_score.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("geo_map sum is: "+str(geo_map.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("F_geo sum is: "+str(F_geo.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("training_mask sum is: "+str(training_mask.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+
+
+
     intersection_dice = (score_map * F_score * training_mask).sum()
     # union_dice = score_map.dot(training_mask) + F_score.dot(training_mask)  错误！
     union_dice = (score_map * training_mask).sum() + (F_score * training_mask).sum()
     dice_loss = 1-(2*intersection_dice/(union_dice+1e-5))
     dice_loss *= 0.01
+    print("dice_loss: "+str(dice_loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：dice_loss是一个数。因为有sum()。
 
 
@@ -43,18 +63,18 @@ class FdLossEast(torch.nn.Module):
     inter_height = d1_min+d3_min
     inter_width = d2_min+d4_min
     intersection_iou = inter_height * inter_width
-    print("intersection_iou: "+str(intersection_iou)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("intersection_iou: "+str(intersection_iou.shape)) if fdConfig.LOG_FOR_EAST_LOSS else None
     union_iou = gt_area + pred_area - intersection_iou
-    print("union_iou: "+str(union_iou)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("union_iou: "+str(union_iou.shape)) if fdConfig.LOG_FOR_EAST_LOSS else None
     iou_loss = -torch.Tensor.log(intersection_iou+1.0 / union_iou+1.0)
-    print("iou_loss: "+str(iou_loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("iou_loss: "+str(iou_loss.shape)) if fdConfig.LOG_FOR_EAST_LOSS else None
 
     #注：iou_loss是一个图，尺寸等于标签map
 
 
     # angle map loss
     angle_loss = 1 - torch.Tensor.cos(angle_pred-angle_gt)
-    print("angle_loss: "+str(angle_loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("angle_loss: "+str(angle_loss.shape)) if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：angle_loss是一个图，尺寸等于标签map
 
 
@@ -64,6 +84,7 @@ class FdLossEast(torch.nn.Module):
     geo_loss = iou_loss + 20 * angle_loss
     #注：geo_loss是一个图，尺寸等于标签map
     loss = (geo_loss * score_map * training_mask).mean()  +   dice_loss
+    print("(geo_loss * score_map * training_mask).mean(): "+str((geo_loss * score_map * training_mask).mean())) if fdConfig.LOG_FOR_EAST_LOSS else None
     print("loss: "+str(loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：.mean()之后才变成数，最终loss是一个数。
 

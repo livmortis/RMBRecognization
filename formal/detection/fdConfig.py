@@ -8,7 +8,7 @@ EPOCH = 50
 IMG_SIZE_WIDTH = 224
 IMG_SIZE_HEIGHT = 224
 IMG_SIZE_EAST = 416
-BATCH_SIZE = 32
+BATCH_SIZE = 16   #EAST时16以上会OOM
 WHICH_MODEL = 'E'   #'R'是回归模型，'E'是EAST模型。
 WEIGHT_DECAY =  0.0001
 lr_exponential_gamma = 0.9
@@ -20,7 +20,7 @@ LOG_FOR_EAST_LOSS = False
 
 lr_patient = 10
 lr_shrink_factor = 0.5
-LR = 0.001
+LR = 0.01
 
 use_gpu = True
 is_test = False
