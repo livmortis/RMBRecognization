@@ -116,6 +116,7 @@ import torch
 # print(e)
 
 
+
 # pytorch.Tensor运算测试
 # q = np.array([1,2,3])
 # w = np.array([2,2,2])
@@ -137,6 +138,8 @@ import torch
 # print("二维矩阵各项乘再求和结果：" + str((f*d).sum()))
 
 
+
+
 # pytorch.Tensor运算测试2
 # f= np.array([[1,2],[3,4]])
 # d= np.array([[2,2],[2,2]])
@@ -147,6 +150,9 @@ import torch
 # k = torch.Tensor.min(f,d)
 # # print(k)
 # # z = f.mean()
+
+
+
 
 
 # ::符号
@@ -160,12 +166,18 @@ import torch
 # print(a[::-2])
 
 
+
+
+
 # split
 # a = np.zeros([1,5,22,22])
 # a = torch.Tensor(a)
 # print(a.shape)
 # q,w,e,r,t = a.chunk(5,1)
 # print(q.shape)
+
+
+
 
 
 # "image resize" and "numpy array resize"
@@ -196,11 +208,28 @@ import torch
 
 
 
+# transpose
+# a = cv2.imread("../../dataset_formal/detect_data/arti_labeled_img_300/08DR6GTY.jpg")
+# b = np.array(a)
+# print(b.shape)
+# c = b.transpose([2,0,1])
+# print(c.shape)
+# d = torch.Tensor(c)
+# print(d.shape)
+
+# print(e.shape)
 
 
 
 
-
+# zip
+# f= np.array([[1,2],[3,4]])
+# g= np.array([[6,6],[8,8]])
+# for i,j in zip(f,g):
+#   print("begin")
+#   print(i)
+#   print("")
+#   print(j)
 
 
 

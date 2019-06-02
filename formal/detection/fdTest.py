@@ -10,6 +10,9 @@ import torch
 import cv2
 
 import fdData_EAST
+import time
+# import lanms
+
 
 
 def drawRect(pred_batch, y_batch, type):
@@ -36,6 +39,57 @@ def drawRect(pred_batch, y_batch, type):
 
     i+=1
 
+# def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
+def detect(score_map, geo_map, timer, score_map_thresh=0.5, box_thresh=0.1, nms_thres=0.2):
+  '''
+  restore text boxes from score map and geo map
+  :param score_map:
+  :param geo_map:
+  :param timer:
+  :param score_map_thresh: threshhold for score map
+  :param box_thresh: threshhold for boxes
+  :param nms_thres: threshold for nms
+  :return:
+  '''
+  if len(score_map.shape) == 4:
+    score_map = score_map[0, :, :, 0]
+    geo_map = geo_map[0, :, :, ]
+  # filter the score map
+  print("score map shape is: "+str(score_map.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+  xy_text = np.argwhere(score_map > score_map_thresh)
+  print("score map shape after thresh is: "+str(score_map.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+
+  # sort the text boxes via the y axis
+  print("xy_text is: "+str(xy_text)) if fdConfig.LOG_FOR_EAST_TEST else None  #空
+  xy_text = xy_text[np.argsort(xy_text[:, 0])]
+  # restore
+  start = time.time()
+  text_box_restored = fdData_EAST.restore_rectangle(xy_text[:, ::-1] * 4, geo_map[xy_text[:, 0], xy_text[:, 1], :])  # N*4*2
+  print("text_box_restored is: "+str(text_box_restored)) if fdConfig.LOG_FOR_EAST_TEST else None  #空
+
+  print('{} text boxes before nms'.format(text_box_restored.shape[0]))
+  boxes = np.zeros((text_box_restored.shape[0], 9), dtype=np.float32)
+  boxes[:, :8] = text_box_restored.reshape((-1, 8))
+  boxes[:, 8] = score_map[xy_text[:, 0], xy_text[:, 1]]
+  timer['restore'] = time.time() - start
+  # nms part
+  start = time.time()
+  # boxes = nms_locality.nms_locality(boxes.astype(np.float64), nms_thres)
+  # boxes = lanms.merge_quadrangle_n9(boxes.astype('float32'), nms_thres) #xzy 临时去掉NMS
+  timer['nms'] = time.time() - start
+
+  if boxes.shape[0] == 0:
+    return None, timer
+
+  # here we filter some low score boxes by the average score map, this is different from the orginal paper
+  for i, box in enumerate(boxes):
+    mask = np.zeros_like(score_map, dtype=np.uint8)
+    cv2.fillPoly(mask, box[:8].reshape((-1, 4, 2)).astype(np.int32) // 4, 1)
+    boxes[i, 8] = cv2.mean(score_map, mask)[0]
+  boxes = boxes[boxes[:, 8] > box_thresh]
+
+  return boxes, timer
+
 
 if __name__ == "__main__":
   if fdConfig.WHICH_MODEL == 'R':
@@ -60,6 +114,10 @@ if __name__ == "__main__":
 
       prediction_list.append(pred_np)
 
+
+
+
+
   elif fdConfig.WHICH_MODEL == 'E':
     model_E = torch.load(fdConfig.model_saved + "detect_east_model.pkl")
     dataset_E = fdData_EAST.FdTestDataEAST()
@@ -67,13 +125,41 @@ if __name__ == "__main__":
 
     prediction_list = []
     for index, (x, y) in tqdm(enumerate(testDataloader_E, 0)):
+      start_time = time.time()
+
       if fdConfig.use_gpu:
         x = x.cuda()
         model_E = model_E.cuda()
 
+      timer = {'net': 0, 'restore': 0, 'nms': 0}
+      start = time.time()
+
       F_score, F_geo = model_E(x)
+      F_score = F_score.detach().numpy()
+      print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+      F_score = F_score.transpose([0,2,3,1])
+      print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+      F_geo = F_geo.detach().numpy()
+      print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+      F_geo = F_geo.transpose([0,2,3,1])
+      print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
 
 
+      for each_F_score, each_F_geo ,each_x in zip(F_score,F_geo,x):
+        each_F_score = each_F_score[np.newaxis,:,:,:]
+        each_F_geo = each_F_geo[np.newaxis,:,:,:]
+        print("each_F_score shape is : " + str(each_F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+        print("each_F_geo shape is : " + str(each_F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+
+        timer['net'] = time.time() - start
+        boxes, timer = detect(score_map=each_F_score, geo_map=each_F_geo, timer=timer)
+        # print('{} : net {:.0f}ms, restore {:.0f}ms, nms {:.0f}ms'.format(x, timer['net'] * 1000, timer['restore'] * 1000, timer['nms'] * 1000))
+        duration = time.time() - start_time
+        # print('[timing] {}'.format(duration))
+
+
+        print("boxes is : " +str(boxes)) if fdConfig.LOG_FOR_EAST_TEST else None
+        print("image shape is : " +str(each_x.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
 
 
 
