@@ -142,7 +142,7 @@ def load_train ():
         train_image_cv = train_image_cv.resize((wuconfig.image_size1, wuconfig.image_size2))
 
       train_np = np.asarray(train_image_cv)
-      train_np = train_np.transpose([2,0,1])  #一般读取图片为HWC，pytorch需要该成CHW。
+      train_np = train_np.transpose([2,0,1])  #一般读取图片为HWC(如tensorflow，和正常的opencv、pil默认读取)，pytorch需要该成CHW。
       train_images.append(train_np)
     except:
       print("\n image broken when load trainDataset: "+ str(pic_names[i]))    #WBNGQ9R7.jpg

@@ -7,20 +7,24 @@ model_saved = "../../../dataset_formal/detect_data/saved_model/"
 EPOCH = 50
 IMG_SIZE_WIDTH = 224
 IMG_SIZE_HEIGHT = 224
+IMG_SIZE_EAST = 416
 BATCH_SIZE = 32
-WHICH_MODEL = 'R'   #'R'是回归模型，'E'是EAST模型。
+WHICH_MODEL = 'E'   #'R'是回归模型，'E'是EAST模型。
 WEIGHT_DECAY =  0.0001
 lr_exponential_gamma = 0.9
 train_cal_iou_num = 15
-LOG_FOR_NET_CONSTRUCTION = True
+LOG_FOR_NET_CONSTRUCTION = False
+LOG_FOR_EAST_DATA = False
+LOG_FOR_EAST_MODEL = False
+LOG_FOR_EAST_LOSS = False
 
-lr_patient = 7
+lr_patient = 10
 lr_shrink_factor = 0.5
-LR = 0.0001
+LR = 0.001
 
-use_gpu = False
-is_test = True
+use_gpu = True
+is_test = False
 test_test_num = 80
-test_train_num = 30
-need_load_model = True
+test_train_num = 10
+need_load_model = False
 
