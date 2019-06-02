@@ -20,10 +20,10 @@ LOG_FOR_EAST_LOSS = False
 
 lr_patient = 10
 lr_shrink_factor = 0.5
-LR = 0.01
+LR = 0.001
 
-use_gpu = True
-is_test = False
+use_gpu = False
+is_test = True
 test_test_num = 80
 test_train_num = 10
 need_load_model = False
