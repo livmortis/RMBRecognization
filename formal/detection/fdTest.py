@@ -39,8 +39,8 @@ def drawRect(pred_batch, y_batch, type):
 
     i+=1
 
-# def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
-def detect(score_map, geo_map, timer, score_map_thresh=0.5, box_thresh=0.1, nms_thres=0.2):
+def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
+# def detect(score_map, geo_map, timer, score_map_thresh=0.5, box_thresh=0.1, nms_thres=0.2):
   '''
   restore text boxes from score map and geo map
   :param score_map:
@@ -135,11 +135,17 @@ if __name__ == "__main__":
       start = time.time()
 
       F_score, F_geo = model_E(x)
-      F_score = F_score.detach().numpy()
+      if fdConfig.use_gpu:
+        F_score = F_score.detach().cpu().numpy()
+      else:
+        F_score = F_score.detach().numpy()
       print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
       F_score = F_score.transpose([0,2,3,1])
       print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
-      F_geo = F_geo.detach().numpy()
+      if fdConfig.use_gpu:
+        F_geo = F_geo.detach().cpu().numpy()
+      else:
+        F_geo = F_geo.detach().numpy()
       print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
       F_geo = F_geo.transpose([0,2,3,1])
       print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None

@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/.ycm_extra_conf.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/Makefile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/__main__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/adaptor.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/clipper/clipper.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/clipper/clipper.hpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/attr.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/buffer_info.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/cast.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/chrono.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/class_support.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/common.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/complex.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/descr.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/eigen.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/embed.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/eval.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/functional.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/numpy.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/operators.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/options.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/pybind11.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/pytypes.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/stl.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/stl_bind.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/include/pybind11/typeid.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/formal/detection/lanms/lanms.h" />
-      <change beforePath="$PROJECT_DIR$/.idea/SelfCode.iml" afterPath="$PROJECT_DIR$/.idea/SelfCode.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdConfig.py" afterPath="$PROJECT_DIR$/formal/detection/fdConfig.py" />
       <change beforePath="$PROJECT_DIR$/formal/detection/fdTest.py" afterPath="$PROJECT_DIR$/formal/detection/fdTest.py" />
-      <change beforePath="$PROJECT_DIR$/formal/eastExperiment.py" afterPath="$PROJECT_DIR$/formal/eastExperiment.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,8 +29,8 @@
       <file leaf-file-name="fdData_EAST.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="900" column="0" lean-forward="true" selection-start-line="900" selection-start-column="0" selection-end-line="900" selection-end-column="0" />
+            <state relative-caret-position="55">
+              <caret line="872" column="33" lean-forward="false" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -74,8 +41,8 @@
       <file leaf-file-name="fdTrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="130" column="23" lean-forward="false" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="23" />
+            <state relative-caret-position="167">
+              <caret line="119" column="41" lean-forward="true" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -83,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fdTest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fdTest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="156" column="43" lean-forward="true" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
+            <state relative-caret-position="308">
+              <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="13" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -95,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -879,16 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="130" column="23" lean-forward="false" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/lanms/include/clipper/clipper.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-27644">
@@ -906,22 +863,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="900" column="0" lean-forward="true" selection-start-line="900" selection-start-column="0" selection-end-line="900" selection-end-column="0" />
+        <state relative-caret-position="167">
+          <caret line="119" column="41" lean-forward="true" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
           <folding>
-            <element signature="e#15#26#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="156" column="43" lean-forward="true" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
+        <state relative-caret-position="55">
+          <caret line="872" column="33" lean-forward="false" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#15#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -931,6 +888,16 @@
         <state relative-caret-position="255">
           <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
