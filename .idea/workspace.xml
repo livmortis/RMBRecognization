@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdConfig.py" afterPath="$PROJECT_DIR$/formal/detection/fdConfig.py" />
       <change beforePath="$PROJECT_DIR$/formal/detection/fdData_EAST.py" afterPath="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdTest.py" afterPath="$PROJECT_DIR$/formal/detection/fdTest.py" />
       <change beforePath="$PROJECT_DIR$/formal/eastExperiment.py" afterPath="$PROJECT_DIR$/formal/eastExperiment.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="eastExperiment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/eastExperiment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="190" column="4" lean-forward="false" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
+            <state relative-caret-position="20">
+              <caret line="132" column="15" lean-forward="true" selection-start-line="132" selection-start-column="15" selection-end-line="132" selection-end-column="15" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -31,8 +29,8 @@
       <file leaf-file-name="fdData_EAST.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="750" column="0" lean-forward="true" selection-start-line="750" selection-start-column="0" selection-end-line="750" selection-end-column="0" />
+            <state relative-caret-position="183">
+              <caret line="748" column="26" lean-forward="true" selection-start-line="748" selection-start-column="26" selection-end-line="748" selection-end-column="26" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -85,7 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>quad</find>
       <find>training_masks</find>
       <find>input_size</find>
       <find>text_poly *= float(rd_scale</find>
@@ -115,6 +112,7 @@
       <find>template</find>
       <find>np.resize</find>
       <find>resize</find>
+      <find>imshow</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -154,8 +152,8 @@
         <option value="$PROJECT_DIR$/formal/detection/fdModel_EAST.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTest.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
         <option value="$PROJECT_DIR$/formal/eastExperiment.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
       </list>
     </option>
   </component>
@@ -234,7 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fdTrain">
+  <component name="RunManager" selected="Python.eastExperiment">
     <configuration name="cvExperiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -334,11 +332,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.fdTrain" />
-        <item index="1" class="java.lang.String" itemvalue="Python.wutrain" />
-        <item index="2" class="java.lang.String" itemvalue="Python.eastExperiment" />
-        <item index="3" class="java.lang.String" itemvalue="Python.fdTest" />
-        <item index="4" class="java.lang.String" itemvalue="Python.cvExperiment" />
+        <item index="0" class="java.lang.String" itemvalue="Python.eastExperiment" />
+        <item index="1" class="java.lang.String" itemvalue="Python.cvExperiment" />
+        <item index="2" class="java.lang.String" itemvalue="Python.fdTrain" />
+        <item index="3" class="java.lang.String" itemvalue="Python.wutrain" />
+        <item index="4" class="java.lang.String" itemvalue="Python.fdTest" />
       </list>
     </recent_temporary>
   </component>
@@ -889,8 +887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/eastExperiment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="190" column="4" lean-forward="false" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
+        <state relative-caret-position="20">
+          <caret line="132" column="15" lean-forward="true" selection-start-line="132" selection-start-column="15" selection-end-line="132" selection-end-column="15" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -899,8 +897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="750" column="0" lean-forward="true" selection-start-line="750" selection-start-column="0" selection-end-line="750" selection-end-column="0" />
+        <state relative-caret-position="183">
+          <caret line="748" column="26" lean-forward="true" selection-start-line="748" selection-start-column="26" selection-end-line="748" selection-end-column="26" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
           </folding>

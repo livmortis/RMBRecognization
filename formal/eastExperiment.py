@@ -150,11 +150,14 @@ import torch
 
 
 # ::符号
+#[start : end : step]
 # f= np.array([[1,2],[3,4]])
 # d = [[1,2],[3,4]]
 # print(d)
 # print(d[::2])
-# #[start : end : step]
+# a = np.array([1,2,3,4,5,6,7])
+# print(a[::-1])    #倒序排列
+# print(a[::-2])
 
 
 # split
@@ -166,29 +169,29 @@ import torch
 
 
 # "image resize" and "numpy array resize"
-a = cv2.imread("../../dataset_formal/detect_data/arti_labeled_img_300/08DR6GTY.jpg")
-print(a.shape)
-cv2.imshow("a",a)
-cv2.waitKey(0)
-
-b = cv2.resize(a,(700,300))
-print(b.shape)
-cv2.imshow("b",b)
-cv2.waitKey(0)
-
-c = np.array(b) #c是numpy数组。
-cv2.imshow("c",c)
-cv2.waitKey(0)
-
-d = np.resize(c,[200,600])  #用np.resize()，图片完全被破坏。
-cv2.imshow("d",d)
-cv2.waitKey(0)
-
-e = cv2.resize(c,(600,200,3))
-cv2.imshow("e",e)
-cv2.waitKey(0)
-
-f = e.resize()
+# a = cv2.imread("../../dataset_formal/detect_data/arti_labeled_img_300/08DR6GTY.jpg")
+# print(a.shape)
+# cv2.imshow("a",a)
+# cv2.waitKey(0)
+#
+# b = cv2.resize(a,(700,300))
+# print(b.shape)
+# cv2.imshow("b",b)
+# cv2.waitKey(0)
+#
+# c = np.array(b) #c是numpy数组。
+# cv2.imshow("c",c)
+# cv2.waitKey(0)
+#
+# d = np.resize(c,[200,600])  #用np.resize()，图片完全被破坏。
+# cv2.imshow("d",d)
+# cv2.waitKey(0)
+#
+# e = cv2.resize(c,(600,200,3))
+# cv2.imshow("e",e)
+# cv2.waitKey(0)
+#
+# f = e.resize()
 
 
 
