@@ -634,7 +634,7 @@ def generator(input_size=512, batch_size=32,
     #     training_mask = np.ones((input_size, input_size), dtype=np.uint8)
     # else:
 
-    #xzy 数据增强之随机crop，丢弃。
+    # xzy 数据增强之随机crop，丢弃。
     # im, text_polys, text_tags = crop_area(im, text_polys, text_tags, crop_background=False)
     # h, w, _ = im.shape
 
@@ -737,10 +737,19 @@ def readTrain(txtName):
   print("max_w_h_i is: "+str(max_w_h_i) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
   template = np.zeros([max_w_h_i, max_w_h_i, 3], dtype=np.uint8)
   template[:height, :width, :] = img.copy()
-      #2>、再resize
   print("template shape is "+str(template.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  cv2.imshow("template", template)
+  cv2.waitKey(0)
+
+      #2>、再resize
   print("imput_size is "+str(input_size)) if fdConfig.LOG_FOR_EAST_DATA==True else None
-  img = np.resize(template,[input_size,input_size,3])
+  # img = np.resize(template,[input_size,input_size,3])   #bug! np的resize会破坏图片。
+  img = cv2.resize(template,(input_size,input_size))
+  print("img shape is "+str(img.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  cv2.imshow("img", img)
+  cv2.waitKey(0)
+
+
       #3>、poly针对resize操作，进行联动修改
   scale_rate = input_size/max_w_h_i
   print(polyList.dtype) if fdConfig.LOG_FOR_EAST_DATA==True else None
@@ -762,10 +771,10 @@ def readTrain(txtName):
   # rd_scale = np.random.choice(random_scale)
   # randomed_size = int(img.shape[0] * rd_scale)
   # randomed_size2 = int(img.shape[1] * rd_scale)
-  # img = np.resize(img,(randomed_size  , randomed_size2, 3) )
+  # img = np.resize(img,(randomed_size  , randomed_size2, 3) )  #这里错误！！np.resize()不可行！！！
   # text_poly *= float(rd_scale)
 
-  print("random resize polylist is: "+str(text_poly)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # print("random resize polylist is: "+str(text_poly)) if fdConfig.LOG_FOR_EAST_DATA==True else None
 
 
   # 3、数据增强————随机crop
@@ -879,7 +888,7 @@ def readTest(imgName):
   return img
 
 
-class FdTestDataReg (Data.Dataset):
+class FdTestDataEAST (Data.Dataset):
   def __init__(self):
     trainList = os.listdir(fdConfig.train_img_path)
     img_list = []
