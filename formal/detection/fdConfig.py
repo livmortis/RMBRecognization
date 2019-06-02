@@ -17,7 +17,7 @@ LOG_FOR_NET_CONSTRUCTION = False
 LOG_FOR_EAST_DATA = True
 LOG_FOR_EAST_MODEL = False
 LOG_FOR_EAST_LOSS = False
-LOG_FOR_EAST_TEST = True
+LOG_FOR_EAST_TEST = False
 
 lr_patient = 10
 lr_shrink_factor = 0.5

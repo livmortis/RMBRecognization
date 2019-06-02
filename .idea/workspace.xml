@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdTest.py" afterPath="$PROJECT_DIR$/formal/detection/fdTest.py" />
+      <change beforePath="$PROJECT_DIR$/formal/detection/fdConfig.py" afterPath="$PROJECT_DIR$/formal/detection/fdConfig.py" />
+      <change beforePath="$PROJECT_DIR$/formal/detection/fdData_EAST.py" afterPath="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fdData_EAST.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fdData_EAST.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="872" column="33" lean-forward="false" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
+            <state relative-caret-position="307">
+              <caret line="765" column="10" lean-forward="false" selection-start-line="765" selection-start-column="2" selection-end-line="765" selection-end-column="10" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fdTest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fdTest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="13" />
+            <state relative-caret-position="413">
+              <caret line="152" column="0" lean-forward="true" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -65,8 +65,8 @@
       <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="77">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,7 +102,6 @@
       <find>training_ma</find>
       <find>transpose</find>
       <find>img</find>
-      <find>max_w_h_i</find>
       <find>criterionE</find>
       <find>template</find>
       <find>np.resize</find>
@@ -113,6 +112,7 @@
       <find>score_map</find>
       <find>xy_text</find>
       <find>xzy</find>
+      <find>max_w_h_i</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -150,10 +150,10 @@
         <option value="$PROJECT_DIR$/formal/detection/icdar.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTrain.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdModel_EAST.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
         <option value="$PROJECT_DIR$/formal/eastExperiment.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTest.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
       </list>
     </option>
   </component>
@@ -232,7 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fdTest">
+  <component name="RunManager" selected="Python.fdTrain">
     <configuration name="cvExperiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -332,9 +332,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.fdTest" />
-        <item index="1" class="java.lang.String" itemvalue="Python.eastExperiment" />
-        <item index="2" class="java.lang.String" itemvalue="Python.fdTrain" />
+        <item index="0" class="java.lang.String" itemvalue="Python.fdTrain" />
+        <item index="1" class="java.lang.String" itemvalue="Python.fdTest" />
+        <item index="2" class="java.lang.String" itemvalue="Python.eastExperiment" />
         <item index="3" class="java.lang.String" itemvalue="Python.cvExperiment" />
         <item index="4" class="java.lang.String" itemvalue="Python.wutrain" />
       </list>
@@ -373,7 +373,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24546553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25272068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -481,22 +481,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/detection/fdData_EAST.py</url>
-          <line>821</line>
+          <line>824</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/detection/fdData_EAST.py</url>
-          <line>774</line>
+          <line>777</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/detection/fdData_EAST.py</url>
-          <line>757</line>
+          <line>758</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/detection/fdData_EAST.py</url>
-          <line>846</line>
+          <line>849</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
@@ -873,30 +873,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="872" column="33" lean-forward="false" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
+        <state relative-caret-position="413">
+          <caret line="152" column="0" lean-forward="true" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
           <folding>
-            <element signature="e#15#26#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="77">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="13" />
+        <state relative-caret-position="307">
+          <caret line="765" column="10" lean-forward="false" selection-start-line="765" selection-start-column="2" selection-end-line="765" selection-end-column="10" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#15#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
