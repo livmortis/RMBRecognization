@@ -134,7 +134,10 @@ if __name__ == "__main__":
         criterionE =  loss_E(score_map, F_score, geo_map, F_geo, training_mask)
         criterionE.backward()
         optm.step()
-        print("loss is " + str(criterionE.detach().numpy()))
+        if fdConfig.use_gpu:
+          print("loss is " + str(criterionE.detach().cpu().numpy()))
+        else:
+          print("loss is " + str(criterionE.detach().numpy()))
 
 
       lrSchedule.step(criterionE)
