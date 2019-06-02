@@ -158,14 +158,37 @@ import torch
 
 
 # split
-a = np.zeros([1,5,22,22])
-a = torch.Tensor(a)
+# a = np.zeros([1,5,22,22])
+# a = torch.Tensor(a)
+# print(a.shape)
+# q,w,e,r,t = a.chunk(5,1)
+# print(q.shape)
+
+
+# "image resize" and "numpy array resize"
+a = cv2.imread("../../dataset_formal/detect_data/arti_labeled_img_300/08DR6GTY.jpg")
 print(a.shape)
-q,w,e,r,t = a.chunk(5,1)
-print(q.shape)
+cv2.imshow("a",a)
+cv2.waitKey(0)
 
+b = cv2.resize(a,(700,300))
+print(b.shape)
+cv2.imshow("b",b)
+cv2.waitKey(0)
 
+c = np.array(b) #c是numpy数组。
+cv2.imshow("c",c)
+cv2.waitKey(0)
 
+d = np.resize(c,[200,600])  #用np.resize()，图片完全被破坏。
+cv2.imshow("d",d)
+cv2.waitKey(0)
+
+e = cv2.resize(c,(600,200,3))
+cv2.imshow("e",e)
+cv2.waitKey(0)
+
+f = e.resize()
 
 
 

@@ -14,7 +14,7 @@ WEIGHT_DECAY =  0.0001
 lr_exponential_gamma = 0.9
 train_cal_iou_num = 15
 LOG_FOR_NET_CONSTRUCTION = False
-LOG_FOR_EAST_DATA = False
+LOG_FOR_EAST_DATA = True
 LOG_FOR_EAST_MODEL = False
 LOG_FOR_EAST_LOSS = False
 

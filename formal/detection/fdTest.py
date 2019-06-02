@@ -9,6 +9,8 @@ from tqdm import tqdm
 import torch
 import cv2
 
+import fdData_EAST
+
 
 def drawRect(pred_batch, y_batch, type):
   i = 0
@@ -57,3 +59,39 @@ if __name__ == "__main__":
       drawRect(pred_np, y, 'Reg')
 
       prediction_list.append(pred_np)
+
+  elif fdConfig.WHICH_MODEL == 'E':
+    model_E = torch.load(fdConfig.model_saved + "detect_east_model.pkl")
+    dataset_E = fdData_EAST.FdTestDataEAST()
+    testDataloader_E = Dataloader.DataLoader(dataset_E, fdConfig.BATCH_SIZE, shuffle=False)
+
+    prediction_list = []
+    for index, (x, y) in tqdm(enumerate(testDataloader_E, 0)):
+      if fdConfig.use_gpu:
+        x = x.cuda()
+        model_E = model_E.cuda()
+
+      F_score, F_geo = model_E(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
