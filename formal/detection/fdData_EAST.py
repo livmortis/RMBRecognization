@@ -738,16 +738,16 @@ def readTrain(txtName):
   template = np.zeros([max_w_h_i, max_w_h_i, 3], dtype=np.uint8)
   template[:height, :width, :] = img.copy()
   print("template shape is "+str(template.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
-  cv2.imshow("template", template)
-  cv2.waitKey(0)
+  # cv2.imshow("template", template)
+  # cv2.waitKey(0)
 
       #2>、再resize
   print("imput_size is "+str(input_size)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   # img = np.resize(template,[input_size,input_size,3])   #bug! np的resize会破坏图片。
   img = cv2.resize(template,(input_size,input_size))
   print("img shape is "+str(img.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
-  cv2.imshow("img", img)
-  cv2.waitKey(0)
+  # cv2.imshow("img", img)
+  # cv2.waitKey(0)
 
 
       #3>、poly针对resize操作，进行联动修改
