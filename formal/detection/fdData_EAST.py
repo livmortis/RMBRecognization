@@ -475,129 +475,146 @@ def restore_rectangle(origin, geometry):
 
 
 def generate_rbox(im_size, polys, tags):
-    h, w = im_size
-    poly_mask = np.zeros((h, w), dtype=np.uint8)
-    score_map = np.zeros((h, w), dtype=np.uint8)
-    geo_map = np.zeros((h, w, 5), dtype=np.float32)
-    # mask used during traning, to ignore some hard areas
-    training_mask = np.ones((h, w), dtype=np.uint8)
+  h, w = im_size
+  poly_mask = np.zeros((h, w), dtype=np.uint8)
+  score_map = np.zeros((h, w), dtype=np.uint8)
+  geo_map = np.zeros((h, w, 5), dtype=np.float32)
+  # mask used during traning, to ignore some hard areas
+  training_mask = np.ones((h, w), dtype=np.uint8)
 
-    # for poly_idx, poly_tag in enumerate(zip(polys, tags)):
-    # poly = poly_tag[0]  #xzy 这里poly是四个元素，每个是一对坐标。
-    # tag = poly_tag[1]
-    poly_idx = 0
-    poly = polys
-    tag = tags
+  # for poly_idx, poly_tag in enumerate(zip(polys, tags)):
+  # poly = poly_tag[0]  #xzy 这里poly是四个元素，每个是一对坐标。
+  # tag = poly_tag[1]
+  poly_idx = 0
+  poly = polys
+  tag = tags
 
-    r = [None, None, None, None]
-    for i in range(4):
-        r[i] = min(np.linalg.norm(poly[i] - poly[(i + 1) % 4]),
-                   np.linalg.norm(poly[i] - poly[(i - 1) % 4]))   #xzy r[]的四个元素，是四个顶点，各自所连的最短边，的边长。  np.linalg.norm(点1-点2)求边长。
-    # score map
-    shrinked_poly = shrink_poly(poly.copy(), r).astype(np.int32)[np.newaxis, :, :]    #poly缩小为0.7
-    cv2.fillPoly(score_map, shrinked_poly, 1)                     #xzy score mao 完成。
-    cv2.fillPoly(poly_mask, shrinked_poly, poly_idx + 1)          #xzt poly_mask 完成
-    # if the poly is too small, then ignore it during training
-    poly_h = min(np.linalg.norm(poly[0] - poly[3]), np.linalg.norm(poly[1] - poly[2]))      #xzy 纵向两个边中选短的，返回其边长
-    poly_w = min(np.linalg.norm(poly[0] - poly[1]), np.linalg.norm(poly[2] - poly[3]))      #xzy 横向两个边中选短的，返回其边长
-    if min(poly_h, poly_w) < FLAGS.min_text_size:                                 #xzy 长宽过于小的poly，是难例，通过training_mask置为0，loss时与score_map抵消，来消除难例。
-        cv2.fillPoly(training_mask, poly.astype(np.int32)[np.newaxis, :, :], 0)                 #xzy training_mask 完成
-    if tag:                                                                       #xzy 标签类别是**的，无法识别，是难例，通过training_mask置为0，loss时与score_map抵消，来消除难例。
-        cv2.fillPoly(training_mask, poly.astype(np.int32)[np.newaxis, :, :], 0)
+  r = [None, None, None, None]
+  for i in range(4):
+    r[i] = min(np.linalg.norm(poly[i] - poly[(i + 1) % 4]),
+                 np.linalg.norm(poly[i] - poly[(i - 1) % 4]))   #xzy r[]的四个元素，是四个顶点，各自所连的最短边，的边长。  np.linalg.norm(点1-点2)求边长。
+  # score map
+  shrinked_poly = shrink_poly(poly.copy(), r).astype(np.int32)[np.newaxis, :, :]    #poly缩小为0.7
+  print("shrinked_poly: "+str(shrinked_poly))if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("score_map shape is: "+str(score_map.shape))if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # cv2.imshow("score_map before fillpoly",score_map)
+  # cv2.waitKey(0)
+  cv2.fillPoly(score_map, shrinked_poly, 1)                     #xzy score mao 完成。
+  cv2.fillPoly(poly_mask, shrinked_poly, poly_idx + 1)          #xzt poly_mask 完成
+  # cv2.imshow("score_map after fillpoly",score_map)
+  # cv2.waitKey(0)
 
-    xy_in_poly = np.argwhere(poly_mask == (poly_idx + 1))     #xzy xy_in_poly是poly中的点的集合。每个元素是点的x和y坐标组成的数组。
-    # if geometry == 'RBOX':
-    # 对任意两个顶点的组合生成一个平行四边形 - generate a parallelogram for any combination of two vertices
-    fitted_parallelograms = []
-    for i in range(4):
-        p0 = poly[i]                #xzy 第一次循环：左上点
-        p1 = poly[(i + 1) % 4]      #xzy 第一次循环：右上点
-        p2 = poly[(i + 2) % 4]      #xzy 第一次循环：右下点
-        p3 = poly[(i + 3) % 4]      #xzy 第一次循环：左下点
-        #xzy 下面 这一步是多项式拟合，两点拟合一条直线
-        edge = fit_line([p0[0], p1[0]], [p0[1], p1[1]]) #xzy   p0[0] 左上点x；  p1[0] 右上点x； p0[1]左上点y；  p1[1]右上点y   第一次循环拟合上横边，返回上横边的直线参数(ax+by+c=0的a、b、c)。
-        #xzy edge每次循环，代表一条边。
-        backward_edge = fit_line([p0[0], p3[0]], [p0[1], p3[1]])  #xzy p0[0] 左上点x；p3[0] 左下点x； p0[1]左上点y； p3[1]左下点y  第一次循环拟合左竖边，返回左竖边的直线参数(ax+by+c=0的a、b、c)。
-        forward_edge = fit_line([p1[0], p2[0]], [p1[1], p2[1]])   #xzt p1[0] 右上点x；p2[0] 右下点x   p1[1]右上点y； p2[1]右下点y  第一次循环拟合右竖边，返回右竖边的直线参数(ax+by+c=0的a、b、c)。
-        if point_dist_to_line(p0, p1, p2) > point_dist_to_line(p0, p1, p3):
-            # 平行线经过p2 - parallel lines through p2
-            if edge[1] == 0:                    #xzy 参数b=0，上横边与x轴平行
-                edge_opposite = [1, 0, -p2[0]]  #xzy 下横边与上横边平行，且经过p2，即参数c为-p2[0]
-            else:
-                edge_opposite = [edge[0], -1, p2[1] - edge[0] * p2[0]]  #xzy
-        else:
-            # 经过p3 - after p3
-            if edge[1] == 0:
-                edge_opposite = [1, 0, -p3[0]]
-            else:
-                edge_opposite = [edge[0], -1, p3[1] - edge[0] * p3[0]]
-        # move forward edge
-        new_p0 = p0
-        new_p1 = p1
-        new_p2 = p2
-        new_p3 = p3
-        new_p2 = line_cross_point(forward_edge, edge_opposite)
-        if point_dist_to_line(p1, new_p2, p0) > point_dist_to_line(p1, new_p2, p3):
-            # across p0
-            if forward_edge[1] == 0:
-                forward_opposite = [1, 0, -p0[0]]
-            else:
-                forward_opposite = [forward_edge[0], -1, p0[1] - forward_edge[0] * p0[0]]
-        else:
-            # across p3
-            if forward_edge[1] == 0:
-                forward_opposite = [1, 0, -p3[0]]
-            else:
-                forward_opposite = [forward_edge[0], -1, p3[1] - forward_edge[0] * p3[0]]
-        new_p0 = line_cross_point(forward_opposite, edge)
-        new_p3 = line_cross_point(forward_opposite, edge_opposite)
-        fitted_parallelograms.append([new_p0, new_p1, new_p2, new_p3, new_p0])
-        # or move backward edge
-        new_p0 = p0
-        new_p1 = p1
-        new_p2 = p2
-        new_p3 = p3
-        new_p3 = line_cross_point(backward_edge, edge_opposite)
-        if point_dist_to_line(p0, p3, p1) > point_dist_to_line(p0, p3, p2):
-            # across p1
-            if backward_edge[1] == 0:
-                backward_opposite = [1, 0, -p1[0]]
-            else:
-                backward_opposite = [backward_edge[0], -1, p1[1] - backward_edge[0] * p1[0]]
-        else:
-            # across p2
-            if backward_edge[1] == 0:
-                backward_opposite = [1, 0, -p2[0]]
-            else:
-                backward_opposite = [backward_edge[0], -1, p2[1] - backward_edge[0] * p2[0]]
-        new_p1 = line_cross_point(backward_opposite, edge)
-        new_p2 = line_cross_point(backward_opposite, edge_opposite)
-        fitted_parallelograms.append([new_p0, new_p1, new_p2, new_p3, new_p0])
-    areas = [Polygon(t).area for t in fitted_parallelograms]
-    parallelogram = np.array(fitted_parallelograms[np.argmin(areas)][:-1], dtype=np.float32)
-    # sort thie polygon
-    parallelogram_coord_sum = np.sum(parallelogram, axis=1)
-    min_coord_idx = np.argmin(parallelogram_coord_sum)
-    parallelogram = parallelogram[
-        [min_coord_idx, (min_coord_idx + 1) % 4, (min_coord_idx + 2) % 4, (min_coord_idx + 3) % 4]]
+  # cv2.imshow("poly_mask after fillpoly",poly_mask)
+  # cv2.waitKey(0)
+  # if the poly is too small, then ignore it during training
+  poly_h = min(np.linalg.norm(poly[0] - poly[3]), np.linalg.norm(poly[1] - poly[2]))      #xzy 纵向两个边中选短的，返回其边长
+  poly_w = min(np.linalg.norm(poly[0] - poly[1]), np.linalg.norm(poly[2] - poly[3]))      #xzy 横向两个边中选短的，返回其边长
+  if min(poly_h, poly_w) < FLAGS.min_text_size:                                 #xzy 长宽过于小的poly，是难例，通过training_mask置为0，loss时与score_map抵消，来消除难例。
+    cv2.fillPoly(training_mask, poly.astype(np.int32)[np.newaxis, :, :], 0)                 #xzy training_mask 完成
+    print("warning!!!!! find too small poly")if fdConfig.LOG_FOR_EAST_DATA==True else None
+  if tag:                                                                       #xzy 标签类别是**的，无法识别，是难例，通过training_mask置为0，loss时与score_map抵消，来消除难例。
+    cv2.fillPoly(training_mask, poly.astype(np.int32)[np.newaxis, :, :], 0)
+    print("warning!!!!! find abandoned poly")if fdConfig.LOG_FOR_EAST_DATA==True else None
+  xy_in_poly = np.argwhere(poly_mask == (poly_idx + 1))     #xzy xy_in_poly是poly中的点的集合。每个元素是点的x和y坐标组成的数组。
+  # if geometry == 'RBOX':
+  # 对任意两个顶点的组合生成一个平行四边形 - generate a parallelogram for any combination of two vertices
+  fitted_parallelograms = []
+  for i in range(4):
+    p0 = poly[i]                #xzy 第一次循环：左上点
+    p1 = poly[(i + 1) % 4]      #xzy 第一次循环：右上点
+    p2 = poly[(i + 2) % 4]      #xzy 第一次循环：右下点
+    p3 = poly[(i + 3) % 4]      #xzy 第一次循环：左下点
+    #xzy 下面 这一步是多项式拟合，两点拟合一条直线
+    edge = fit_line([p0[0], p1[0]], [p0[1], p1[1]]) #xzy   p0[0] 左上点x；  p1[0] 右上点x； p0[1]左上点y；  p1[1]右上点y   第一次循环拟合上横边，返回上横边的直线参数(ax+by+c=0的a、b、c)。
+    #xzy edge每次循环，代表一条边。
+    backward_edge = fit_line([p0[0], p3[0]], [p0[1], p3[1]])  #xzy p0[0] 左上点x；p3[0] 左下点x； p0[1]左上点y； p3[1]左下点y  第一次循环拟合左竖边，返回左竖边的直线参数(ax+by+c=0的a、b、c)。
+    forward_edge = fit_line([p1[0], p2[0]], [p1[1], p2[1]])   #xzt p1[0] 右上点x；p2[0] 右下点x   p1[1]右上点y； p2[1]右下点y  第一次循环拟合右竖边，返回右竖边的直线参数(ax+by+c=0的a、b、c)。
+    if point_dist_to_line(p0, p1, p2) > point_dist_to_line(p0, p1, p3):
+      # 平行线经过p2 - parallel lines through p2
+      if edge[1] == 0:                    #xzy 参数b=0，上横边与x轴平行
+          edge_opposite = [1, 0, -p2[0]]  #xzy 下横边与上横边平行，且经过p2，即参数c为-p2[0]
+      else:
+          edge_opposite = [edge[0], -1, p2[1] - edge[0] * p2[0]]  #xzy
+    else:
+      # 经过p3 - after p3
+      if edge[1] == 0:
+          edge_opposite = [1, 0, -p3[0]]
+      else:
+          edge_opposite = [edge[0], -1, p3[1] - edge[0] * p3[0]]
+    # move forward edge
+    new_p0 = p0
+    new_p1 = p1
+    new_p2 = p2
+    new_p3 = p3
+    new_p2 = line_cross_point(forward_edge, edge_opposite)
+    if point_dist_to_line(p1, new_p2, p0) > point_dist_to_line(p1, new_p2, p3):
+      # across p0
+      if forward_edge[1] == 0:
+        forward_opposite = [1, 0, -p0[0]]
+      else:
+        forward_opposite = [forward_edge[0], -1, p0[1] - forward_edge[0] * p0[0]]
+    else:
+        # across p3
+      if forward_edge[1] == 0:
+        forward_opposite = [1, 0, -p3[0]]
+      else:
+        forward_opposite = [forward_edge[0], -1, p3[1] - forward_edge[0] * p3[0]]
+    new_p0 = line_cross_point(forward_opposite, edge)
+    new_p3 = line_cross_point(forward_opposite, edge_opposite)
+    fitted_parallelograms.append([new_p0, new_p1, new_p2, new_p3, new_p0])
+    # or move backward edge
+    new_p0 = p0
+    new_p1 = p1
+    new_p2 = p2
+    new_p3 = p3
+    new_p3 = line_cross_point(backward_edge, edge_opposite)
+    if point_dist_to_line(p0, p3, p1) > point_dist_to_line(p0, p3, p2):
+        # across p1
+      if backward_edge[1] == 0:
+        backward_opposite = [1, 0, -p1[0]]
+      else:
+        backward_opposite = [backward_edge[0], -1, p1[1] - backward_edge[0] * p1[0]]
+    else:
+        # across p2
+      if backward_edge[1] == 0:
+        backward_opposite = [1, 0, -p2[0]]
+      else:
+        backward_opposite = [backward_edge[0], -1, p2[1] - backward_edge[0] * p2[0]]
+    new_p1 = line_cross_point(backward_opposite, edge)
+    new_p2 = line_cross_point(backward_opposite, edge_opposite)
+    fitted_parallelograms.append([new_p0, new_p1, new_p2, new_p3, new_p0])
+  areas = [Polygon(t).area for t in fitted_parallelograms]
+  print("fitted_parallelograms areas is : " + str(areas)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+  parallelogram = np.array(fitted_parallelograms[np.argmin(areas)][:-1], dtype=np.float32)
+  # sort thie polygon
+  parallelogram_coord_sum = np.sum(parallelogram, axis=1)
+  min_coord_idx = np.argmin(parallelogram_coord_sum)
+  parallelogram = parallelogram[
+      [min_coord_idx, (min_coord_idx + 1) % 4, (min_coord_idx + 2) % 4, (min_coord_idx + 3) % 4]]
 
-    rectange = rectangle_from_parallelogram(parallelogram)
-    rectange, rotate_angle = sort_rectangle(rectange)
+  rectange = rectangle_from_parallelogram(parallelogram)
+  print("rectange  is : " + str(rectange)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+  rectange, rotate_angle = sort_rectangle(rectange)
+  print("rectange after sorted  is : " + str(rectange)) if fdConfig.LOG_FOR_EAST_DATA == True else None
 
-    p0_rect, p1_rect, p2_rect, p3_rect = rectange
-    for y, x in xy_in_poly:
-        point = np.array([x, y], dtype=np.float32)
-        # top
-        geo_map[y, x, 0] = point_dist_to_line(p0_rect, p1_rect, point)
-        # right
-        geo_map[y, x, 1] = point_dist_to_line(p1_rect, p2_rect, point)
-        # down
-        geo_map[y, x, 2] = point_dist_to_line(p2_rect, p3_rect, point)
-        # left
-        geo_map[y, x, 3] = point_dist_to_line(p3_rect, p0_rect, point)
-        # angle
-        geo_map[y, x, 4] = rotate_angle
-    return score_map, geo_map, training_mask
+  p0_rect, p1_rect, p2_rect, p3_rect = rectange
+  # cv2.imshow("geo_map[0] before fill",geo_map[:,:,0])
+  # cv2.waitKey(0)
+  for y, x in xy_in_poly:
+    point = np.array([x, y], dtype=np.float32)
+    # top
+    geo_map[y, x, 0] = point_dist_to_line(p0_rect, p1_rect, point)
+    # right
+    geo_map[y, x, 1] = point_dist_to_line(p1_rect, p2_rect, point)
+    # down
+    geo_map[y, x, 2] = point_dist_to_line(p2_rect, p3_rect, point)
+    # left
+    geo_map[y, x, 3] = point_dist_to_line(p3_rect, p0_rect, point)
+    # angle
+    geo_map[y, x, 4] = rotate_angle
+  # cv2.imshow("geo_map[0]",geo_map[:,:,0])
+  # cv2.waitKey(0)
+  return score_map, geo_map, training_mask
 
 
 def generator(input_size=512, batch_size=32,
@@ -723,7 +740,7 @@ def readTrain(txtName):
   polyList = poly.split(',')
   polyList = np.asarray(polyList)
   polyList = polyList.astype(np.float)
-  print("polyList is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("\npolyList is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
 
 
   '''图片和标签联动修改'''
@@ -732,7 +749,9 @@ def readTrain(txtName):
       #1>、先pad
   input_size =fdConfig.IMG_SIZE_EAST
   height = img.shape[0]
+  print("origin image height is: "+str(height) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
   width = img.shape[1]
+  print("origin image width is: "+str(width) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
   max_w_h_i = np.max([width,height,input_size])
   print("max_w_h_i is: "+str(max_w_h_i) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
   template = np.zeros([max_w_h_i, max_w_h_i, 3], dtype=np.uint8)
@@ -758,13 +777,17 @@ def readTrain(txtName):
   print("resize polylist before fix is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   polyList *= float(scale_rate)    #一句代码实现poly联动修改1
   print("resize polylist after fix is: "+str(polyList)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # text_poly = [[ float(polyList[0]), float(polyList[1]) ], [ float(polyList[2]), float(polyList[3]) ],
+  #              [ float(polyList[6]), float(polyList[7]) ], [ float(polyList[4]), float(polyList[5]) ]]      # bug! 这里反而改成了不是顺时针排列poly，应该为顺时针
   text_poly = [[ float(polyList[0]), float(polyList[1]) ], [ float(polyList[2]), float(polyList[3]) ],
-               [ float(polyList[6]), float(polyList[7]) ], [ float(polyList[4]), float(polyList[5]) ]]
+               [ float(polyList[4]), float(polyList[5]) ], [ float(polyList[6]), float(polyList[7]) ]]
   text_poly = np.asarray(text_poly)
   text_poly = text_poly.astype(np.float)
   # text_tag = False if str(polyList[8])=='1' else True       #bug! 这里的1跟着poly缩放，变得不再是1，所以导致本应该是False的text_tag全成了True
   text_tag = False                                           #bug! 这里的1跟着poly缩放，变得不再是1，所以导致本应该是False的text_tag全成了True
   print("text_tag is: "+str(text_tag)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("text_poly is: "+str(text_poly)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  print("text_poly shape is: "+str(text_poly.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
   #由于只有冠字号一个类别，这里全部是“1”。"1"表示可以识别————无模糊字符————不是难例，所以全是False。
 
 
@@ -832,6 +855,12 @@ class FdTrainDataEAST (Data.Dataset):
       print("geo_maps shape is : "+str(geo_map.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
       training_masks.append(training_mask)
       print("training_masks shape is : "+str(training_mask.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+      # cv2.imshow("score",score_map[0])
+      # cv2.waitKey(0)
+      # cv2.imshow("geo",geo_map[0])
+      # cv2.waitKey(0)
+      # cv2.imshow("img",img.transpose([1,2,0]))
+      # cv2.waitKey(0)
 
 
     # score_maps = np.array(score_maps, dtype=np.float32)
@@ -843,15 +872,20 @@ class FdTrainDataEAST (Data.Dataset):
     self.g = np.asarray(geo_maps)
     self.m = np.asarray(training_masks)
     self.l = len(self.x)
+    print("length is : "+str(self.l))if fdConfig.LOG_FOR_EAST_DATA==True else None
 
   def __getitem__(self, index):
     img = self.x[index]
     img = colorTransform(img)
+    # cv2.imshow("img after color transform",img.transpose([1,2,0]))
+    # cv2.waitKey(0)
+    print("img in _getitem_: "+str(img)) if fdConfig.LOG_FOR_EAST_DATA==True else None
     xtensor = torch.from_numpy(img)
+    # cv2.imshow("img in _getitem_ after Tensor",xtensor.detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
     xFloatTensor = xtensor.type(torch.FloatTensor)
-
-    # ytensor = torch.from_numpy(self.y[index])
-    # yFloatTensor = ytensor.type(torch.FloatTensor)
+    # cv2.imshow("img in _getitem_ after Tensor and float",xFloatTensor.detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
 
     stensor = torch.from_numpy(self.s[index])
     sFloatTensor = stensor.type(torch.FloatTensor)
