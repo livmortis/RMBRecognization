@@ -9,6 +9,7 @@ import fdConfig
 import fdModel_Regression
 import fdModel_EAST
 from tqdm import tqdm
+import cv2
 
 def calIou(pred_list , label_list):
   i = 0
@@ -121,6 +122,21 @@ if __name__ == "__main__":
       pred_list = []
       label_list = []
       for index, (x, score_map, geo_map, training_mask) in enumerate(trainDataloader_E, 0):
+        print("in dataloade img shape is : " + str(x.shape)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+        print("in dataloade score map shape is : " + str(score_map.shape)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+        print("in dataloade score map sum is : " + str(score_map.sum())) if fdConfig.LOG_FOR_EAST_DATA == True else None
+        print("in dataloade geo_maps shape is : " + str(geo_map.shape)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+
+        # cv2.imshow("in dataloader score",score_map[0].detach().numpy().transpose([1,2,0]))
+        # cv2.waitKey(0)
+        # cv2.imshow("in dataloader geo",geo_map[0][0].detach().numpy())
+        # cv2.waitKey(0)
+        print("in dataloade img shape after transpose is : " + str(x[2].detach().numpy().transpose([1,2,0]).shape)) if fdConfig.LOG_FOR_EAST_DATA == True else None
+        # print("in dataloade img shape after transpose is : " + str(x[2].detach().numpy().transpose([1,2,0]))) if fdConfig.LOG_FOR_EAST_DATA == True else None
+        # img_np = x[2].detach().numpy().transpose([1, 2, 0])
+        # cv2.imshow("in dataloader img",img_np)
+        # cv2.waitKey(0)
+
         if fdConfig.use_gpu:
           x = x.cuda()
           score_map = score_map.cuda()
@@ -129,6 +145,12 @@ if __name__ == "__main__":
           model_E = model_E.cuda()
 
         F_score, F_geo = model_E(x)
+        # if(epo %5 ==0):
+        #   cv2.imshow("in dataloader F_score"+str(epo),F_score[0].detach().numpy().transpose([1,2,0]))
+        #   cv2.waitKey(0)
+        #   cv2.imshow("in dataloader F_geo"+str(epo),F_geo[0][0].detach().numpy())
+        #   cv2.waitKey(0)
+
         optm.zero_grad()
 
         criterionE =  loss_E(score_map, F_score, geo_map, F_geo, training_mask)

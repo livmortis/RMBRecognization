@@ -233,9 +233,34 @@ import torch
 
 
 
+# fill_poly可视化测试
+# shrinked_poly = np.array([[[231, 159],[295, 159],[295, 165],[231, 165]]])
+# score_map = np.zeros((416, 416), dtype=np.uint8)
+# cv2.fillPoly(score_map, shrinked_poly, 1)
+# cv2.imshow("score_map after fillpoly",score_map)
+# cv2.waitKey(0)
+
+# shrinked_poly = np.array([[[4, 4],[8, 4],[8, 8],[4, 8]]])
+# score_map = np.zeros((10, 10), dtype=np.uint8)
+# cv2.fillPoly(score_map, shrinked_poly, 255)
+# cv2.imshow("score_map after fillpoly",score_map)
+# cv2.waitKey(0)
 
 
+# 求余
+# a = np.arange(1,20,1)
+# for i in range(19):
+#   if a[i]%5==0:
+#     print(a[i])
 
+
+# tensor.log测试
+# a = torch.Tensor(np.array([[[0.4, 0.4],[0.8, 0.4],[0.8, 0.8],[0.4, 0.8]]]))
+# a2 = torch.Tensor(np.array([[[4, 4],[8, 4],[8, 8],[4, 8]]]))
+# a3 = -torch.Tensor.log(a+1/a2+1)
+# a3 = -torch.Tensor.log((a+1)/(a2+1))
+#
+# print(a3)
 
 
 

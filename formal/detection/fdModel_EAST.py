@@ -45,21 +45,35 @@ class FdLossEast(Modules.Module):
     # union_dice = (score_map * training_mask).sum() + (F_score * training_mask).sum()
     union_dice = score_map .sum() + F_score .sum() #暂时去掉training_mask 2
     print("union_dice: "+str(union_dice)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("inter divide union: "+str(intersection_dice/(union_dice+1e-5))) if fdConfig.LOG_FOR_EAST_LOSS else None
     dice_loss = 1-(2*intersection_dice/(union_dice+1e-5))
     dice_loss *= 0.01
     print("dice_loss: "+str(dice_loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("\n")if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：dice_loss是一个数。因为有sum()。
 
 
     # geo map loss --- iou loss
     d1_gt, d2_gt, d3_gt, d4_gt, angle_gt = geo_map.chunk(chunks=5,dim=1)
     d1_pred, d2_pred, d3_pred, d4_pred, angle_pred =F_geo.chunk(chunks=5,dim=1)
+    print("d1_gt shape is: "+str(d1_gt[0].shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("d1_pred shape is: "+str(d1_pred[0].shape))if fdConfig.LOG_FOR_EAST_LOSS else None
+    # cv2.imshow("d1_gt",d1_gt[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
+    # cv2.imshow("d1_pred",d1_pred[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
     gt_height = d1_gt + d3_gt
+    # cv2.imshow("gt_height",gt_height[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
     gt_width = d2_gt + d4_gt
     gt_area  = gt_height * gt_width
+    # cv2.imshow("gt_area",gt_area[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
     pred_height = d1_pred + d3_pred
     pred_width = d2_pred + d4_pred
     pred_area  = pred_height * pred_width
+    # cv2.imshow("pred_area",pred_area[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
     d1_min = torch.Tensor.min(d1_gt,d1_pred)
     d2_min = torch.Tensor.min(d2_gt,d2_pred)
     d3_min = torch.Tensor.min(d3_gt,d3_pred)
@@ -67,18 +81,29 @@ class FdLossEast(Modules.Module):
     inter_height = d1_min+d3_min
     inter_width = d2_min+d4_min
     intersection_iou = inter_height * inter_width
-    print("intersection_iou: "+str(intersection_iou.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    # cv2.imshow("intersection_iou",intersection_iou[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
+    print("intersection_iou sum: "+str(intersection_iou.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("intersection_iou : "+str(intersection_iou)) if fdConfig.LOG_FOR_EAST_LOSS else None
+
     union_iou = gt_area + pred_area - intersection_iou
-    print("union_iou: "+str(union_iou.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
-    iou_loss = -torch.Tensor.log(intersection_iou+1.0 / union_iou+1.0)
-    print("iou_loss: "+str(iou_loss.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    # cv2.imshow("union_iou",union_iou[0].detach().numpy().transpose([1,2,0]))
+    # cv2.waitKey(0)
+    print("union_iou sum: "+str(union_iou.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("union_iou: "+str(union_iou)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    # iou_loss = -torch.Tensor.log(intersection_iou+1.0 / union_iou+1.0)      # bug!!! 括号
+    iou_loss = -torch.Tensor.log((intersection_iou+1.0) / (union_iou+1.0))
+    print("iou_loss  : "+str(iou_loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("iou_loss sum : "+str(iou_loss.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("\n")if fdConfig.LOG_FOR_EAST_LOSS else None
 
     #注：iou_loss是一个图，尺寸等于标签map
 
 
     # angle map loss
     angle_loss = 1 - torch.Tensor.cos(angle_pred-angle_gt)
-    print("angle_loss: "+str(angle_loss.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("angle_loss sum : "+str(angle_loss.sum())) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("\n")if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：angle_loss是一个图，尺寸等于标签map
 
 
@@ -92,6 +117,7 @@ class FdLossEast(Modules.Module):
     # print("(geo_loss * score_map * training_mask).mean():  "+str((geo_loss * score_map * training_mask).mean())) if fdConfig.LOG_FOR_EAST_LOSS else None
     print("(geo_loss * score_map ).mean():  "+str((geo_loss * score_map ).mean())) if fdConfig.LOG_FOR_EAST_LOSS else None
     print("loss: "+str(loss)) if fdConfig.LOG_FOR_EAST_LOSS else None
+    print("\n")if fdConfig.LOG_FOR_EAST_LOSS else None
     #注：.mean()之后才变成数，最终loss是一个数。
 
     return loss

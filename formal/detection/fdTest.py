@@ -135,6 +135,10 @@ if __name__ == "__main__":
       start = time.time()
 
       F_score, F_geo = model_E(x)
+      # cv2.imshow("in dataloader F_score" , F_score[0].detach().numpy().transpose([1, 2, 0]))
+      # cv2.waitKey(0)
+      # cv2.imshow("in dataloader F_geo" , F_geo[0][0].detach().numpy())
+      # cv2.waitKey(0)
       if fdConfig.use_gpu:
         F_score = F_score.detach().cpu().numpy()
       else:
