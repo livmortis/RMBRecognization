@@ -133,23 +133,27 @@ if __name__ == "__main__":
     dataset_R = fdData_Regression.FdTestDataReg()
     testDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=False)
 
-    prediction_list = []
-    img_name_list = []
-    for index, (x, y) in tqdm(enumerate(testDataloader_R, 0)):
-      if fdConfig.use_gpu:
-        x = x.cuda()
-        model_R = model_R.cuda()
-      prediction = model_R(x)
-      if fdConfig.use_gpu:
-        pred_np = prediction.detach().cpu().numpy()
-      else:
-        pred_np = prediction.detach().numpy()
-      # print(pred_np)
-      # print(y)
-      # drawRect(pred_np, y, 'Reg')   #预览pre框
+    with torch.no_grad():  # 解决了测试时oom问题
+      model_R.eval()
 
-      prediction_list.extend(pred_np)
-      img_name_list.extend(y)
+      prediction_list = []
+      img_name_list = []
+      for index, (x, y) in tqdm(enumerate(testDataloader_R, 0)):
+        if fdConfig.use_gpu:
+          x = x.cuda()
+          model_R = model_R.cuda()
+        prediction = model_R(x)
+        if fdConfig.use_gpu:
+          pred_np = prediction.detach().cpu().numpy()
+        else:
+          pred_np = prediction.detach().numpy()
+        # print(pred_np)
+        # print(y)
+        # drawRect(pred_np, y, 'Reg')   #预览pre框
+
+        prediction_list.extend(pred_np)
+        img_name_list.extend(y)
+        print(str(index)+" batch")
 
     writePred(prediction_list, img_name_list)
 
