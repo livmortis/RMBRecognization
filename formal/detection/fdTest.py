@@ -12,6 +12,30 @@ import cv2
 import fdData_EAST
 import time
 # import lanms
+import matplotlib.pyplot as plt
+import os
+
+def writePred(prediction_list, img_name_list):
+  rightLen = 20000 if not fdConfig.is_test else fdConfig.test_test_num
+
+  if (len(prediction_list) != rightLen):
+    print("length error!： "+str(len(prediction_list)))
+    raise RuntimeError('length error!')
+
+
+  for (pre, name) in zip(prediction_list, img_name_list):
+    pureName = str(name).split(".")[0]
+    print(pureName)
+    stream = open(fdConfig.output_reg_path + pureName + ".txt", 'w')
+    stream.write(str(pre[0]))
+    stream.write(',')
+    stream.write(str(pre[1]))
+    stream.write(',')
+    stream.write(str(pre[2]))
+    stream.write(',')
+    stream.write(str(pre[3]))
+    stream.close()
+
 
 
 
@@ -39,8 +63,14 @@ def drawRect(pred_batch, y_batch, type):
 
     i+=1
 
-def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
-# def detect(score_map, geo_map, timer, score_map_thresh=0.5, box_thresh=0.1, nms_thres=0.2):
+
+
+
+
+
+
+# def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
+def detect(score_map, geo_map, timer, score_map_thresh=0.51, box_thresh=0.1, nms_thres=0.2):
   '''
   restore text boxes from score map and geo map
   :param score_map:
@@ -91,6 +121,11 @@ def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_
   return boxes, timer
 
 
+
+
+
+
+
 if __name__ == "__main__":
   if fdConfig.WHICH_MODEL == 'R':
     model_R = torch.load(fdConfig.model_saved + "detect_reg_model.pkl")
@@ -99,6 +134,7 @@ if __name__ == "__main__":
     testDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=False)
 
     prediction_list = []
+    img_name_list = []
     for index, (x, y) in tqdm(enumerate(testDataloader_R, 0)):
       if fdConfig.use_gpu:
         x = x.cuda()
@@ -110,16 +146,21 @@ if __name__ == "__main__":
         pred_np = prediction.detach().numpy()
       # print(pred_np)
       # print(y)
-      drawRect(pred_np, y, 'Reg')
+      # drawRect(pred_np, y, 'Reg')   #预览pre框
 
-      prediction_list.append(pred_np)
+      prediction_list.extend(pred_np)
+      img_name_list.extend(y)
+
+    writePred(prediction_list, img_name_list)
+
 
 
 
 
 
   elif fdConfig.WHICH_MODEL == 'E':
-    model_E = torch.load(fdConfig.model_saved + "detect_east_model.pkl")
+    # model_E = torch.load(fdConfig.model_saved + "detect_east_model.pkl")
+    model_E = torch.load(fdConfig.model_saved + "detect_east_model_cpu_loss0-0113.pkl")
     dataset_E = fdData_EAST.FdTestDataEAST()
     testDataloader_E = Dataloader.DataLoader(dataset_E, fdConfig.BATCH_SIZE, shuffle=False)
 
@@ -134,7 +175,17 @@ if __name__ == "__main__":
       timer = {'net': 0, 'restore': 0, 'nms': 0}
       start = time.time()
 
+      # cv2.imshow("in dataloader x" , x[0].detach().numpy().transpose([1, 2, 0]))
+      # cv2.waitKey(0)
+      # plt.imshow(x[0].detach().numpy().transpose([1, 2, 0]))
+      # plt.show()
       F_score, F_geo = model_E(x)
+
+      # print(F_score.shape)
+      # print(F_score.sum())
+      # print(F_score>0,8)
+      # print(F_score)
+      # print(F_geo)
       # cv2.imshow("in dataloader F_score" , F_score[0].detach().numpy().transpose([1, 2, 0]))
       # cv2.waitKey(0)
       # cv2.imshow("in dataloader F_geo" , F_geo[0][0].detach().numpy())
@@ -143,19 +194,27 @@ if __name__ == "__main__":
         F_score = F_score.detach().cpu().numpy()
       else:
         F_score = F_score.detach().numpy()
+
+      coord = np.argwhere(F_score>0.8)
+      print("the length of bigger than 0.8 in F_score is: "+str(len(coord)))
+
       print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
       F_score = F_score.transpose([0,2,3,1])
-      print("F_score shape is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+      print("F_score shape after transpose is : " +str(F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
       if fdConfig.use_gpu:
         F_geo = F_geo.detach().cpu().numpy()
       else:
         F_geo = F_geo.detach().numpy()
       print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
       F_geo = F_geo.transpose([0,2,3,1])
-      print("F_geo shape is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
+      print("F_geo shape after transpose is : " +str(F_geo.shape)) if fdConfig.LOG_FOR_EAST_TEST else None
 
 
       for each_F_score, each_F_geo ,each_x in zip(F_score,F_geo,x):
+        # cv2.imshow("each_F_score" , each_F_score[:,:,0])
+        # cv2.waitKey(0)
+        # cv2.imshow("each_F_geo" , each_F_geo[:,:,0])
+        # cv2.waitKey(0)
         each_F_score = each_F_score[np.newaxis,:,:,:]
         each_F_geo = each_F_geo[np.newaxis,:,:,:]
         print("each_F_score shape is : " + str(each_F_score.shape)) if fdConfig.LOG_FOR_EAST_TEST else None

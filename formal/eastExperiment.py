@@ -5,6 +5,9 @@ import PIL.Image as Image
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 import torch
+import os
+import heapq
+
 
 # # fillpoly
 # scoremap = np.ones((15,15),np.float32)
@@ -263,8 +266,38 @@ import torch
 # print(a3)
 
 
+# grep metrics测试
+# a = np.array([[3, 119],[2, 159],[4, 165],[231, 109]])
+# coordinates = np.argwhere(a>100)
+# print(len(coordinates))
+c = []
+# for coor in coordinates:
+#   print(coor)
+#   one = a[coor]
+  # print(one)
+  # c.append(a[coor])
+
+# print(c)
 
 
+# read file
+# a = cv2.imread("test.jpg")
+# print(a)
+# list = os.listdir("testfile")
+# print(list)
+
+
+# arg choose
+a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
+# b = np.sort(a)
+# b = np.argwhere(a>10)
+# b = np.argmax(a)
+b= heapq.nlargest(3, a.flatten())
+# b = a[np.argpartition(-a,1)]
+# c = np.argmax(a)
+# c = b[np.argsort(b[:, 0])]
+# d= c[:, ::-1]
+print(b)
 
 
 

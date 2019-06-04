@@ -905,21 +905,54 @@ class FdTrainDataEAST (Data.Dataset):
 
 '''测试集(比赛中的训练集)'''
 
+
 def readTest(imgName):
 
   pureName = imgName.split('.')[0]
   # print(str(pureName))
 
   '''读图片'''
-  img = Image.open(fdConfig.train_img_path + pureName +".jpg")  #读图片
+  img = Image.open(fdConfig.train_img_path + pureName +".jpg")  #读图片1
+  # img = cv2.imread(fdConfig.train_img_path + pureName +".jpg")  #读图片2
+
+
+  '''resize方式'''
+
+  # #1、pad+resize：
+  #
+  # input_size =fdConfig.IMG_SIZE_EAST
+  # height = img.shape[0]
+  # print("origin image height is: "+str(height) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # width = img.shape[1]
+  # print("origin image width is: "+str(width) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # max_w_h_i = np.max([width,height,input_size])
+  # print("max_w_h_i is: "+str(max_w_h_i) ) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # template = np.zeros([max_w_h_i, max_w_h_i, 3], dtype=np.uint8)
+  # template[:height, :width, :] = img.copy()
+  # print("template shape is "+str(template.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # # cv2.imshow("template", template)
+  # # cv2.waitKey(0)
+  # print("imput_size is "+str(input_size)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # # img = np.resize(template,[input_size,input_size,3])   #bug! np的resize会破坏图片。
+  # img = cv2.resize(template,(input_size,input_size))
+  # print("img shape is "+str(img.shape)) if fdConfig.LOG_FOR_EAST_DATA==True else None
+  # # cv2.imshow("img", img)
+  # # cv2.waitKey(0)
+
+
+
+
+  # 2、固定尺寸：
   ratio = 2                           #改用固定长宽（224*112）
   # print("width is "+str(width)+", height is "+str(height),", ratio is "+str(ratio))
 
   height_resized = fdConfig.IMG_SIZE_HEIGHT
   width_resized = int(height_resized * ratio)
-
-
   img = img.resize((width_resized, height_resized))
+
+
+
+
   img = np.asarray(img)
   img = img.transpose([2, 0, 1])
   return img
