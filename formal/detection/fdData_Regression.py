@@ -194,7 +194,7 @@ def readTrain(imgName):
 
   except:
     print("\n image broken when load trainDataset: " + str(imgName))  # WBNGQ9R7.jpg
-    replace_image = Image.open(fdConfig.train_img_path + "0A2PDULI.jpg")
+    replace_image = Image.open(fdConfig.train_img_path + "0BRO7XVG.jpg")  #都是一块钱
 
     ratio = 2
     height_resized = fdConfig.IMG_SIZE_HEIGHT
@@ -204,7 +204,7 @@ def readTrain(imgName):
     replace_image = np.asarray(replace_image)
     replace_image = replace_image.transpose([2, 0, 1])
     return replace_image
-  
+
   return img
 
 
