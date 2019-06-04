@@ -4,6 +4,7 @@ arti_txt_path = "../../../dataset_formal/detect_data/arti_labeled_txt_300/"
 train_img_path = "../../../dataset_warm_up/train_data/"
 model_saved = "../../../dataset_formal/detect_data/saved_model/"
 output_reg_path = "../../../dataset_formal/detect_data/output_Reg/"
+polyImg_reg_path = "../../../dataset_formal/detect_data/polyImg_Reg/"
 
 EPOCH = 50
 IMG_SIZE_WIDTH = 224
@@ -20,9 +21,9 @@ LOG_FOR_EAST_MODEL = False
 LOG_FOR_EAST_LOSS = False
 LOG_FOR_EAST_TEST = True
 
-lr_patient = 5
-lr_shrink_factor = 0.1
-LR = 0.001
+lr_patient = 15
+lr_shrink_factor = 0.5
+LR = 0.0001
 
 use_gpu = False
 is_test = True
