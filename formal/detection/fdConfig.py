@@ -21,6 +21,8 @@ LOG_FOR_EAST_MODEL = False
 LOG_FOR_EAST_LOSS = False
 LOG_FOR_EAST_TEST = True
 
+east_detect_scoremap_thresh = 0.9
+
 lr_patient = 15
 lr_shrink_factor = 0.5
 LR = 0.0001
@@ -30,4 +32,7 @@ is_test = True
 test_test_num = 10
 test_train_num = 10
 need_load_model = False
+
+MODEL_NAME = "detect_reg_model2.pkl"
+# MODEL_NAME = "detect_east_model_cpu_loss0-0113.pkl"
 

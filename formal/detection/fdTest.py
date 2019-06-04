@@ -16,11 +16,11 @@ import matplotlib.pyplot as plt
 import os
 
 def writePred(prediction_list, img_name_list):
-  rightLen = 20000 if not fdConfig.is_test else fdConfig.test_test_num
+#  rightLen = 39620 if not fdConfig.is_test else fdConfig.test_test_num
 
-  if (len(prediction_list) != rightLen):
-    print("length error!： "+str(len(prediction_list)))
-    raise RuntimeError('length error!')
+#  if (len(prediction_list) != rightLen):
+#    print("length error!： "+str(len(prediction_list)))
+#    raise RuntimeError('length error!')
 
 
   for (pre, name) in zip(prediction_list, img_name_list):
@@ -69,8 +69,7 @@ def drawRect(pred_batch, y_batch, type):
 
 
 
-# def detect(score_map, geo_map, timer, score_map_thresh=0.8, box_thresh=0.1, nms_thres=0.2):
-def detect(score_map, geo_map, timer, score_map_thresh=0.51, box_thresh=0.1, nms_thres=0.2):
+def detect(score_map, geo_map, timer, score_map_thresh=fdConfig.east_detect_scoremap_thresh, box_thresh=0.1, nms_thres=0.2):
   '''
   restore text boxes from score map and geo map
   :param score_map:
@@ -128,7 +127,7 @@ def detect(score_map, geo_map, timer, score_map_thresh=0.51, box_thresh=0.1, nms
 
 if __name__ == "__main__":
   if fdConfig.WHICH_MODEL == 'R':
-    model_R = torch.load(fdConfig.model_saved + "detect_reg_model.pkl")
+    model_R = torch.load(fdConfig.model_saved + fdConfig.MODEL_NAME)
     # model_R = torch.load(fdConfig.model_saved + "detect_reg_model_cpu_loss15_epo8.pkl")
     dataset_R = fdData_Regression.FdTestDataReg()
     testDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=False)
@@ -164,7 +163,7 @@ if __name__ == "__main__":
 
   elif fdConfig.WHICH_MODEL == 'E':
     # model_E = torch.load(fdConfig.model_saved + "detect_east_model.pkl")
-    model_E = torch.load(fdConfig.model_saved + "detect_east_model_cpu_loss0-0113.pkl")
+    model_E = torch.load(fdConfig.model_saved + fdConfig.MODEL_NAME)
     dataset_E = fdData_EAST.FdTestDataEAST()
     testDataloader_E = Dataloader.DataLoader(dataset_E, fdConfig.BATCH_SIZE, shuffle=False)
 
