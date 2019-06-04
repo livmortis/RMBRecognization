@@ -144,6 +144,7 @@ class FdModelEast(Modules.Module):
 
   def forward(self, input):
     mid = self.resnet.conv1(input)
+    print("input shape in model: "+ str(input.shape))
     if fdConfig.LOG_FOR_NET_CONSTRUCTION:
       if fdConfig.use_gpu:
         print("first output is: " + str(mid.detach().cpu().numpy().shape))
