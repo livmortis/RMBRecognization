@@ -15,13 +15,13 @@ def calIou(pred_list , label_list):
   i = 0
   iou_list = []
   for pred in pred_list:
-    print("pred is "+ str(pred))
+    # print("pred is "+ str(pred))
     pred_xmin = pred[0]
     pred_ymin = pred[1]
     pred_xmax = pred[2]
     pred_ymax = pred[3]
     pred_area = (pred_xmax - pred_xmin) * (pred_ymax - pred_ymin)
-    print("label is "+ str(label_list[i]))
+    # print("label is "+ str(label_list[i]))
     label_xmin = label_list[i][0]
     label_ymin = label_list[i][1]
     label_xmax = label_list[i][2]
@@ -41,7 +41,7 @@ def calIou(pred_list , label_list):
       intersection = (xmax_minimum - xmin_maximum) * (ymax_minimum - ymin_maximum)
       union = pred_area + label_area - intersection
       iou = intersection / union
-      print("iou is " + str(iou))
+      # print("iou is " + str(iou))
     iou_list.append(iou)
 
   return iou_list
@@ -83,7 +83,7 @@ if __name__ == "__main__":
           loss_np = loss.detach().cpu().numpy()
         else:
           loss_np = loss.detach().numpy()
-        print("\nloss is "+str(loss_np)+"\n")
+        print("loss is "+str(loss_np))
 
         if fdConfig.use_gpu:
           pred_list.extend(prediction.detach().cpu().numpy())
@@ -93,7 +93,7 @@ if __name__ == "__main__":
           label_list.extend(y.detach().numpy())
         
       iouList = calIou(pred_list[:fdConfig.train_cal_iou_num], label_list[:fdConfig.train_cal_iou_num])
-      print("\n"+iouList)
+      # print("\n"+str(iouList))
       iou_average = np.average(np.array(iouList))
       print(str(fdConfig.train_cal_iou_num)+" number sample's iou average is:"+str(iou_average))
       

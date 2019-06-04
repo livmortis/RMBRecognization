@@ -25,7 +25,7 @@ def writePred(prediction_list, img_name_list):
 
   for (pre, name) in zip(prediction_list, img_name_list):
     pureName = str(name).split(".")[0]
-    print(pureName)
+    # print(pureName)
     stream = open(fdConfig.output_reg_path + pureName + ".txt", 'w')
     stream.write(str(pre[0]))
     stream.write(',')
@@ -35,7 +35,7 @@ def writePred(prediction_list, img_name_list):
     stream.write(',')
     stream.write(str(pre[3]))
     stream.close()
-
+  print("done")
 
 
 
