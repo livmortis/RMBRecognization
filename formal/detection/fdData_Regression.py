@@ -9,6 +9,7 @@ import torch
 import cv2
 import numpy as np
 import fdConfig
+from tqdm import tqdm
 from torchvision import transforms
 
 
@@ -173,22 +174,37 @@ class FdTrainDataReg (Data.Dataset):
 '''测试集'''
 
 def readTrain(imgName):
+  try:
 
-  pureName = imgName.split('.')[0]
-  # print(str(pureName))
+    pureName = imgName.split('.')[0]
+    # print(str(pureName))
 
-  '''读图片'''
-  img = Image.open(fdConfig.train_img_path + pureName +".jpg")  #读图片
-  ratio = 2                           #改用固定长宽（224*112）
-  # print("width is "+str(width)+", height is "+str(height),", ratio is "+str(ratio))
+    '''读图片'''
+    img = Image.open(fdConfig.train_img_path + pureName +".jpg")  #读图片
+    ratio = 2                           #改用固定长宽（224*112）
+    # print("width is "+str(width)+", height is "+str(height),", ratio is "+str(ratio))
 
-  height_resized = fdConfig.IMG_SIZE_HEIGHT
-  width_resized = int(height_resized * ratio)
+    height_resized = fdConfig.IMG_SIZE_HEIGHT
+    width_resized = int(height_resized * ratio)
 
 
-  img = img.resize((width_resized, height_resized))
-  img = np.asarray(img)
-  img = img.transpose([2, 0, 1])
+    img = img.resize((width_resized, height_resized))
+    img = np.asarray(img)
+    img = img.transpose([2, 0, 1])
+
+  except:
+    print("\n image broken when load trainDataset: " + str(imgName))  # WBNGQ9R7.jpg
+    replace_image = Image.open(fdConfig.train_img_path + "0A2PDULI.jpg")
+
+    ratio = 2
+    height_resized = fdConfig.IMG_SIZE_HEIGHT
+    width_resized = int(height_resized * ratio)
+
+    replace_image = replace_image.resize((width_resized, height_resized))
+    replace_image = np.asarray(replace_image)
+    replace_image = replace_image.transpose([2, 0, 1])
+    return replace_image
+  
   return img
 
 
@@ -199,7 +215,7 @@ class FdTestDataReg (Data.Dataset):
     name_list = []
     if fdConfig.is_test:
       trainList = trainList[:fdConfig.test_test_num]
-    for imgName in trainList:
+    for imgName in tqdm(trainList):
       img = readTrain(imgName)
       img_list.append(img)
 
