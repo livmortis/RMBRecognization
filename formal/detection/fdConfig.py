@@ -28,11 +28,12 @@ lr_shrink_factor = 0.5
 LR = 0.0001
 
 use_gpu = False
-is_test = True
-test_test_num = 10
+is_test = False
+test_test_num = 100
 test_train_num = 10
 need_load_model = False
 
-MODEL_NAME = "detect_reg_model2.pkl"
+# MODEL_NAME = "detect_reg_model2.pkl"
 # MODEL_NAME = "detect_east_model_cpu_loss0-0113.pkl"
+MODEL_NAME = "detect_reg_model_cpu_loss15_epo8.pkl"
 

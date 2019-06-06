@@ -48,10 +48,10 @@ def drawRect(pred_batch, y_batch, type):
     img = cv2.resize(img,(fdConfig.IMG_SIZE_HEIGHT * 2,fdConfig.IMG_SIZE_HEIGHT))
     # print("minx is : "+str(pred[0]))
     if type=='Reg':
-      adjust_xmin = int(pred[0]-10) #目测box位置，手动调整 (regression模型loss=1.5，结果一般)
+      adjust_xmin = int(pred[0]-5) #目测box位置，手动调整 (regression模型loss=1.5，结果一般)
       adjust_ymin = int(pred[1]-5)  #目测box位置，手动调整
-      adjust_xmax = int(pred[2]+10)  #目测box位置，手动调整
-      adjust_ymax = int(pred[3]+10) #目测box位置，手动调整
+      adjust_xmax = int(pred[2]+5)  #目测box位置，手动调整
+      adjust_ymax = int(pred[3]+5) #目测box位置，手动调整
     else:
       adjust_xmin = pred[0]
       adjust_ymin = pred[1]
@@ -60,6 +60,7 @@ def drawRect(pred_batch, y_batch, type):
     rect = cv2.rectangle(img, (adjust_xmin,adjust_ymin),(adjust_xmax,adjust_ymax),color=(0,255,255),thickness=1)
     cv2.imshow("a",rect)
     cv2.waitKey(0)
+
 
     i+=1
 

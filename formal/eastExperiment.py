@@ -8,7 +8,6 @@ import torch
 import os
 import heapq
 
-
 # # fillpoly
 # scoremap = np.ones((15,15),np.float32)
 # poly = np.array([[5,5],[5,8],[8,5],[8,8]])
@@ -270,7 +269,7 @@ import heapq
 # a = np.array([[3, 119],[2, 159],[4, 165],[231, 109]])
 # coordinates = np.argwhere(a>100)
 # print(len(coordinates))
-c = []
+# c = []
 # for coor in coordinates:
 #   print(coor)
 #   one = a[coor]
@@ -288,17 +287,15 @@ c = []
 
 
 # arg choose
-a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
-# b = np.sort(a)
-# b = np.argwhere(a>10)
-# b = np.argmax(a)
-b= heapq.nlargest(3, a.flatten())
-# b = a[np.argpartition(-a,1)]
-# c = np.argmax(a)
-# c = b[np.argsort(b[:, 0])]
-# d= c[:, ::-1]
-print(b)
-
-
+# a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
+# # b = np.sort(a)
+# # b = np.argwhere(a>10)
+# # b = np.argmax(a)
+# b= heapq.nlargest(3, a.flatten())
+# # b = a[np.argpartition(-a,1)]
+# # c = np.argmax(a)
+# # c = b[np.argsort(b[:, 0])]
+# # d= c[:, ::-1]
+# print(b)
 
 

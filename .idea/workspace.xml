@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/formal/classfiyExperiment.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/SelfCode.iml" afterPath="$PROJECT_DIR$/.idea/SelfCode.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" afterPath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
       <change beforePath="$PROJECT_DIR$/formal/detection/fdConfig.py" afterPath="$PROJECT_DIR$/formal/detection/fdConfig.py" />
       <change beforePath="$PROJECT_DIR$/formal/detection/fdCropPoly.py" afterPath="$PROJECT_DIR$/formal/detection/fdCropPoly.py" />
-      <change beforePath="$PROJECT_DIR$/formal/detection/fdData_Regression.py" afterPath="$PROJECT_DIR$/formal/detection/fdData_Regression.py" />
       <change beforePath="$PROJECT_DIR$/formal/detection/fdTest.py" afterPath="$PROJECT_DIR$/formal/detection/fdTest.py" />
+      <change beforePath="$PROJECT_DIR$/formal/eastExperiment.py" afterPath="$PROJECT_DIR$/formal/eastExperiment.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,122 +19,90 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="eastExperiment.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/eastExperiment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="294" column="31" lean-forward="false" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdData_EAST.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdData_EAST.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="469" column="25" lean-forward="false" selection-start-line="469" selection-start-column="14" selection-end-line="469" selection-end-column="25" />
-              <folding>
-                <element signature="e#15#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdTrain.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-161">
-              <caret line="64" column="37" lean-forward="true" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdModel_EAST.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdModel_EAST.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="219" column="0" lean-forward="true" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wutest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/warmup/wutest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdConfig.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdCropPoly.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdCropPoly.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding>
-                <element signature="e#1#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fdData_Regression.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/detection/fdData_Regression.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="221" column="30" lean-forward="false" selection-start-line="221" selection-start-column="23" selection-end-line="221" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wudata.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="220" column="41" lean-forward="true" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.397463">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="classfiyExperiment.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classfiyExperiment.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="144">
+                  <caret line="655" column="19" lean-forward="true" selection-start-line="655" selection-start-column="19" selection-end-line="655" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#741#752#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="dataloader.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="166">
+                  <caret line="555" column="40" lean-forward="true" selection-start-line="555" selection-start-column="40" selection-end-line="555" selection-end-column="40" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="densenet.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/densenet.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="225">
+                  <caret line="92" column="73" lean-forward="true" selection-start-line="92" selection-start-column="73" selection-end-line="92" selection-end-column="73" />
+                  <folding>
+                    <element signature="e#0#12#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="map_word_to_index.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/map_word_to_index.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="242">
+                  <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parse.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="212">
+                  <caret line="55" column="80" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="80" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="parse.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -141,36 +113,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>s</find>
-      <find>1</find>
-      <find>fillPoly</find>
-      <find>xFloatTensor</find>
-      <find>fitted_parallelograms is</find>
-      <find>loss is</find>
-      <find>each_x</find>
-      <find>txtList</find>
-      <find>the length of bigger than 0.8</find>
-      <find>gt_area</find>
-      <find>argwhere</find>
-      <find>x</find>
-      <find>arange</find>
-      <find>he length of bigger than 0.8</find>
-      <find>image shape is</find>
-      <find>han 0.8</find>
-      <find>_text is</find>
-      <find>cv2</find>
-      <find>efore nms</find>
-      <find>boxes</find>
-      <find>pad</find>
-      <find>xy_text</find>
-      <find>text_box_restored</find>
-      <find>origin</find>
-      <find>score_map</find>
-      <find>arti_txt_path</find>
-      <find>prediction_list</find>
       <find>WBNGQ9R7.jpg</find>
       <find>model_R</find>
       <find>img</find>
+      <find>black-json</find>
+      <find>model_zoo</find>
+      <find>cuda</find>
+      <find>batch_size</find>
+      <find>loss_list</find>
+      <find>probs</find>
+      <find>batch-size</find>
+      <find>data/dataset</find>
+      <find>dataset</find>
+      <find>image_label_dict</find>
+      <find>image-hw-ratio-json</find>
+      <find>image_hw_ratio_dict</find>
+      <find>data_dir</find>
+      <find>train_filelist2</find>
+      <find>print</find>
+      <find>cpu()</find>
+      <find>tqdm</find>
+      <find>exists</find>
+      <find>middle-dir</find>
+      <find>middle_dir</find>
+      <find>save_dir</find>
+      <find>save-dir</find>
+      <find>load</find>
+      <find>load(</find>
+      <find>pkl</find>
+      <find>resume</find>
+      <find>default</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -207,20 +179,26 @@
         <option value="$PROJECT_DIR$/warmup/wudata.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdModel_EAST.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdData_EAST.py" />
-        <option value="$PROJECT_DIR$/formal/eastExperiment.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTrain.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdData_Regression.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdCropPoly.py" />
-        <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdTest.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdConfig.py" />
+        <option value="$PROJECT_DIR$/formal/detection/fdCropPoly.py" />
+        <option value="$PROJECT_DIR$/formal/eastExperiment.py" />
+        <option value="$PROJECT_DIR$/formal/classfiyExperiment.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/show_black.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/densenet.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="406" />
-    <option name="y" value="37" />
-    <option name="width" value="1081" />
-    <option name="height" value="785" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="230" />
+    <option name="y" value="23" />
+    <option name="width" value="1202" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -256,7 +234,40 @@
               <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
               <item name="formal" type="462c0819:PsiDirectoryNode" />
-              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="formal" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="denseClassify" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="formal" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="denseClassify" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="formal" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="denseClassify" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="ocr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="formal" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="denseClassify" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="preprocessing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code" type="b2602c69:ProjectViewProjectNode" />
@@ -291,7 +302,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fdCropPoly">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="classfiyExperiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/formal" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SelfCode" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/formal/classfiyExperiment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="eastExperiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -346,56 +375,38 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="fdTrain" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/formal/detection" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SelfCode" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/formal/detection/fdTrain.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="wutrain" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/warmup" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SelfCode" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/warmup/wutrain.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.fdTrain" />
-      <item index="1" class="java.lang.String" itemvalue="Python.fdTest" />
-      <item index="2" class="java.lang.String" itemvalue="Python.eastExperiment" />
-      <item index="3" class="java.lang.String" itemvalue="Python.wutrain" />
-      <item index="4" class="java.lang.String" itemvalue="Python.fdCropPoly" />
+      <item index="0" class="java.lang.String" itemvalue="Python.fdTest" />
+      <item index="1" class="java.lang.String" itemvalue="Python.eastExperiment" />
+      <item index="2" class="java.lang.String" itemvalue="Python.fdCropPoly" />
+      <item index="3" class="java.lang.String" itemvalue="Python.classfiyExperiment" />
+      <item index="4" class="java.lang.String" itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.fdCropPoly" />
-        <item index="1" class="java.lang.String" itemvalue="Python.fdTest" />
-        <item index="2" class="java.lang.String" itemvalue="Python.eastExperiment" />
-        <item index="3" class="java.lang.String" itemvalue="Python.fdTrain" />
-        <item index="4" class="java.lang.String" itemvalue="Python.wutrain" />
+        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.classfiyExperiment" />
+        <item index="2" class="java.lang.String" itemvalue="Python.fdTest" />
+        <item index="3" class="java.lang.String" itemvalue="Python.fdCropPoly" />
+        <item index="4" class="java.lang.String" itemvalue="Python.eastExperiment" />
       </list>
     </recent_temporary>
   </component>
@@ -425,14 +436,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="406" y="37" width="1081" height="785" extended-state="1" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16420014" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17336152" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20144928" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22249094" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -568,78 +579,37 @@
           <line>496</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
+          <line>511</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
+          <line>515</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py</url>
+          <line>176</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py</url>
+          <line>560</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="31" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/warmup/wutest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="43" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#21#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wutest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wumodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="116" column="34" lean-forward="false" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wutrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#21#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wuconfig.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -804,6 +774,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -812,7 +783,7 @@
         <state relative-caret-position="346">
           <caret line="676" column="78" lean-forward="true" selection-start-line="676" selection-start-column="78" selection-end-line="676" selection-end-column="78" />
           <folding>
-            <element signature="e#15#26#0" expanded="true" />
+            <element signature="e#15#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -853,7 +824,7 @@
         <state relative-caret-position="487">
           <caret line="469" column="25" lean-forward="false" selection-start-line="469" selection-start-column="14" selection-end-line="469" selection-end-column="25" />
           <folding>
-            <element signature="e#15#26#0" expanded="true" />
+            <element signature="e#15#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -866,22 +837,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/eastExperiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="294" column="31" lean-forward="false" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/fdModel_EAST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="219" column="0" lean-forward="true" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state relative-caret-position="99">
+          <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -905,25 +866,17 @@
     <entry file="file://$PROJECT_DIR$/formal/detection/fdTrain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-161">
-          <caret line="64" column="37" lean-forward="true" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
+          <caret line="64" column="37" lean-forward="false" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/warmup/wutest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup/wudata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="220" column="41" lean-forward="true" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
+          <caret line="220" column="41" lean-forward="false" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -933,36 +886,122 @@
         <state relative-caret-position="735">
           <caret line="221" column="30" lean-forward="false" selection-start-line="221" selection-start-column="23" selection-end-line="221" selection-end-column="30" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdCropPoly.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+        <state relative-caret-position="870">
+          <caret line="58" column="22" lean-forward="false" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#1#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection/fdConfig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        <state relative-caret-position="264">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection/fdCropPoly.py">
+    <entry file="file://$PROJECT_DIR$/formal/detection/fdTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        <state relative-caret-position="76">
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
-            <element signature="e#1#10#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warmup/wutest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/eastExperiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/show_black.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/analysis_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="120" column="23" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/densenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="92" column="73" lean-forward="true" selection-start-line="92" selection-start-column="73" selection-end-line="92" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/map_word_to_index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classfiyExperiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="655" column="19" lean-forward="true" selection-start-line="655" selection-start-column="19" selection-end-line="655" selection-end-column="19" />
+          <folding>
+            <element signature="e#741#752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="555" column="40" lean-forward="true" selection-start-line="555" selection-start-column="40" selection-end-line="555" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
