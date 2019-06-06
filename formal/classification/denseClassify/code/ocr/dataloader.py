@@ -12,6 +12,7 @@ import json
 from PIL import Image,ImageDraw,ImageFont,ImageFilter
 from torch.utils.data import Dataset
 import time
+from tqdm import tqdm
 
 filters = [
             ImageFilter.SMOOTH,                 # 平滑，大于16可以用
@@ -64,15 +65,18 @@ class DataSet(Dataset):
         self.word_index_dict = word_index_dict
         self.args = args
         if self.phase != 'pretrain':
-            for image_name in image_names:
+            for image_name in tqdm(image_names):
                 image_name = image_name.split('/')[-1]
                 if image_name not in image_label_dict:
-                    print("img name wrong: "+str(image_name))
+                    print("img name wrong: "+str(image_name))       #img name wrong: S1R9O5F2.jpg
                     try:
                         # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.png')[0]+'.png']
-                        image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
+                        # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
+                        image_label_dict[image_name] = "20 4 15 5 0 9 1 6 1 1"     #'K1E6457877'
+                        print("label assign to 'KlE6457877' (20 4 15 5 0 9 1 6 1 1) ")
                     except:
                         image_label_dict[image_name] = ''
+                        print("label assign to empty ")
                 word_label = np.zeros(class_num)
                 label = image_label_dict[image_name]
                 for l in label.split():
