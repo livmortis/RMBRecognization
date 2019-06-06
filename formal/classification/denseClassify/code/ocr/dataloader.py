@@ -67,7 +67,7 @@ class DataSet(Dataset):
             for image_name in image_names:
                 image_name = image_name.split('/')[-1]
                 if image_name not in image_label_dict:
-                    print("img name wrong")
+                    print("img name wrong: "+str(image_name))
                     try:
                         # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.png')[0]+'.png']
                         image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
