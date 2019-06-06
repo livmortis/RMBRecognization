@@ -59,7 +59,7 @@ def viewOrCrop(type):
       max_y *= ratio_h
 
 
-      polyImg = img[ int(min_y):int(max_y),int(min_x):int(max_x)]
+      polyImg = img[ int(min_y-4):int(max_y+5),int(min_x-5):int(max_x+5)]
       # cv2.imshow("b", polyImg)
       # cv2.waitKey(0)
       cv2.imwrite(fdConfig.polyImg_reg_path + "poly_" + pureName + ".jpg", polyImg)
