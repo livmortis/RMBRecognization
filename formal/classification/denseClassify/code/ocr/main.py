@@ -56,7 +56,7 @@ args.stride = 8
 # args.image_size = [512,64]
 args.image_size = [288,64]
 
-use_gpu = True  #xzy
+use_gpu = False  #xzy
 
 
 class DenseNet121(nn.Module):
