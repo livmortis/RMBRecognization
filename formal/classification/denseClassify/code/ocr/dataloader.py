@@ -67,8 +67,10 @@ class DataSet(Dataset):
             for image_name in image_names:
                 image_name = image_name.split('/')[-1]
                 if image_name not in image_label_dict:
+                    print("img name wrong")
                     try:
-                        image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.png')[0]+'.png']
+                        # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.png')[0]+'.png']
+                        image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
                     except:
                         image_label_dict[image_name] = ''
                 word_label = np.zeros(class_num)
@@ -168,7 +170,8 @@ class DataSet(Dataset):
                 image = (image / 128. - 1).astype(np.float32)
                 return image_name, image, np.zeros(self.class_num, dtype=np.float32)
         else:
-            seg_name = image_name.replace('train','seg.train').replace('test','seg.test') + '.seg.crop.png'
+            # seg_name = image_name.replace('train','seg.train').replace('test','seg.test') + '.seg.crop.png'
+            seg_name = image_name.replace('train','seg.train').replace('test','seg.test') + '.seg.crop.jpg'
             no_aug = self.args.no_aug
             if os.path.exists(seg_name):
                 # image, word_label = random_crop_image(seg_name, self.image_label_dict[image_name.split('/')[-1]], self.image_size, self.class_num, self.phase, index, no_aug)
