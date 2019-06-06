@@ -53,9 +53,10 @@ args = parse.args
 # anchor大小
 args.anchors = [8, 12, 18, 27, 40, 60]
 args.stride = 8
-args.image_size = [512,64]
+# args.image_size = [512,64]
+args.image_size = [288,64]
 
-use_gpu = False  #xzy
+use_gpu = True  #xzy
 
 
 class DenseNet121(nn.Module):
@@ -327,7 +328,8 @@ def test(epoch, model, train_loader, phase='test'):
             feats = feats.data.cpu().numpy()
             if i == 0:
                 print( feats.shape)
-            np.save(os.path.join(feat_dir, name.replace('.png','.npy')), feats)
+            # np.save(os.path.join(feat_dir, name.replace('.png','.npy')), feats)
+            np.save(os.path.join(feat_dir, name.replace('.jpg','.npy')), feats) #xzy
             if len(feats) > 1: # feats: [-1, 1024, 1, 8]
                 # 多个patch
                 new_feats = []
@@ -519,7 +521,8 @@ def train_eval(epoch, model, train_loader, loss, optimizer, best_f1score=0, phas
             optimizer.zero_grad()
             loss_output[0].backward()
             optimizer.step()
-            oneloss = [x.data.cpu().numpy()[0] for x in loss_output]
+            # oneloss = [x.data.cpu().numpy()[0] for x in loss_output]
+            oneloss = [x.detach().cpu().numpy() for x in loss_output]
             # oneloss = [x.detach().numpy() for x in loss_output]
             # print(oneloss)
             loss_list.append(oneloss)
@@ -573,7 +576,8 @@ def train_eval(epoch, model, train_loader, loss, optimizer, best_f1score=0, phas
                 middle_dir = os.path.join(middle_dir, phase)
                 if not os.path.exists(middle_dir):
                     os.mkdir(middle_dir)
-                Image.fromarray(images[ii].astype(np.uint8).transpose(1,2,0)).save(os.path.join(middle_dir, str(ii)+'.image.png'))
+                # Image.fromarray(images[ii].astype(np.uint8).transpose(1,2,0)).save(os.path.join(middle_dir, str(ii)+'.image.png'))
+                Image.fromarray(images[ii].astype(np.uint8).transpose(1,2,0)).save(os.path.join(middle_dir, str(ii)+'.image.jpg'))
                 if phase == 'pretrain':
                     segi = seg_labels[ii]
                     _segi = np.array([segi, segi, segi]) * 255
@@ -581,14 +585,16 @@ def train_eval(epoch, model, train_loader, loss, optimizer, best_f1score=0, phas
                     for si in range(segi.shape[1]):
                         for sj in range(segi.shape[2]):
                             segi[:,si,sj] = _segi[:,si/2,sj/2]
-                    Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.png'))
+                    # Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.png'))
+                    Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.jpg'))
                     segi = seg_output[ii]
                     _segi = np.array([segi, segi, segi]) * 255
                     segi = np.zeros([3, _segi.shape[1]*2, _segi.shape[2]*2])
                     for si in range(segi.shape[1]):
                         for sj in range(segi.shape[2]):
                             segi[:,si,sj] = _segi[:,si/2,sj/2]
-                    Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.out.png'))
+                    # Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.out.png'))
+                    Image.fromarray(segi.transpose(1,2,0).astype(np.uint8)).save(os.path.join(middle_dir, str(ii)+'.seg.out.jpg'))
 
     f1score = np.mean(f1score_list)
     print( 'f1score', f1score)
@@ -698,12 +704,14 @@ def main():
         else:
             train_filelist2.append(f)
 
-    train_val_filelist = train_filelist1 + train_filelist2
+    # train_val_filelist = train_filelist1 + train_filelist2
+    train_val_filelist = train_filelist1
     val_filelist = train_filelist1[-2048:]
     train_filelist1 = train_filelist1[:-2048]
 
-    train_filelist2 = train_filelist2
-    image_size = [512, 64]
+    # train_filelist2 = train_filelist2` ` #取消train_dataset2数据集
+    # image_size = [512, 64]    32的16倍和2倍
+    image_size = [288, 64]    #xzy  32的9倍和2倍
 
     if args.phase in ['test', 'val', 'train_val']:
         # 测试输出文字检测结果
@@ -776,6 +784,7 @@ def main():
         return
 
     elif args.phase == 'train':
+        # print(train_filelist1[:10])
         train_dataset1 = dataloader.DataSet(
                 train_filelist1,
                 image_label_dict,
@@ -868,8 +877,8 @@ def main():
                 param_group['lr'] = args.lr
 
             train_eval(epoch, model, train_loader1, loss, optimizer, 2., 'train-1')
-            if best_f1score > 0.9:
-                train_eval(epoch, model, train_loader2, loss, optimizer, 2., 'train-2')
+            # if best_f1score > 0.9:
+            #     train_eval(epoch, model, train_loader2, loss, optimizer, 2., 'train-2') #取消train_dataset2数据集
             best_f1score = train_eval(epoch, model, val_loader, loss, optimizer, best_f1score, 'eval-{:d}-{:d}'.format(args.batch_size, args.hard_mining))
             continue
             '''
