@@ -662,11 +662,13 @@ def main():
       loss = Loss()
 
     if args.resume:
+        print("let's begin resume")
         state_dict = torch.load(args.resume)
         model.load_state_dict(state_dict['state_dict'])
         best_f1score = state_dict['f1score']
         start_epoch = state_dict['epoch'] + 1
     else:
+        print("no resume")
         best_f1score = 0
         if args.model == 'resnet':
             start_epoch = 100
