@@ -326,9 +326,9 @@ def test(epoch, model, train_loader, phase='test'):
     probs_all = []
     for i,data in enumerate(tqdm(train_loader)):
         # name = data[0][0].split('/')[-1].split('.seg')[0]
-        print("xzy,data in loader: "+str(data))
+        # print("xzy,data in loader: "+str(data))
         name = data[0][0].split('/')[-1]   #xzy
-        print("xzy,name in loader: "+str(name))
+        # print("xzy,name in loader: "+str(name))
         names.append(name)
         if use_gpu:
             images, labels = [Variable(x.cuda(async=True)) for x in data[1:3]]
@@ -339,8 +339,8 @@ def test(epoch, model, train_loader, phase='test'):
             print("image when size==5: "+str(images))
 
         probs, feats = model(images, 'test')
-        print("probs: "+str(probs))
-        print("feats: "+str(feats))
+        # print("probs: "+str(probs))
+        # print("feats: "+str(feats))
         probs_all.append(probs.data.cpu().numpy().max(2).max(1).max(0))
 
         preds = probs.data.cpu().numpy() > 0.5 # (-1, 8, 1824)
