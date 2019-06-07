@@ -69,7 +69,7 @@ def drawRect(pred_batch, y_batch, type):
 
 
 
-
+# EAST源码引用
 def detect(score_map, geo_map, timer, score_map_thresh=fdConfig.east_detect_scoremap_thresh, box_thresh=0.1, nms_thres=0.2):
   '''
   restore text boxes from score map and geo map

@@ -3,8 +3,8 @@ arti_label_path = "../../../dataset_formal/detect_data/arti_labeled_label_300/"
 arti_txt_path = "../../../dataset_formal/detect_data/arti_labeled_txt_300/"
 train_img_path = "../../../dataset_warm_up/train_data/"
 model_saved = "../../../dataset_formal/detect_data/saved_model/"
-output_reg_path = "../../../dataset_formal/detect_data/output_Reg/"
-polyImg_reg_path = "../../../dataset_formal/detect_data/polyImg_Reg/"
+output_reg_path = "../../../dataset_formal/detect_data/output_Reg/"     # poly的txt坐标文件，训练集和测试集共用，测试测试集时手动清空。
+polyImg_reg_path = "../../../dataset_formal/detect_data/polyImg_Reg/"   # poly裁剪后的jpg图片文件，训练集和测试集共用，测试测试集时手动清空。
 test_img_path = "../../../dataset_warm_up/public_test_data/"
 
 
