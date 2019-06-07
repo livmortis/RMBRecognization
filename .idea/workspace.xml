@@ -40,8 +40,8 @@
       <file leaf-file-name="dataloader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="646" column="75" lean-forward="false" selection-start-line="646" selection-start-column="75" selection-end-line="646" selection-end-column="75" />
+            <state relative-caret-position="376">
+              <caret line="647" column="45" lean-forward="false" selection-start-line="647" selection-start-column="45" selection-end-line="647" selection-end-column="45" />
               <folding>
                 <element signature="e#66#84#0" expanded="true" />
               </folding>
@@ -614,11 +614,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py</url>
-          <line>638</line>
+          <line>640</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py</url>
+          <line>638</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="44" />
+      <option name="time" value="45" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1011,8 +1016,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="646" column="75" lean-forward="false" selection-start-line="646" selection-start-column="75" selection-end-line="646" selection-end-column="75" />
+        <state relative-caret-position="376">
+          <caret line="647" column="45" lean-forward="false" selection-start-line="647" selection-start-column="45" selection-end-line="647" selection-end-column="45" />
           <folding>
             <element signature="e#66#84#0" expanded="true" />
           </folding>
