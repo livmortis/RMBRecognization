@@ -20,7 +20,10 @@ def viewOrCrop(type):
     pureName = str(outname).split(".")[0]
     imgName = pureName+".jpg"
     txtName = pureName+".txt"
-    img = cv2.imread(fdConfig.train_img_path+imgName)
+    if fdConfig.detect_poly_of_train_or_test == "detect_train":
+      img = cv2.imread(fdConfig.train_img_path+imgName)     # 裁剪39620个训练集
+    else:     # ==“detect_test”
+      img = cv2.imread(fdConfig.test_img_path+imgName)      # 裁剪20000个测试集
 
     stream = open(fdConfig.output_reg_path+txtName)
     poly = stream.read()
@@ -62,7 +65,8 @@ def viewOrCrop(type):
       polyImg = img[ int(min_y-4):int(max_y+5),int(min_x-5):int(max_x+5)]
       # cv2.imshow("b", polyImg)
       # cv2.waitKey(0)
-      cv2.imwrite(fdConfig.polyImg_reg_path + "poly_" + pureName + ".jpg", polyImg)
+      # cv2.imwrite(fdConfig.polyImg_reg_path + "poly_" + pureName + ".jpg", polyImg)
+      cv2.imwrite(fdConfig.polyImg_reg_path +pureName + ".jpg", polyImg)
 
 
 
