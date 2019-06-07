@@ -321,7 +321,7 @@ def test(epoch, model, train_loader, phase='test'):
         # analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')
         analysis_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')   #xzy
         # os.system('rm -r ../../data/analysis/{:s}'.format(phase))
-        os.system('rm -r ../../../../../../dataset_formal/classify_data/analysis/{:s}'.format(phase)) #xzy
+        # os.system('rm -r ../../../../../../dataset_formal/classify_data/analysis/{:s}'.format(phase))  #xzy 删掉data/analysis相关
         labels_all = []
     probs_all = []
     for i,data in enumerate(tqdm(train_loader)):

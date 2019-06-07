@@ -627,7 +627,7 @@ def random_crop_image(image_name, text, image_size, class_num, phase, idx, no_au
             # 测试阶段直接合并
             crop_num = image.shape[2] * 2 / image_size[0] + 1
             # new_image = np.zeros((crop_num, 3, image_size[1], image_size[0]), dtype=np.float32)
-            print("xzy crop_num " + str(crop_num))
+            # print("xzy crop_num " + str(crop_num))
             new_image = np.zeros((int(crop_num), 3, int(image_size[1]), int(image_size[0])), dtype=np.float32)     #xzy
             # for i in range(crop_num):
             for i in range(int(crop_num)):      #xzy

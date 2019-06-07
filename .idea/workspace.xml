@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py" afterPath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py" />
+      <change beforePath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" afterPath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,8 +29,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="339" column="0" lean-forward="true" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
+            <state relative-caret-position="207">
+              <caret line="323" column="127" lean-forward="false" selection-start-line="323" selection-start-column="127" selection-end-line="323" selection-end-column="127" />
               <folding>
                 <element signature="e#741#752#0" expanded="true" />
               </folding>
@@ -40,8 +41,8 @@
       <file leaf-file-name="dataloader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="647" column="45" lean-forward="false" selection-start-line="647" selection-start-column="45" selection-end-line="647" selection-end-column="45" />
+            <state relative-caret-position="121">
+              <caret line="630" column="47" lean-forward="true" selection-start-line="630" selection-start-column="47" selection-end-line="630" selection-end-column="47" />
               <folding>
                 <element signature="e#66#84#0" expanded="true" />
               </folding>
@@ -134,8 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>middle-dir</find>
-      <find>feat_dir</find>
       <find>feats</find>
       <find>att_feats</find>
       <find>args.feat</find>
@@ -164,6 +163,8 @@
       <find>print</find>
       <find>xzy,data in loader</find>
       <find>en size==5</find>
+      <find>start_index</find>
+      <find>data/analysis</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -210,8 +211,8 @@
         <option value="$PROJECT_DIR$/formal/detection/fdTest.py" />
         <option value="$PROJECT_DIR$/formal/detection/fdCropPoly.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
-        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
       </list>
     </option>
   </component>
@@ -1006,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="339" column="0" lean-forward="true" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
+        <state relative-caret-position="207">
+          <caret line="323" column="127" lean-forward="false" selection-start-line="323" selection-start-column="127" selection-end-line="323" selection-end-column="127" />
           <folding>
             <element signature="e#741#752#0" expanded="true" />
           </folding>
@@ -1016,8 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="647" column="45" lean-forward="false" selection-start-line="647" selection-start-column="45" selection-end-line="647" selection-end-column="45" />
+        <state relative-caret-position="121">
+          <caret line="630" column="47" lean-forward="true" selection-start-line="630" selection-start-column="47" selection-end-line="630" selection-end-column="47" />
           <folding>
             <element signature="e#66#84#0" expanded="true" />
           </folding>
