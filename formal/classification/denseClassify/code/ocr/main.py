@@ -57,8 +57,11 @@ args.stride = 8
 args.image_size = [288,64]
 
 use_gpu = True  #xzy
-need_resume =True #xzy
-resume_ckpt_path = "../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/best_f1score_13.ckpt"
+need_resume =True #xzy   断点训练，和测试时，都要设为True。
+resume_ckpt_path = "../../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/best_f1score_13.ckpt"
+# xzy 每次读取手动修改ckpt文件名，   1、“best_f1score.ckpt”为每次都存的最新模型；
+#                                2、“epoch序号.ckpt”为五次一存的次新模型；
+#                                3、“best_f1score_序号.ckpt”为指定的最佳f1模型。
 
 
 class DenseNet121(nn.Module):
@@ -269,10 +272,15 @@ def save_model(save_dir, phase, name, epoch, f1score, model):
             'epoch': epoch,
             'f1score': f1score,
             }
+
     torch.save( state_dict_all , os.path.join(save_dir, '{:s}.ckpt'.format(name)))
+    # xzy 情况1，固定五次一存，但结果不一定是最好（万一loss发散）。 命名类似为“epoch序号.ckpt”
+    # xzy 情况2，固定一次一存，但结果不一定是最好（万一loss发散）。 命名固定为“best_f1score.ckpt”
     print("five once save model to: "+str(save_dir).split("/")[-1] + " ; saved name is: "+str('{:s}.ckpt'.format(name)))
+
     if 'best' in name and f1score > 0.3:
         torch.save( state_dict_all , os.path.join(save_dir, '{:s}_{:s}.ckpt'.format(name, str(epoch))))
+        # xzy 当fi_score每有进步一次，存一次。   命名类似为“best_f1score_14.ckpt” 14为当前存的次数
         print("best f1 save model to: " + str(save_dir).split("/")[-1] + " ; saved name is: "+str('{:s}_{:s}.ckpt'.format(name, str(epoch))))
 
 
@@ -289,19 +297,22 @@ def test(epoch, model, train_loader, phase='test'):
     precision_list = []
     word_index_dict = json.load(open(args.word_index_json))
     index_word_dict = { v:k for k,v in word_index_dict.items() }
-    result_file = open('../../data/result/{:d}_{:s}_result.csv'.format(epoch, phase), 'w')
-    result_file.write('name,content\n')
+    # result_file = open('../../data/result/{:d}_{:s}_result.csv'.format(epoch, phase), 'w')
+    result_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_result.csv'.format(epoch, phase), 'w')  #xzy
+    # result_file.write('name,content\n')
+    result_file.write('name,label\n')   # xzy
     name_f1score_dict = dict()
 
     # 保存densenet生成的feature
-    feat_dir = args.data_dir.replace('dataset', 'feats')
+    # feat_dir = args.data_dir.replace('dataset', 'feats')
+    feat_dir = '../../../../../../dataset_formal/classify_data/densenClassData/feats/'  #xzy
     mkdir(feat_dir)
     feat_dir = os.path.join(feat_dir, phase)
     print( feat_dir)
     mkdir(feat_dir)
 
     names = []
-    if phase != 'test':
+    if phase != 'test':   #xzy  验证时的报告，没有收集到。
         gt_file = open('../../data/result/{:d}_{:s}_gt.csv'.format(epoch, phase), 'w')
         gt_file.write('name,content\n')
         analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')
@@ -309,7 +320,10 @@ def test(epoch, model, train_loader, phase='test'):
         labels_all = []
     probs_all = []
     for i,data in enumerate(tqdm(train_loader)):
-        name = data[0][0].split('/')[-1].split('.seg')[0]
+        # name = data[0][0].split('/')[-1].split('.seg')[0]
+        print("xzy,data in loader: "+str(data))
+        name = data[0][0].split('/')[-1]   #xzy
+        print("xzy,name in loader: "+str(name))
         names.append(name)
         if use_gpu:
             images, labels = [Variable(x.cuda(async=True)) for x in data[1:3]]
@@ -317,8 +331,11 @@ def test(epoch, model, train_loader, phase='test'):
             images, labels = [Variable(x) for x in data[1:3]]
         if len(images.size()) == 5:
             images = images[0]
+            print("image when size==5: "+str(images))
 
         probs, feats = model(images, 'test')
+        print("probs: "+str(probs))
+        print("feats: "+str(feats))
         probs_all.append(probs.data.cpu().numpy().max(2).max(1).max(0))
 
         preds = probs.data.cpu().numpy() > 0.5 # (-1, 8, 1824)
@@ -328,7 +345,7 @@ def test(epoch, model, train_loader, phase='test'):
         last_set = set()
         all_set = set()
 
-        if args.feat:
+        if args.feat:   # xzy 暂时不保存feats （模型某些层输出的feature map）
             # 保存所有的feat
             feats = feats.data.cpu().numpy()
             if i == 0:
@@ -402,6 +419,8 @@ def test(epoch, model, train_loader, phase='test'):
 
         if phase == 'test':
             continue
+
+        # xzy 以下直到470行都是验证时的代码
         labels = labels.data.cpu().numpy()
         gt_file.write(name+',')
         gt = u''
@@ -473,10 +492,16 @@ def test(epoch, model, train_loader, phase='test'):
             f.write(json.dumps(name_f1score_dict, indent=4))
         np.save('../../data/result/{:d}_{:s}_labels.npy'.format(epoch, phase), labels_all)
     result_file.close()
-    os.system('cp ../../data/result/{:d}_{:s}_result.csv ../../data/result/{:s}_result.csv'.format(epoch, phase, phase))
+    # os.system('cp ../../data/result/{:d}_{:s}_result.csv '
+    #           '../../data/result/{:s}_result.csv'.format(epoch, phase, phase))
+    os.system('cp ../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_result.csv '
+              '../../../../../../dataset_formal/classify_data/densenClassData/result/{:s}_result.csv'.format(epoch, phase, phase))    #xzy
 
-    np.save('../../data/result/{:d}_{:s}_probs.npy'.format(epoch, phase), probs_all)
-    with open('../../data/result/{:s}_names.json'.format(phase), 'w') as f:
+    # np.save('../../data/result/{:d}_{:s}_probs.npy'.format(epoch, phase), probs_all)
+    np.save('../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_probs.npy'.format(epoch, phase), probs_all)  #xzy
+
+    # with open('../../data/result/{:s}_names.json'.format(phase), 'w') as f:
+    with open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:s}_names.json'.format(phase), 'w') as f:     #xzy
         f.write(json.dumps(names, indent=4))
 
 def get_weight(labels):
@@ -671,7 +696,7 @@ def main():
         print("let's begin resume")
         # state_dict = torch.load(args.resume)
         state_dict = torch.load(resume_ckpt_path)  #xzy
-        model.load_state_dict(state_dict['state_dict'])
+        model.load_state_dict(state_dict['state_dict'])   #xzy 断点训练、测试，都走这里。
         best_f1score = state_dict['f1score']
         start_epoch = state_dict['epoch'] + 1
         print("already resume "+str(resume_ckpt_path.split("/")[-1]))
@@ -783,6 +808,7 @@ def main():
                 pin_memory=True)
 
         if args.phase == 'test':
+            print("now , let's do phase of test")
             test(start_epoch - 1, model, val_loader, 'val')
             test(start_epoch - 1, model, test_loader, 'test')
             # test(start_epoch - 1, model, train_val_loader, 'train_val')
