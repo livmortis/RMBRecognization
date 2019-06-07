@@ -173,7 +173,7 @@ class DataSet(Dataset):
                 # word_label = self.word_labels[image_name]
                 image = (image / 128. - 1).astype(np.float32)
                 return image_name, image, np.zeros(self.class_num, dtype=np.float32)
-        else:
+        else:   # xzy 为什么测试时也要剪切和增强？？？？？？？？TODO
             # seg_name = image_name.replace('train','seg.train').replace('test','seg.test') + '.seg.crop.png'
             seg_name = image_name.replace('train','seg.train').replace('test','seg.test') + '.seg.crop.jpg'
             no_aug = self.args.no_aug
@@ -616,7 +616,7 @@ def random_crop_image(image_name, text, image_size, class_num, phase, idx, no_au
             start = int(np.random.random() * np.abs(image_size[0] - image.shape[2]))
         new_image = np.zeros((3, image_size[1], image_size[0]), dtype=np.float32)
         # new_image[:,:,start:start+image.shape[2]] = image
-        new_image[:,:,start:int(start+image.shape[2])] = image  #xzy
+        new_image[:,:,int(start):int(start+image.shape[2])] = image  #xzy
         if phase == 'test':
             new_image = np.array([new_image]).astype(np.float32)
         for w in text:
