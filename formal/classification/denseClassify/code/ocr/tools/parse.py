@@ -86,7 +86,8 @@ parser.add_argument('--image-label-json',
         metavar='S',
         help='image label json')
 parser.add_argument('--resume',
-        default='',
+        default='',             #xzy 放弃在这里些，写到main()里。
+        # default='../../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/',             #xzy
         type=str,
         metavar='S',
         help='start from checkpoints')

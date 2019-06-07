@@ -21,17 +21,44 @@ import os
 # print(a.strip())
 
 
-# 脚本改图片名
-imgpath = "../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/"
-imglist = os.listdir(imgpath)
-newList = []
-for name in imglist:
-  newName = name.split('_')[-1]
-  try:
-    os.rename(imgpath+name, imgpath+newName)
-    newList.append(imgpath+newName)
-  except Exception as e:
-    print(str(name)+" is eroor")
+# # 脚本改图片名
+# imgpath = "../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/"
+# imglist = os.listdir(imgpath)
+# newList = []
+# for name in imglist:
+#   newName = name.split('_')[-1]
+#   try:
+#     os.rename(imgpath+name, imgpath+newName)
+#     newList.append(imgpath+newName)
+#   except Exception as e:
+#     print(str(name)+" is eroor")
+#
+# print(imglist[:10])
+# print(newList[:10])
 
-print(imglist[:10])
-print(newList[:10])
+
+# bool与int
+if "":
+  print("1")
+
+if 1:
+  print("2")
+if 0:
+  print("3")
+if "1":
+  print("4")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
