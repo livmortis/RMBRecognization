@@ -318,10 +318,10 @@ def test(epoch, model, train_loader, phase='test'):
         gt_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_gt.csv'.format(epoch, phase), 'w')  #xzy
         # gt_file.write('name,content\n')
         gt_file.write('name,label\n')   #xzy
-        # analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')
+        # analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')     # “ .../densenClassData” 目录代替  “.../data” 目录
         analysis_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')   #xzy
         # os.system('rm -r ../../data/analysis/{:s}'.format(phase))
-        # os.system('rm -r ../../../../../../dataset_formal/classify_data/analysis/{:s}'.format(phase))  #xzy 删掉data/analysis相关
+        os.system('rm -r ../../../../../../dataset_formal/classify_data/densenClassData/analysis/{:s}'.format(phase)) #xzy
         labels_all = []
     probs_all = []
     for i,data in enumerate(tqdm(train_loader)):
@@ -461,13 +461,15 @@ def test(epoch, model, train_loader, phase='test'):
             else:
                 th = 0.6
             if f1score < th:
-                save_dir = '../../data/analysis'
+                # save_dir = '../../data/analysis'
+                save_dir = '../../../../../../dataset_formal/classify_data/densenClassData/analysis'  #xzy
                 if not os.path.exists(save_dir):
                     os.mkdir(save_dir)
                 save_dir = os.path.join(save_dir, phase)
                 if not os.path.exists(save_dir):
                     os.mkdir(save_dir)
-                os.system('cp ../../data/dataset/train/{:s} {:s}/{:d}_{:s}'.format(name, save_dir, 100000+i, name))
+                # os.system('cp ../../data/dataset/train/{:s} {:s}/{:d}_{:s}'.format(name, save_dir, 100000+i, name))
+                os.system('cp ../../../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/{:s} {:s}/{:d}_{:s}'.format(name, save_dir, 100000+i, name))
                 analysis_file.write(name+'\t\t')
                 gt = set(gt)
                 result = set(result.strip('"'))
