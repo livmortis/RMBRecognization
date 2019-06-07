@@ -615,7 +615,8 @@ def random_crop_image(image_name, text, image_size, class_num, phase, idx, no_au
         else:
             start = int(np.random.random() * np.abs(image_size[0] - image.shape[2]))
         new_image = np.zeros((3, image_size[1], image_size[0]), dtype=np.float32)
-        new_image[:,:,start:start+image.shape[2]] = image
+        # new_image[:,:,start:start+image.shape[2]] = image
+        new_image[:,:,start:int(start+image.shape[2])] = image  #xzy
         if phase == 'test':
             new_image = np.array([new_image]).astype(np.float32)
         for w in text:
