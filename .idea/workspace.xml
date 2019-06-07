@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/formal/classfiyExperiment.py" afterPath="$PROJECT_DIR$/formal/classfiyExperiment.py" />
       <change beforePath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" afterPath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
+      <change beforePath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" afterPath="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +18,8 @@
       <file leaf-file-name="classfiyExperiment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classfiyExperiment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="11" />
+            <state relative-caret-position="350">
+              <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -28,21 +30,11 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="247" column="72" lean-forward="false" selection-start-line="247" selection-start-column="72" selection-end-line="247" selection-end-column="72" />
+            <state relative-caret-position="241">
+              <caret line="676" column="44" lean-forward="false" selection-start-line="676" selection-start-column="44" selection-end-line="676" selection-end-column="44" />
               <folding>
                 <element signature="e#741#752#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="functional.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/torch/nn/functional.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="1452" column="49" lean-forward="true" selection-start-line="1452" selection-start-column="49" selection-end-line="1452" selection-end-column="49" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -84,8 +76,8 @@
       <file leaf-file-name="parse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="125" column="25" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="25" />
+            <state relative-caret-position="190">
+              <caret line="82" column="52" lean-forward="true" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -102,21 +94,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hard_mining</find>
-      <find>font_loss</find>
-      <find>weight</find>
-      <find>train_filelist</find>
-      <find>data</find>
       <find>png</find>
       <find>image_names</find>
       <find>pkl</find>
       <find>hard</find>
       <find>image_name</find>
       <find>loss_list</find>
-      <find>name</find>
       <find>epoch</find>
       <find>save</find>
-      <find>best_f1score</find>
       <find>train_filelist1</find>
       <find>tqdm</find>
       <find>train_loader2</find>
@@ -132,6 +117,13 @@
       <find>image_si</find>
       <find>size</find>
       <find>lr</find>
+      <find>name</find>
+      <find>save-di</find>
+      <find>small</find>
+      <find>best_f1score</find>
+      <find>model</find>
+      <find>save_dir</find>
+      <find>resume</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -176,17 +168,17 @@
         <option value="$PROJECT_DIR$/formal/eastExperiment.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/preprocessing/show_black.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/densenet.py" />
-        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
-        <option value="$PROJECT_DIR$/formal/classfiyExperiment.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py" />
+        <option value="$PROJECT_DIR$/formal/classfiyExperiment.py" />
+        <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py" />
         <option value="$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="543" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="203" />
     <option name="y" value="23" />
-    <option name="width" value="807" />
+    <option name="width" value="1147" />
     <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -252,6 +244,16 @@
             <path>
               <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="formal" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="denseClassify" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="ocr" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
               <item name="warmup" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -282,7 +284,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.classfiyExperiment">
     <configuration name="classfiyExperiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -382,8 +384,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.classfiyExperiment" />
+        <item index="0" class="java.lang.String" itemvalue="Python.classfiyExperiment" />
+        <item index="1" class="java.lang.String" itemvalue="Python.main" />
         <item index="2" class="java.lang.String" itemvalue="Python.fdTest" />
         <item index="3" class="java.lang.String" itemvalue="Python.fdCropPoly" />
         <item index="4" class="java.lang.String" itemvalue="Python.eastExperiment" />
@@ -416,14 +418,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="203" y="23" width="1147" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20829806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3307888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28778717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35155097" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -561,17 +563,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
-          <line>71</line>
+          <line>73</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
-          <line>513</line>
+          <line>518</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py</url>
-          <line>517</line>
+          <line>522</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -933,16 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classfiyExperiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/densenet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -971,18 +963,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classfiyExperiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/tools/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="125" column="25" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="25" />
+        <state relative-caret-position="190">
+          <caret line="82" column="52" lean-forward="true" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="247" column="72" lean-forward="false" selection-start-line="247" selection-start-column="72" selection-end-line="247" selection-end-column="72" />
+        <state relative-caret-position="241">
+          <caret line="676" column="44" lean-forward="false" selection-start-line="676" selection-start-column="44" selection-end-line="676" selection-end-column="44" />
           <folding>
             <element signature="e#741#752#0" expanded="true" />
           </folding>

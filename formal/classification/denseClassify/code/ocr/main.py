@@ -57,6 +57,8 @@ args.stride = 8
 args.image_size = [288,64]
 
 use_gpu = True  #xzy
+need_resume =True #xzy
+resume_ckpt_path = "../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/best_f1score_13.ckpt"
 
 
 class DenseNet121(nn.Module):
@@ -268,8 +270,11 @@ def save_model(save_dir, phase, name, epoch, f1score, model):
             'f1score': f1score,
             }
     torch.save( state_dict_all , os.path.join(save_dir, '{:s}.ckpt'.format(name)))
+    print("five once save model to: "+str(save_dir).split("/")[-1] + " ; saved name is: "+str('{:s}.ckpt'.format(name)))
     if 'best' in name and f1score > 0.3:
         torch.save( state_dict_all , os.path.join(save_dir, '{:s}_{:s}.ckpt'.format(name, str(epoch))))
+        print("best f1 save model to: " + str(save_dir).split("/")[-1] + " ; saved name is: "+str('{:s}_{:s}.ckpt'.format(name, str(epoch))))
+
 
 def mkdir(path):
     if not os.path.exists(path):
@@ -661,12 +666,15 @@ def main():
     else:
       loss = Loss()
 
-    if args.resume:
+    # if args.resume:
+    if need_resume:
         print("let's begin resume")
-        state_dict = torch.load(args.resume)
+        # state_dict = torch.load(args.resume)
+        state_dict = torch.load(resume_ckpt_path)  #xzy
         model.load_state_dict(state_dict['state_dict'])
         best_f1score = state_dict['f1score']
         start_epoch = state_dict['epoch'] + 1
+        print("already resume "+str(resume_ckpt_path.split("/")[-1]))
     else:
         print("no resume")
         best_f1score = 0
