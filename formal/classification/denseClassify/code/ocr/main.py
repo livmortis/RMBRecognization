@@ -336,7 +336,7 @@ def test(epoch, model, train_loader, phase='test'):
             images, labels = [Variable(x) for x in data[1:3]]
         if len(images.size()) == 5:
             images = images[0]
-            print("image when size==5: "+str(images))
+            # print("image when size==5: "+str(images))
 
         probs, feats = model(images, 'test')
         # print("probs: "+str(probs))
