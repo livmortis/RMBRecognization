@@ -56,7 +56,7 @@ args.stride = 8
 # args.image_size = [512,64]
 args.image_size = [288,64]
 
-use_gpu = False  #xzy
+use_gpu = True  #xzy
 
 
 class DenseNet121(nn.Module):
@@ -245,7 +245,7 @@ class Loss(nn.Module):
 
 def hard_mining(neg_output, neg_labels, num_hard, largest=True):
     num_hard = min(max(num_hard, 10), len(neg_output))
-    _, idcs = torch.topk(neg_output, min(num_hard, len(neg_output)), largest=largest)
+    _, idcs = torch.topk(neg_output, int(min(num_hard, len(neg_output))), largest=largest)
     neg_output = torch.index_select(neg_output, 0, idcs)
     neg_labels = torch.index_select(neg_labels, 0, idcs)
     return neg_output, neg_labels
