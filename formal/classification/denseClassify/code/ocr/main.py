@@ -58,7 +58,8 @@ args.image_size = [288,64]
 
 use_gpu = True  #xzy
 need_resume =True #xzy   断点训练，和测试时，都要设为True。
-resume_ckpt_path = "../../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/best_f1score_13.ckpt"
+# resume_ckpt_path = "../../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-0/best_f1score_13.ckpt"
+resume_ckpt_path = "../../../../../../dataset_formal/classify_data/densenClassData/models-small/densenet/eval-16-1/best_f1score_45.ckpt"    #截至2019.6.7最好模型 “best_f1score_45.ckpt”
 # xzy 每次读取手动修改ckpt文件名，   1、“best_f1score.ckpt”为每次都存的最新模型；
 #                                2、“epoch序号.ckpt”为五次一存的次新模型；
 #                                3、“best_f1score_序号.ckpt”为指定的最佳f1模型。
