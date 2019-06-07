@@ -129,8 +129,12 @@ def detect(score_map, geo_map, timer, score_map_thresh=fdConfig.east_detect_scor
 if __name__ == "__main__":
   if fdConfig.WHICH_MODEL == 'R':
     model_R = torch.load(fdConfig.model_saved + fdConfig.MODEL_NAME)
-    # model_R = torch.load(fdConfig.model_saved + "detect_reg_model_cpu_loss15_epo8.pkl")
-    dataset_R = fdData_Regression.FdTestDataReg()
+    if fdConfig.detect_poly_of_train_or_test == "detect_train":
+      dataset_R = fdData_Regression.FdTestDataReg()     # 对39620个训练集进行预测poly框
+    else:     # ==“detect_test”
+      dataset_R = fdData_Regression.FdTestTestDataReg()     # 对20000个测试集进行预测poly框
+
+
     testDataloader_R = Dataloader.DataLoader(dataset_R, fdConfig.BATCH_SIZE, shuffle=False)
 
     with torch.no_grad():  # 解决了测试时oom问题

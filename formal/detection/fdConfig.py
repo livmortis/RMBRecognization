@@ -5,6 +5,8 @@ train_img_path = "../../../dataset_warm_up/train_data/"
 model_saved = "../../../dataset_formal/detect_data/saved_model/"
 output_reg_path = "../../../dataset_formal/detect_data/output_Reg/"
 polyImg_reg_path = "../../../dataset_formal/detect_data/polyImg_Reg/"
+test_img_path = "../../../dataset_warm_up/public_test_data/"
+
 
 EPOCH = 50
 IMG_SIZE_WIDTH = 224
@@ -35,5 +37,8 @@ need_load_model = False
 
 # MODEL_NAME = "detect_reg_model2.pkl"
 # MODEL_NAME = "detect_east_model_cpu_loss0-0113.pkl"
-MODEL_NAME = "detect_reg_model_cpu_loss15_epo8.pkl"
+# MODEL_NAME = "detect_reg_model_cpu_loss15_epo8.pkl"
+MODEL_NAME = "detect_reg_model6.pkl"    # gpu云上目前最好模型 2019.6.7
 
+# detect_poly_of_train_or_test = "detect_train"    # 检测算法，检测训练集的poly还是测试集的poly
+detect_poly_of_train_or_test = "detect_test"

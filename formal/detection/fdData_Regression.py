@@ -68,7 +68,7 @@ def xml2txt():
     print(e)
 
 
-'''训练集'''
+'''1、  训练集（300训练集）'''
 
 def readTxt(txtName):
 
@@ -171,7 +171,7 @@ class FdTrainDataReg (Data.Dataset):
 
 
 
-'''测试集'''
+'''2、 测试集之一（测试39620个训练集）'''
 
 def readTrain(imgName):
   try:
@@ -235,6 +235,87 @@ class FdTestDataReg (Data.Dataset):
 
   def __len__(self):
     return self.l
+
+
+
+
+
+'''3、 测试集之二  (测试20000个测试集）'''
+
+def readTest(imgName):
+  # try:    # 测试集更严格，不能有问题数据
+
+  pureName = imgName.split('.')[0]
+  # print(str(pureName))
+
+  '''读图片'''
+  img = Image.open(fdConfig.test_img_path + pureName +".jpg")  #读图片
+  ratio = 2                           #改用固定长宽（224*112）
+  # print("width is "+str(width)+", height is "+str(height),", ratio is "+str(ratio))
+
+  height_resized = fdConfig.IMG_SIZE_HEIGHT
+  width_resized = int(height_resized * ratio)
+
+
+  img = img.resize((width_resized, height_resized))
+  img = np.asarray(img)
+  img = img.transpose([2, 0, 1])
+
+
+  # except:
+    # print("\n image broken when load trainDataset: " + str(imgName))  # WBNGQ9R7.jpg
+    # replace_image = Image.open(fdConfig.test_img_path + "0BRO7XVG.jpg")  #都是一块钱
+    #
+    # ratio = 2
+    # height_resized = fdConfig.IMG_SIZE_HEIGHT
+    # width_resized = int(height_resized * ratio)
+    #
+    # replace_image = replace_image.resize((width_resized, height_resized))
+    # replace_image = np.asarray(replace_image)
+    # replace_image = replace_image.transpose([2, 0, 1])
+    # return replace_image
+
+  return img
+
+
+class FdTestTestDataReg (Data.Dataset):
+  def __init__(self):
+    testList = os.listdir(fdConfig.test_img_path)
+    img_list = []
+    name_list = []
+    if fdConfig.is_test:
+      trainList = testList[:fdConfig.test_test_num]
+    for imgName in tqdm(testList):
+      img = readTest(imgName)
+      img_list.append(img)
+
+      name_list.append(imgName)
+
+    self.x = np.asarray(img_list)
+    self.y = np.asarray(name_list)
+    self.l = len(self.x)
+
+  def __getitem__(self, index):
+    img = self.x[index]
+    # img = colorTransform(img)
+    xtensor = torch.from_numpy(img)
+    xFloatTensor = xtensor.type(torch.FloatTensor)
+
+    return xFloatTensor,self.y[index]
+
+  def __len__(self):
+    return self.l
+
+
+
+
+
+
+
+
+
+
+
 
 
 
