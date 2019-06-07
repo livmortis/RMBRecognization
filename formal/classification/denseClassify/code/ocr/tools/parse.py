@@ -23,7 +23,7 @@ parser.add_argument(
         '--data-test-dir',
         '-d-t',
         type=str,
-        default='../../../../../../dataset_warm_up/public_test_data/',    #xzy
+        default='../../../../../../dataset_formal/detect_data/polyImg_Reg/',    #xzy
         help='data test directory'
         )
 parser.add_argument(
@@ -175,7 +175,7 @@ parser.add_argument(
         '-r',
         type=str,
         # default='../../data/result/test_result.csv',
-        default='../../../../../../dataset_formal/classify_data/densenClassData/result/test_result.csv',
+        default='../../../../../../dataset_formal/classify_data/densenClassData/result/test_result.csv',          #xzy 没用，main()中写死了
         help='result file'
         )
 parser.add_argument(
@@ -183,7 +183,7 @@ parser.add_argument(
         '-o',
         type=str,
         # default='../../data/result/test.csv',
-        default='../../../../../../dataset_formal/classify_data/densenClassData/result/test.csv',
+        default='../../../../../../dataset_formal/classify_data/densenClassData/result/test.csv',       #xzy 没用，main()中写死了
         help='output file'
         )
 args = parser.parse_args()
