@@ -40,8 +40,8 @@
       <file leaf-file-name="dataloader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="618" column="37" lean-forward="false" selection-start-line="618" selection-start-column="32" selection-end-line="618" selection-end-column="37" />
+            <state relative-caret-position="144">
+              <caret line="175" column="47" lean-forward="false" selection-start-line="175" selection-start-column="47" selection-end-line="175" selection-end-column="47" />
               <folding>
                 <element signature="e#66#84#0" expanded="true" />
               </folding>
@@ -991,8 +991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/denseClassify/code/ocr/dataloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="618" column="37" lean-forward="false" selection-start-line="618" selection-start-column="32" selection-end-line="618" selection-end-column="37" />
+        <state relative-caret-position="144">
+          <caret line="175" column="47" lean-forward="false" selection-start-line="175" selection-start-column="47" selection-end-line="175" selection-end-column="47" />
           <folding>
             <element signature="e#66#84#0" expanded="true" />
           </folding>
