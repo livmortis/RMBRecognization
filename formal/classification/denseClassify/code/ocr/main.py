@@ -313,11 +313,15 @@ def test(epoch, model, train_loader, phase='test'):
     mkdir(feat_dir)
 
     names = []
-    if phase != 'test':   #xzy  验证时的报告，没有收集到。
-        gt_file = open('../../data/result/{:d}_{:s}_gt.csv'.format(epoch, phase), 'w')
-        gt_file.write('name,content\n')
-        analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')
-        os.system('rm -r ../../data/analysis/{:s}'.format(phase))
+    if phase != 'test':   #xzy  验证时的报告，没有收集到。 更新:由于测试时也要先走val，所以这里还是需要收集
+        # gt_file = open('../../data/result/{:d}_{:s}_gt.csv'.format(epoch, phase), 'w')
+        gt_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_gt.csv'.format(epoch, phase), 'w')  #xzy
+        # gt_file.write('name,content\n')
+        gt_file.write('name,label\n')   #xzy
+        # analysis_file = open('../../data/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')
+        analysis_file = open('../../../../../../dataset_formal/classify_data/densenClassData/result/{:s}_{:s}_gt.csv'.format('analysis', phase), 'w')   #xzy
+        # os.system('rm -r ../../data/analysis/{:s}'.format(phase))
+        os.system('rm -r ../../../../../../dataset_formal/classify_data/analysis/{:s}'.format(phase)) #xzy
         labels_all = []
     probs_all = []
     for i,data in enumerate(tqdm(train_loader)):
@@ -489,9 +493,11 @@ def test(epoch, model, train_loader, phase='test'):
         result_file.write('f1score,' +  str(f1score))
         result_file.write('recall,' +  str(recall))
         result_file.write('precision,' +  str(precision))
-        with open('../../data/result/name_f1score_dict.json','w') as f:
+        # with open('../../data/result/name_f1score_dict.json','w') as f:
+        with open('../../../../../../dataset_formal/classify_data/densenClassData/result/name_f1score_dict.json','w') as f:   #xzy
             f.write(json.dumps(name_f1score_dict, indent=4))
-        np.save('../../data/result/{:d}_{:s}_labels.npy'.format(epoch, phase), labels_all)
+        # np.save('../../data/result/{:d}_{:s}_labels.npy'.format(epoch, phase), labels_all)
+        np.save('../../../../../../dataset_formal/classify_data/densenClassData/result/{:d}_{:s}_labels.npy'.format(epoch, phase), labels_all)      #xzy
     result_file.close()
     # os.system('cp ../../data/result/{:d}_{:s}_result.csv '
     #           '../../data/result/{:s}_result.csv'.format(epoch, phase, phase))
