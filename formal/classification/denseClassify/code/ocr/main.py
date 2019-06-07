@@ -291,7 +291,7 @@ def mkdir(path):
 
 def test(epoch, model, train_loader, phase='test'):
     print( '\ntest {:s}_files, epoch: {:d}'.format(phase, epoch))
-    mkdir('../../data/result')
+    # mkdir('../../data/result')  #xzy
     model.eval()
     f1score_list = []
     recall_list = []

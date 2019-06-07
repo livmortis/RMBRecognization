@@ -71,10 +71,10 @@ class DataSet(Dataset):
                     print("img name wrong: "+str(image_name))       #img name wrong: S1R9O5F2.jpg
                     try:
                         # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.png')[0]+'.png']
-                        # image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
-                        image_label_dict[image_name] = "20 4 15 5 0 9 1 6 1 1"     #'K1E6457877'
+                        image_label_dict[image_name] = image_label_dict[image_name.replace('seg.','').split('.jpg')[0]+'.jpg']
+                        # image_label_dict[image_name] = "20 4 15 5 0 9 1 6 1 1"     #'K1E6457877'
                         print("label assign to 'KlE6457877' (20 4 15 5 0 9 1 6 1 1) ")
-                    except:
+                    except:     # xzy 测试时没有标签，所以这里全置为空
                         image_label_dict[image_name] = ''
                         print("label assign to empty ")
                 word_label = np.zeros(class_num)
