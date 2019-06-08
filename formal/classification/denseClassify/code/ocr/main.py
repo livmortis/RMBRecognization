@@ -110,18 +110,18 @@ class DenseNet121(nn.Module):
         feats = self.densenet121(x)     # (32, 1024, 2, 16)
         if not args.small:
             feats = F.max_pool2d(feats, kernel_size=2, stride=2) # (32, 1024, 1, 8)
-        out = self.classifier_font(feats) # (32, 1824, 1, 8)
+        out = self.classifier_font(feats) # (32, 1824, 1, 8)        #xzy (32,35,1,8)
         out_size = out.size()
         # print( out.size()
-        out = out.view(out.size(0),out.size(1),-1) # (32, 1824, 8)
+        out = out.view(out.size(0),out.size(1),-1) # (32, 1824, 8)      #xzy (32,35,8)
         # print( out.size()
         if phase == 'train':
-            out = F.adaptive_max_pool1d(out, output_size=(1)).view(out.size(0),-1) # (32, 1824)
+            out = F.adaptive_max_pool1d(out, output_size=(1)).view(out.size(0),-1) # (32, 1824)     #xzy train:  (32,35)
             return out
         else:
             out = out.transpose(1,2).contiguous()
-            out = out.view(out_size[0],out_size[2], out_size[3], out_size[1]) # (32, 1, 8, 1824)
-            return out, feats
+            out = out.view(out_size[0],out_size[2], out_size[3], out_size[1]) # (32, 1, 8, 1824)    # xzy test:  (32,1,8,35)
+            return out, feats                                                                        # xzy feat:  (32,1024,1,8)
 
 class Loss(nn.Module):
     def __init__(self):
@@ -343,7 +343,7 @@ def test(epoch, model, train_loader, phase='test'):
         # print("feats: "+str(feats))
         probs_all.append(probs.data.cpu().numpy().max(2).max(1).max(0))
 
-        preds = probs.data.cpu().numpy() > 0.5 # (-1, 8, 1824)
+        preds = probs.data.cpu().numpy() > 0.5 # (-1, 8, 1824)      #xzy (-1,8,35)
 
         # result_file.write(name+',')
         result = u''
@@ -373,13 +373,13 @@ def test(epoch, model, train_loader, phase='test'):
                 feats = np.concatenate(new_feats, 2)
 
         # 这种方法用于检测不同区域的同一个字，当同一个字同一个区域出现时，可能检测不到多次
-        preds = preds.max(1) # 沿着竖直方向pooling
+        preds = preds.max(1) # 沿着竖直方向pooling         #xzy (-1,8,35)变为(-1,35)
         # if len(preds) > 1:
         #     print( name)
-        for patch_i, patch_pred in enumerate(preds):
-            for part_i, part_pred in enumerate(patch_pred):
+        for patch_i, patch_pred in enumerate(preds):            #xzy patch_pred: (8,35)     该循环有batchsize次
+            for part_i, part_pred in enumerate(patch_pred):       #xzy part_pred: (1,35)    该循环有8次
                 new_set = set()
-                for idx,p in enumerate(part_pred):
+                for idx,p in enumerate(part_pred):               #xzy p:(1)  True or False  该循环有35次
                     if p:
                         # 出现了这个字
                         w = index_word_dict[idx]
@@ -388,7 +388,7 @@ def test(epoch, model, train_loader, phase='test'):
                             # 从没见过的字
                             all_set.add(w)
                             result += w
-                        elif w not in last_set:
+                        elif w not in last_set:     #xzy 以前见过，但上一个不是它
                             # 以前出现过
                             if patch_i == 0:
                                 # 第一个patch # 上一个部分没有这个字
@@ -417,7 +417,7 @@ def test(epoch, model, train_loader, phase='test'):
             global_prob = probs.data.cpu().numpy().max(0).max(0).max(0)
             max_index = global_prob.argmax()
             result = index_word_dict[max_index]
-            print( name)
+            print("fail predict (Output is 0) on this img: " +str(name))
 
         result_file.write(name+','+result+'\n')
         # result_file.write('\n')
