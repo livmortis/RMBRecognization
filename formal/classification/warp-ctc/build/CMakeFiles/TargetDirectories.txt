@@ -1,0 +1,8 @@
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/install/local.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/install/strip.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/install.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/test_cpu.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/rebuild_cache.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/warpctc.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/edit_cache.dir
+/Users/xzy/Documents/coder/ML/paper/CRNN/warp-ctc/build/CMakeFiles/list_install_components.dir
