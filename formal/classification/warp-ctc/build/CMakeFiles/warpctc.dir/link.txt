@@ -1,0 +1,1 @@
+/usr/local/bin/g++-9  -std=c++11 -O2 -fopenmp -dynamiclib -Wl,-headerpad_max_install_names  -o libwarpctc.dylib -install_name @rpath/libwarpctc.dylib CMakeFiles/warpctc.dir/src/ctc_entrypoint.cpp.o 
