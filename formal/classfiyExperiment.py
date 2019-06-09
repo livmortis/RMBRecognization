@@ -84,7 +84,18 @@ import pandas as pd
 
 
 
-
+# csv再试
+csv_file = "/Users/xzy/Documents/coder/ML/game/2019/RMB-tinymind/dataset_formal/classify_data/densenClassData/result/test_result_6_7.csv"
+df = pd.read_csv(csv_file)
+print(df.head())
+print(len(df))
+i = 0
+for i in range(3):
+  print("fuck")
+  i+=1
+print(i)
+# print(df['name'][0:5])
+# print(df['label'][0:5])
 
 
 
