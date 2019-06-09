@@ -1,4 +1,3 @@
-# coding:utf-8
 import os
 import lmdb  # install lmdb by "pip install lmdb"
 import cv2
@@ -9,6 +8,10 @@ import imghdr
 import argparse
 import pandas as pd
 from tqdm import tqdm
+
+# 没有投入使用，仅供实验ecode问题。
+
+
 
 
 def init_args():
@@ -54,7 +57,28 @@ def checkImageIsValid(imageBin):
 def writeCache(env, cache):
   with env.begin(write=True) as txn:
     for k, v in cache.items():
-      txn.put(k, v)
+      if type(k) == str:
+        print("k is str: ")
+        print(k)
+        k = k.encode()
+        print("k is str and after encode: ")
+        print(k)
+        print("\n")
+      else:
+        print("k is not str:")
+        print(k)
+        print("\n")
+      if type(v) == str:
+        print("v is str: ")
+        print(v)
+        v = v.encode()
+        print("v is str and after encode: ")
+        print(v)
+        print("\n")
+      else:
+        print("v is not str:")
+        print(v)
+        print("\n")
 
 
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
@@ -124,7 +148,7 @@ if __name__ == '__main__':
 
     i = 0              #xzy  csv文件读取方法
     # for i in tqdm(range(length)):      #制作训练集
-    for i in tqdm(range(2000)):       #制作验证集
+    for i in tqdm(range(100)):       #制作验证集
       imgPath = os.path.join(imgDir,df['name'][i])
       imgPathList.append(imgPath)
       word = df[' label'][i]

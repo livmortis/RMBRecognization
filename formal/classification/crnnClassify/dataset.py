@@ -60,7 +60,8 @@ class lmdbDataset(Dataset):
 
             label_key = 'label-%09d' % index
             # label = str(txn.get(label_key))
-            label = str(txn.get(label_key.encode()))  #xzy
+            # label = str(txn.get(label_key.encode()))  #xzy1
+            label = txn.get(label_key.encode()).decode()  #xzy2
             if self.target_transform is not None:
                 label = self.target_transform(label)
 
