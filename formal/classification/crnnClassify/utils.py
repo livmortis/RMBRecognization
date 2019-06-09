@@ -56,7 +56,7 @@ class strLabelConverter(object):
         length = []
         result = []
         for item in text:
-            item = item.decode('utf-8', 'strict')
+            item = item.encode().decode('utf-8', 'strict')
             length.append(len(item))
             for char in item:
                 index = self.dict[char]
