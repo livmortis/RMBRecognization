@@ -288,14 +288,33 @@ import heapq
 
 # arg choose
 # a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
-# # b = np.sort(a)
-# # b = np.argwhere(a>10)
-# # b = np.argmax(a)
+# b = np.sort(a)
+# b = np.argwhere(a>10)
+# b = np.argmax(a)
 # b= heapq.nlargest(3, a.flatten())
-# # b = a[np.argpartition(-a,1)]
-# # c = np.argmax(a)
-# # c = b[np.argsort(b[:, 0])]
-# # d= c[:, ::-1]
+# b = a[np.argpartition(-a,1)]
+# c = np.argmax(a)
+# c = b[np.argsort(b[:, 0])]
+# d= c[:, ::-1]
 # print(b)
 
+# z = np.array([4,7,2,4,3,7,87,6,4,5,3,2,33,423])
+# zz= heapq.nlargest(3, z.flatten())
+# print(zz)
+# a = np.array([[3, 119],[2, 159],[4, 165],[231, 109]])
+# abig10 = a>10
+# print(abig10.max(1))
+
+# a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
+# # a = a>100
+# # print(a.max(1))
+# print(a.shape)
+# for i in a:
+#   print(i)
+#   print(i.shape)
+
+# a = np.array([[3, 119],[12, 59],[4, 165],[231, 109]])
+# a = a>100
+# print(a)
+# print(a.max(1))
 

@@ -4,6 +4,7 @@ from __future__ import division
 import argparse
 import random
 import torch
+import torch.nn
 import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data
@@ -75,7 +76,8 @@ nclass = len(opt.alphabet) + 1
 nc = 1
 
 converter = utils.strLabelConverter(opt.alphabet)
-criterion = CTCLoss()
+# criterion = CTCLoss()
+criterion = torch.nn.CTCLoss()
 
 
 # custom weights initialization called on crnn

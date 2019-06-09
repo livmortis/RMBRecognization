@@ -1,7 +1,8 @@
 import numpy as np
 import os
+import pandas as pd
 
-# dict字典
+# # dict字典
 # c = {"a":0, "b":1, "c":2}
 # print(c.get("b",0))
 # a = {}
@@ -14,6 +15,8 @@ import os
 # sortedKeys = sorted(a.keys())
 # dict_key_to_indict ={key:i for (i,key) in enumerate(sortedKeys) } #创建索引字典的好方法
 # print(dict_key_to_indict)
+# for citem in c:
+#   print(citem)
 
 
 # # 关于strip
@@ -37,20 +40,47 @@ import os
 # print(newList[:10])
 
 
-# bool与int
-if "":
-  print("1")
-
-if 1:
-  print("2")
-if 0:
-  print("3")
-if "1":
-  print("4")
-
-
+# # bool与int
+# if "":
+#   print("1")
+#
+# if 1:
+#   print("2")
+# if 0:
+#   print("3")
+# if "1":
+#   print("4")
 
 
+# # 删掉result.csv中每个name前的0    ---useful script !!!    ----更新：没用！！name前的0是正确的名字。。。
+# csv_file = "/Users/xzy/Documents/coder/ML/game/2019/RMB-tinymind/dataset_formal/classify_data/densenClassData/result/test_result_6_7.csv"
+# new_csv_file = "/Users/xzy/Documents/coder/ML/game/2019/RMB-tinymind/dataset_formal/classify_data/densenClassData/result/new_test_result_6_7.csv"
+# df = pd.read_csv(csv_file)
+# namelist = df['name']
+# newnamelist = []
+# newlabellist = []
+# lablelist = df['label']
+# k = 0
+#
+# for item,itemlabel in zip(namelist,lablelist):
+#   new_name = str(item)[1:12]
+#   newnamelist.append(str(new_name))
+#   newlabellist.append(str(itemlabel))
+#
+# new_df = pd.DataFrame({'name':newnamelist , 'label':lablelist})
+# column_order = ['name', 'label']
+# new_df = new_df[column_order]
+# new_df.to_csv(new_csv_file, index=False)
+# # print(new_df.head(10))
+
+
+# # # 尝试寻找result66.6分原因
+# new_csv_file = "/Users/xzy/Documents/coder/ML/game/2019/RMB-tinymind/dataset_formal/classify_data/densenClassData/result/change3_test_result_6_7.csv"
+# warm_csv_file = "/Users/xzy/Documents/coder/ML/game/2019/RMB-tinymind/result-final-f2.csv"
+# df = pd.read_csv(new_csv_file)
+# df2 = pd.read_csv(warm_csv_file)
+# print(df.head(10))
+# print(df2.head(10))
 
 
 
