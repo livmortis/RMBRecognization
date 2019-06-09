@@ -34,3 +34,39 @@ import numpy
 # print("target_lengths的真实值： "+str(target_lengths))
 # print(target_lengths.shape)
 # print(sum(target_lengths))
+
+
+# 去除string的‘b
+a = ("b' A0H5466902'", "b' OY82034214'", "b' BN09049018'", "b' PK38902215'", "b' XI72789559'")
+b = []
+for i in a:
+  i = i[3:13]
+  b.append(i)
+b = tuple(b)
+print(b)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
