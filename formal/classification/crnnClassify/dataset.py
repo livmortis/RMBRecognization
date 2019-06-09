@@ -37,8 +37,8 @@ class lmdbDataset(Dataset):
         self.target_transform = target_transform
 
     def __len__(self):
-        # return self.nSamples
-        return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py
+        return self.nSamples
+        # return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py
     def __getitem__(self, index):
         assert index <= len(self), 'index range error'
         index += 1
