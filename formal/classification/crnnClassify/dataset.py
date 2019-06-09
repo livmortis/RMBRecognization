@@ -16,7 +16,6 @@ import numpy as np
 class lmdbDataset(Dataset):
 
     def __init__(self, root=None, transform=None, target_transform=None):
-        print(root)
         self.env = lmdb.open(
             root,
             max_readers=1,
@@ -30,22 +29,23 @@ class lmdbDataset(Dataset):
             sys.exit(0)
 
         with self.env.begin(write=False) as txn:
-            nSamples = int(txn.get('num-samples'))
+            # nSamples = int(txn.get('num-samples'))    #xzy TypeError: Won't implicitly convert Unicode to bytes; use .encode()
+            str = 'num-samples'.encode('utf-8')
+            nSamples = int(txn.get(str))
             self.nSamples = nSamples
-
         self.transform = transform
         self.target_transform = target_transform
 
     def __len__(self):
-        return self.nSamples
-
+        # return self.nSamples
+        return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py
     def __getitem__(self, index):
         assert index <= len(self), 'index range error'
         index += 1
         with self.env.begin(write=False) as txn:
             img_key = 'image-%09d' % index
-            imgbuf = txn.get(img_key)
-
+            # imgbuf = txn.get(img_key)
+            imgbuf = txn.get(img_key.encode('utf-8')) #xzy
             buf = six.BytesIO()
             buf.write(imgbuf)
             buf.seek(0)
@@ -59,8 +59,8 @@ class lmdbDataset(Dataset):
                 img = self.transform(img)
 
             label_key = 'label-%09d' % index
-            label = str(txn.get(label_key))
-
+            # label = str(txn.get(label_key))
+            label = str(txn.get(label_key.encode()))  #xzy
             if self.target_transform is not None:
                 label = self.target_transform(label)
 
@@ -117,7 +117,6 @@ class alignCollate(object):
 
     def __call__(self, batch):
         images, labels = zip(*batch)
-
         imgH = self.imgH
         imgW = self.imgW
         if self.keep_ratio:
