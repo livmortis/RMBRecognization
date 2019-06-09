@@ -10,16 +10,22 @@ import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable
 import numpy as np
-from warpctc_pytorch import CTCLoss
+# from warpctc_pytorch import CTCLoss
 import os
 import utils
 import dataset
 
 import models.crnn as crnn
 
+'''
+需要手动添加的参数：
+--pretrained "需要加载的模型"
+--cuda
+'''
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/")
-parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/")
+parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/trainDataLMDB")
+parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/valDataLMDB")
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
