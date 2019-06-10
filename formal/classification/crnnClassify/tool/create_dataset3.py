@@ -9,6 +9,9 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+'''正式使用版本'''
+
+make_test = True
 
 def init_args():
     args = argparse.ArgumentParser()
@@ -16,18 +19,20 @@ def init_args():
                       '--image_dir',
                       type=str,
                       help='The directory of the dataset , which contains the images',
-                      default='../../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/')
+                      # default='../../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/')   #训练集和验证集数据
+                      default='../../../../../dataset_formal/detect_data/polyImg_Reg_test/')            #测试集数据
     args.add_argument('-l',
                       '--label_file',
                       type=str,
                       help='The file which contains the paths and the labels of the data set',
-                      default='../../../../../dataset_formal/classify_data/train_id_label.csv')
+                      default='../../../../../dataset_formal/classify_data/train_id_label.csv')       #训练集和验证集标签
     args.add_argument('-s',
                       '--save_dir',
                       type=str
                       , help='The generated mdb file save dir',
-                      default='../../../../../dataset_formal/classify_data/crnnData/trainDataLMDB')
-                      # default='../../../../../dataset_formal/classify_data/crnnData/valDataLMDB')
+                      # default='../../../../../dataset_formal/classify_data/crnnData/trainDataLMDB')   #训练集存储位置
+                      # default='../../../../../dataset_formal/classify_data/crnnData/valDataLMDB')   #验证集存储位置
+                      default='../../../../../dataset_formal/classify_data/crnnData/testDataLMDB')   #测试集存储位置
     args.add_argument('-m',
                       '--map_size',
                       help='map size of lmdb',
@@ -106,30 +111,48 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
 
 if __name__ == '__main__':
     args = init_args()
-    df = pd.read_csv(args.label_file)           #xzy  csv文件读取方法
-    length = len(df)
-    print(length)
+    if not make_test:
+      df = pd.read_csv(args.label_file)           #xzy  csv文件读取方法
+      length = len(df)
+      print(length)
 
     imgDir = args.image_dir
-    imgPathList = []
-    labelList = []
 
-    i = 0              #xzy  csv文件读取方法
-    # for i in tqdm(range(length)):      #制作训练集
-    # for i in tqdm(range(2000)):       #制作验证集
-    for i in tqdm(range(0,38000)):      #制作排除验证集的训练集(0--37999)
-    # for i in tqdm(range(38000,39620)):      #制作单独验证集（38000--39619）
-    # for i in tqdm(range(10)):       #实验
-    #   print(i)
-      imgPath = os.path.join(imgDir,df['name'][i])
-      imgPathList.append(imgPath)
-      word = df[' label'][i].strip()    #新增strip()—— 每个标签前都有空格
-      labelList.append(word)
-      # print(imgPath)
-      # print(word)
-    print(labelList[-1])
-    print("图片长度： "+str(len(imgPathList)))
-    print("标签长度： "+str(len(labelList)))
+    if make_test:
+      testImgPathList = []
+      testNameList = []
+      testList = os.listdir(imgDir)
+      for testImg in testList:
+        imgPath = os.path.join(imgDir, testImg)
+        testImgPathList.append(imgPath)
+        testNameList.append(testImg)
+      # print(testImgPathList[:5])
+      # print(testNameList[:5])
+      print(len(testImgPathList))
+      print(len(testNameList))
+      createDataset(args.save_dir, testImgPathList, testNameList)
 
 
-    createDataset(args.save_dir, imgPathList, labelList)
+    else:
+      imgPathList = []
+      labelList = []
+
+      i = 0              #xzy  csv文件读取方法
+      # for i in tqdm(range(length)):      #制作训练集
+      # for i in tqdm(range(2000)):       #制作验证集
+      # for i in tqdm(range(0,38000)):      #制作排除验证集的训练集(0--37999)
+      for i in tqdm(range(38000,39620)):      #制作单独验证集（38000--39619）
+      # for i in tqdm(range(10)):       #实验
+      #   print(i)
+        imgPath = os.path.join(imgDir,df['name'][i])
+        imgPathList.append(imgPath)
+        word = df[' label'][i].strip()    #新增strip()—— 每个标签前都有空格
+        labelList.append(word)
+        # print(imgPath)
+        # print(word)
+      print(labelList[-1])
+      print("图片长度： "+str(len(imgPathList)))
+      print("标签长度： "+str(len(labelList)))
+
+
+      createDataset(args.save_dir, imgPathList, labelList)
