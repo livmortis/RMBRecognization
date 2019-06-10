@@ -4,6 +4,9 @@ import lmdb
 import torch
 import numpy as np
 import torch
+from PIL import Image
+import cv2
+
 
 # a = "../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/"
 # b = os.listdir(a)
@@ -18,7 +21,7 @@ import torch
 
 #
 # print(numpy.__version__)    #numpy版本： 1.16.0 升级为1.16.4
-print(torch.__version__)
+# print(torch.__version__)
 #
 #
 # # pytorch1.0最新API——CTCLoss参数研究                                                                                #一共16张图片，batchsize为1.
@@ -74,14 +77,21 @@ print(torch.__version__)
 # print(preds)
 
 
+#
+# # 图片读取不对
+# a = "../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/CKQIOYET.jpg"
+# b = cv2.imread(a)
+# # print(b.size)
+# # a = np.array([[1,2,1,1],[2,1,1,1]])
+# # print(a.shape)
+# b = torch.Tensor(b)
+# print(b.shape)
 
 
-
-
-
-
-
-
+# 制作单独验证集
+for i in range(10,13):
+  print(i)
+  print("yes")
 
 
 

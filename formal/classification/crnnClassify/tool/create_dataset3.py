@@ -26,8 +26,8 @@ def init_args():
                       '--save_dir',
                       type=str
                       , help='The generated mdb file save dir',
-                      # default='../../../../../dataset_formal/classify_data/crnnData/trainDataLMDB')
-                      default='../../../../../dataset_formal/classify_data/crnnData/valDataLMDB')
+                      default='../../../../../dataset_formal/classify_data/crnnData/trainDataLMDB')
+                      # default='../../../../../dataset_formal/classify_data/crnnData/valDataLMDB')
     args.add_argument('-m',
                       '--map_size',
                       help='map size of lmdb',
@@ -117,18 +117,19 @@ if __name__ == '__main__':
     i = 0              #xzy  csv文件读取方法
     # for i in tqdm(range(length)):      #制作训练集
     # for i in tqdm(range(2000)):       #制作验证集
-    for i in tqdm(range(10)):       #实验
+    for i in tqdm(range(0,38000)):      #制作排除验证集的训练集(0--37999)
+    # for i in tqdm(range(38000,39620)):      #制作单独验证集（38000--39619）
+    # for i in tqdm(range(10)):       #实验
+    #   print(i)
       imgPath = os.path.join(imgDir,df['name'][i])
       imgPathList.append(imgPath)
       word = df[' label'][i].strip()    #新增strip()—— 每个标签前都有空格
       labelList.append(word)
-      print(imgPath)
-      print(word)
-    a = cv2.imread(imgPathList[0])
-    cv2.imshow("a",a)
-    cv2.waitKey(0)
-    print(len(imgPathList))
-    print(len(labelList))
+      # print(imgPath)
+      # print(word)
+    print(labelList[-1])
+    print("图片长度： "+str(len(imgPathList)))
+    print("标签长度： "+str(len(labelList)))
 
 
-    # createDataset(args.save_dir, imgPathList, labelList)
+    createDataset(args.save_dir, imgPathList, labelList)

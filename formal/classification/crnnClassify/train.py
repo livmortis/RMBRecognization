@@ -101,6 +101,9 @@ def weights_init(m):
 crnn = crnn.CRNN(opt.imgH, nc, nclass, opt.nh)
 crnn.apply(weights_init)
 if opt.pretrained != '':
+    if opt.cuda:
+        crnn = torch.nn.DataParallel(crnn)
+        cudnn.benchmark = True
     print('loading pretrained model from %s' % opt.pretrained)
     crnn.load_state_dict(torch.load(opt.pretrained))
 print(crnn)
