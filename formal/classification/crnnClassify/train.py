@@ -31,7 +31,7 @@ parser.add_argument('--valRoot', help='path to dataset', default="../../../../da
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
-# parser.add_argument('--imgH', type=int, default=64, help='the height of the input image to network')
+# parser.add_argument('--imgH', type=int, default=64, help='the height of the input image to network')  #xzy  "the height of conv must be 1"
 parser.add_argument('--imgW', type=int, default=100, help='the width of the input image to network')
 # parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
 parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
@@ -44,12 +44,11 @@ parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
 parser.add_argument('--alphabet', type=str, default='0123456789ABCDEFGHIJKLMNOPQRSTUWXYZ')       #xzy   RMB识别，没有V
 parser.add_argument('--expr_dir', default='expr', help='Where to store samples and models')
-# parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
-parser.add_argument('--displayInterval', type=int, default=200, help='Interval to be displayed')
+parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--n_test_disp', type=int, default=10, help='Number of samples to display when test')
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
-# parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
-parser.add_argument('--saveInterval', type=int, default=1000, help='Interval to be displayed')
+parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
+# parser.add_argument('--saveInterval', type=int, default=1000, help='Interval to be displayed')    #xzy 错误！！ 当前epoch到不了1000就永远无法保存！！！
 parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is rmsprop)')
@@ -179,7 +178,8 @@ def val(net, dataset, criterion, max_iter=100):
         preds = preds.transpose(1, 0).contiguous().view(-1)
         sim_preds = converter.decode(preds.data, preds_size.data, raw=False)
         for pred, target in zip(sim_preds, cpu_texts):
-            if pred == target.lower():
+            # if pred == target.lower():
+            if pred == target:    #xzy  不转小写，难怪准确率一直0.
                 n_correct += 1
 
     raw_preds = converter.decode(preds.data, preds_size.data, raw=True)[:opt.n_test_disp]
