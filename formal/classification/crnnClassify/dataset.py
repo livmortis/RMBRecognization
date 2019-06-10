@@ -15,7 +15,8 @@ import numpy as np
 
 class lmdbDataset(Dataset):
 
-    def __init__(self, root=None, transform=None, target_transform=None):
+    def __init__(self, root=None, transform=None, target_transform=None, type=None):
+        self.type = type
         self.env = lmdb.open(
             root,
             max_readers=1,
@@ -37,8 +38,10 @@ class lmdbDataset(Dataset):
         self.target_transform = target_transform
 
     def __len__(self):
-        return self.nSamples
-        # return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py    会报错 assert index <= len(self), 'index range error' AssertionError: index range error
+        if self.type == "train":
+            return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py    会报错 assert index <= len(self), 'index range error' AssertionError: index range error
+        else:
+            return self.nSamples
     def __getitem__(self, index):
         assert index <= len(self), 'index range error'
         index += 1
@@ -47,7 +50,11 @@ class lmdbDataset(Dataset):
             # imgbuf = txn.get(img_key)
             imgbuf = txn.get(img_key.encode('utf-8')) #xzy
             buf = six.BytesIO()
-            buf.write(imgbuf)
+            # buf.write(imgbuf)
+            try:
+              buf.write(imgbuf)     #xzy 最后一个图片会出问题
+            except Exception as e:
+              print('buf write error in: ' + str(index))
             buf.seek(0)
             try:
                 img = Image.open(buf).convert('L')
