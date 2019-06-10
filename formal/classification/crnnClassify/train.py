@@ -65,7 +65,7 @@ cudnn.benchmark = True
 if torch.cuda.is_available() and not opt.cuda:
     print("WARNING: You have a CUDA device, so you should probably run with --cuda")
 
-train_dataset = dataset.lmdbDataset(root=opt.trainRoot)
+train_dataset = dataset.lmdbDataset(root=opt.trainRoot,type="train")
 assert train_dataset
 if not opt.random_sample:
     sampler = dataset.randomSequentialSampler(train_dataset, opt.batchSize)
@@ -78,7 +78,7 @@ train_loader = torch.utils.data.DataLoader(
     num_workers=int(opt.workers),
     collate_fn=dataset.alignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio=opt.keep_ratio))
 test_dataset = dataset.lmdbDataset(
-    root=opt.valRoot, transform=dataset.resizeNormalize((100, 32)))
+    root=opt.valRoot, transform=dataset.resizeNormalize((100, 32)),type="val")
 
 nclass = len(opt.alphabet) + 1
 nc = 1
