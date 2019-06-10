@@ -38,10 +38,12 @@ class lmdbDataset(Dataset):
         self.target_transform = target_transform
 
     def __len__(self):
-        if self.type == "train":
-            return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py    会报错 assert index <= len(self), 'index range error' AssertionError: index range error
-        else:
-            return self.nSamples
+      return self.nSamples
+
+      # if self.type == "train":
+      #         return self.nSamples+1    #xzy https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/dataset.py    会报错 assert index <= len(self), 'index range error' AssertionError: index range error
+      #     else:
+      #         return self.nSamples
     def __getitem__(self, index):
         assert index <= len(self), 'index range error'
         index += 1

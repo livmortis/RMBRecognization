@@ -9,10 +9,6 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
-# 没有投入使用，仅供实验ecode问题。
-
-
-
 
 def init_args():
     args = argparse.ArgumentParser()
@@ -26,21 +22,20 @@ def init_args():
                       type=str,
                       help='The file which contains the paths and the labels of the data set',
                       default='../../../../../dataset_formal/classify_data/train_id_label.csv')
-                      # default='train.txt')
     args.add_argument('-s',
                       '--save_dir',
                       type=str
                       , help='The generated mdb file save dir',
                       # default='../../../../../dataset_formal/classify_data/crnnData/trainDataLMDB')
                       default='../../../../../dataset_formal/classify_data/crnnData/valDataLMDB')
-                      # default='train')
-    # args.add_argument('-m',
-    #                   '--map_size',
-    #                   help='map size of lmdb',
-    #                   type=int,
-    #                   default=4000000000)
+    args.add_argument('-m',
+                      '--map_size',
+                      help='map size of lmdb',
+                      type=int,
+                      default=4000000000)
 
     return args.parse_args()
+
 
 
 def checkImageIsValid(imageBin):
@@ -58,28 +53,10 @@ def writeCache(env, cache):
   with env.begin(write=True) as txn:
     for k, v in cache.items():
       if type(k) == str:
-        print("k is str: ")
-        print(k)
         k = k.encode()
-        print("k is str and after encode: ")
-        print(k)
-        print("\n")
-      else:
-        print("k is not str:")
-        print(k)
-        print("\n")
       if type(v) == str:
-        print("v is str: ")
-        print(v)
         v = v.encode()
-        print("v is str and after encode: ")
-        print(v)
-        print("\n")
-      else:
-        print("v is not str:")
-        print(v)
-        print("\n")
-
+      txn.put(k, v)
 
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
   """
@@ -129,32 +106,29 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
 
 if __name__ == '__main__':
     args = init_args()
-    # imgdata = open(args.label_file, mode='rb')    #xzy  txt文件读取方法
-    # lines = list(imgdata)
     df = pd.read_csv(args.label_file)           #xzy  csv文件读取方法
     length = len(df)
     print(length)
-
 
     imgDir = args.image_dir
     imgPathList = []
     labelList = []
 
-    # for line in lines:       #xzy  txt文件读取方法
-    #     imgPath = os.path.join(imgDir, line.split()[0].decode('utf-8'))
-    #     imgPathList.append(imgPath)
-    #     word = line.split()[1]
-    #     labelList.append(word)
-
     i = 0              #xzy  csv文件读取方法
     # for i in tqdm(range(length)):      #制作训练集
-    for i in tqdm(range(100)):       #制作验证集
+    # for i in tqdm(range(2000)):       #制作验证集
+    for i in tqdm(range(10)):       #实验
       imgPath = os.path.join(imgDir,df['name'][i])
       imgPathList.append(imgPath)
-      word = df[' label'][i]
+      word = df[' label'][i].strip()    #新增strip()—— 每个标签前都有空格
       labelList.append(word)
+      print(imgPath)
+      print(word)
+    a = cv2.imread(imgPathList[0])
+    cv2.imshow("a",a)
+    cv2.waitKey(0)
     print(len(imgPathList))
     print(len(labelList))
 
 
-    createDataset(args.save_dir, imgPathList, labelList)
+    # createDataset(args.save_dir, imgPathList, labelList)
