@@ -36,7 +36,8 @@ parser.add_argument('--imgH', type=int, default=64, help='the height of the inpu
 # parser.add_argument('--imgW', type=int, default=100, help='the width of the input image to network')
 parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
 parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
-parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
+# parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
+parser.add_argument('--nepoch', type=int, default=100, help='number of epochs to train for')
 # TODO(meijieru): epoch -> iter
 parser.add_argument('--cuda', action='store_true', help='enables cuda')
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
@@ -44,10 +45,12 @@ parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
 parser.add_argument('--alphabet', type=str, default='0123456789ABCDEFGHIJKLMNOPQRSTUWXYZ')       #xzy   RMB识别，没有V
 parser.add_argument('--expr_dir', default='expr', help='Where to store samples and models')
-parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
+# parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
+parser.add_argument('--displayInterval', type=int, default=200, help='Interval to be displayed')
 parser.add_argument('--n_test_disp', type=int, default=10, help='Number of samples to display when test')
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
-parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
+# parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
+parser.add_argument('--saveInterval', type=int, default=1000, help='Interval to be displayed')
 parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is rmsprop)')
@@ -131,13 +134,14 @@ length = Variable(length)
 loss_avg = utils.averager()
 
 # setup optimizer
-if opt.adam:
+# if opt.adam:
+if True:
     optimizer = optim.Adam(crnn.parameters(), lr=opt.lr,
                            betas=(opt.beta1, 0.999))
-elif opt.adadelta:
-    optimizer = optim.Adadelta(crnn.parameters())
-else:
-    optimizer = optim.RMSprop(crnn.parameters(), lr=opt.lr)
+# elif opt.adadelta:
+#     optimizer = optim.Adadelta(crnn.parameters())
+# else:
+#     optimizer = optim.RMSprop(crnn.parameters(), lr=opt.lr)
 
 
 def val(net, dataset, criterion, max_iter=100):
