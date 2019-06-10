@@ -23,6 +23,9 @@ import models.crnn as crnn
 --cuda
 '''
 
+need_load = False
+saved_model_path = "expr/netCRNN_24_500.pth"
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/trainDataLMDB")
 parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/valDataLMDB")
@@ -35,7 +38,7 @@ parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to 
 # TODO(meijieru): epoch -> iter
 parser.add_argument('--cuda', action='store_true', help='enables cuda')
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
-parser.add_argument('--pretrained', default='', help="path to pretrained model (to continue training)")
+# parser.add_argument('--pretrained', default='', help="path to pretrained model (to continue training)") # xzy 去掉
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
 parser.add_argument('--alphabet', type=str, default='0123456789ABCDEFGHIJKLMNOPQRSTUWXYZ')       #xzy   RMB识别，没有V
 parser.add_argument('--expr_dir', default='expr', help='Where to store samples and models')
@@ -43,7 +46,7 @@ parser.add_argument('--displayInterval', type=int, default=500, help='Interval t
 parser.add_argument('--n_test_disp', type=int, default=10, help='Number of samples to display when test')
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
-parser.add_argument('--lr', type=float, default=0.01, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is rmsprop)')
 parser.add_argument('--adadelta', action='store_true', help='Whether to use adadelta (default is rmsprop)')
@@ -55,7 +58,6 @@ print(opt)
 
 if not os.path.exists(opt.expr_dir):
     os.makedirs(opt.expr_dir)
-print(1)
 random.seed(opt.manualSeed)
 np.random.seed(opt.manualSeed)
 torch.manual_seed(opt.manualSeed)
@@ -100,13 +102,6 @@ def weights_init(m):
 
 crnn = crnn.CRNN(opt.imgH, nc, nclass, opt.nh)
 crnn.apply(weights_init)
-if opt.pretrained != '':
-    if opt.cuda:
-        crnn = torch.nn.DataParallel(crnn)
-        cudnn.benchmark = True
-    print('loading pretrained model from %s' % opt.pretrained)
-    crnn.load_state_dict(torch.load(opt.pretrained))
-print(crnn)
 
 image = torch.FloatTensor(opt.batchSize, 3, opt.imgH, opt.imgH)
 text = torch.IntTensor(opt.batchSize * 5)
@@ -117,6 +112,14 @@ if opt.cuda:
     crnn = torch.nn.DataParallel(crnn, device_ids=range(opt.ngpu))
     image = image.cuda()
     criterion = criterion.cuda()
+
+
+if need_load:  #xzy
+    print('loading pretrained model from %s' % saved_model_path)
+    crnn.load_state_dict(torch.load(saved_model_path))
+
+print(crnn)
+
 
 image = Variable(image)
 text = Variable(text)
