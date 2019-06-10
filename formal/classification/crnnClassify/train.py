@@ -19,7 +19,6 @@ import models.crnn as crnn
 
 '''
 需要手动添加的参数：
---pretrained "需要加载的模型"
 --cuda
 '''
 
@@ -31,10 +30,10 @@ parser.add_argument('--trainRoot', help='path to dataset', default="../../../../
 parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/valDataLMDB")
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
-# parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
-parser.add_argument('--imgH', type=int, default=64, help='the height of the input image to network')
-# parser.add_argument('--imgW', type=int, default=100, help='the width of the input image to network')
-parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
+parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
+# parser.add_argument('--imgH', type=int, default=64, help='the height of the input image to network')
+parser.add_argument('--imgW', type=int, default=100, help='the width of the input image to network')
+# parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
 parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
 # parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
 parser.add_argument('--nepoch', type=int, default=100, help='number of epochs to train for')

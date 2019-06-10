@@ -69,7 +69,7 @@ class CRNN(nn.Module):
         # conv features
         conv = self.cnn(input)
         b, c, h, w = conv.size()
-        assert h == 1, "the height of conv must be 1"
+        assert h == 1, "the height of conv must be 1"           #xzy 这里图片宽高改变后会报错
         conv = conv.squeeze(2)
         conv = conv.permute(2, 0, 1)  # [w, b, c]
 
