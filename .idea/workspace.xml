@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" afterPath="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" />
       <change beforePath="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" afterPath="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +30,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="48" column="60" lean-forward="false" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+            <state relative-caret-position="241">
+              <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -64,8 +66,8 @@
       <file leaf-file-name="crnn.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="19" />
+            <state relative-caret-position="471">
+              <caret line="71" column="81" lean-forward="false" selection-start-line="71" selection-start-column="81" selection-end-line="71" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -141,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>image_dir</find>
       <find>nSamples</find>
       <find>imageBin</find>
       <find>pred</find>
@@ -157,7 +158,6 @@
       <find>nh</find>
       <find>lr</find>
       <find>load</find>
-      <find>cnn</find>
       <find>adadelta</find>
       <find>save</find>
       <find>pretra</find>
@@ -171,6 +171,8 @@
       <find>imgW</find>
       <find>saveInterval</find>
       <find>adam</find>
+      <find>optimizer</find>
+      <find>cnn</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -228,6 +230,7 @@
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" />
+        <option value="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" />
       </list>
     </option>
   </component>
@@ -690,17 +693,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>204</line>
+          <line>203</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>219</line>
+          <line>218</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>229</line>
+          <line>228</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -720,7 +723,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>198</line>
+          <line>197</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -755,22 +758,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>178</line>
+          <line>177</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>172</line>
+          <line>171</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>74</line>
+          <line>73</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>87</line>
+          <line>86</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -783,8 +786,13 @@
           <line>102</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="107" />
+      <option name="time" value="108" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1179,14 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test/test_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-921">
@@ -1207,10 +1207,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="71" column="81" lean-forward="false" selection-start-line="71" selection-start-column="81" selection-end-line="71" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="48" column="60" lean-forward="false" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+        <state relative-caret-position="241">
+          <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
