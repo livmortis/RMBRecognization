@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d274d0a6-9ebe-4f2f-9262-9db1126bf3bf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" afterPath="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" />
+      <change beforePath="$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py" afterPath="$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py" />
       <change beforePath="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" afterPath="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,6 +14,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="create_dataset3.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="crnnExperiment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/crnnExperiment.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -30,8 +41,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+            <state relative-caret-position="186">
+              <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -42,91 +53,10 @@
       <file leaf-file-name="test_xzy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state relative-caret-position="327">
+              <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
               <folding>
                 <element signature="e#1#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test/test_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-921">
-              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="22" />
-              <folding>
-                <element signature="e#37#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="crnn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="71" column="81" lean-forward="false" selection-start-line="71" selection-start-column="81" selection-end-line="71" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="convert_t7.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/convert_t7.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="165" column="14" lean-forward="false" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataset.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/dataset.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-              <folding>
-                <element signature="e#37#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_dataset2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-              <folding>
-                <element signature="e#15#24#0" expanded="true" />
-                <marker date="1560075178390" expanded="true" signature="4269:4447" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_dataset3.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_dataset.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,25 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nSamples</find>
-      <find>imageBin</find>
-      <find>pred</find>
-      <find>Image</find>
-      <find>train_iter</find>
-      <find>torch.load</find>
-      <find>state_dict</find>
-      <find>expr_dir</find>
-      <find>missing_keys</find>
-      <find>imgDir</find>
-      <find>test</find>
-      <find>test_dataset</find>
-      <find>nh</find>
-      <find>lr</find>
-      <find>load</find>
-      <find>adadelta</find>
-      <find>save</find>
-      <find>pretra</find>
-      <find>pretrained</find>
       <find>DataParallel</find>
       <find>train_loader</find>
       <find>img</find>
@@ -169,10 +80,29 @@
       <find>imgH</find>
       <find>origin_path</find>
       <find>imgW</find>
-      <find>saveInterval</find>
       <find>adam</find>
       <find>optimizer</find>
       <find>cnn</find>
+      <find>keep_ratio</find>
+      <find>ngpu</find>
+      <find>train_iter</find>
+      <find>nh</find>
+      <find>image</find>
+      <find>p</find>
+      <find>crnn.</find>
+      <find>test_dataset</find>
+      <find>max_iter</find>
+      <find>crnn</find>
+      <find>net</find>
+      <find>lower</find>
+      <find>target</find>
+      <find>imgDir</find>
+      <find>cpu_texts</find>
+      <find>sim_preds</find>
+      <find>saved_model_path</find>
+      <find>save</find>
+      <find>expr_dir</find>
+      <find>saveInterval</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -228,9 +158,9 @@
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/dataset.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/crnnExperiment.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py" />
+        <option value="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py" />
         <option value="$PROJECT_DIR$/formal/classification/crnnClassify/train.py" />
-        <option value="$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py" />
       </list>
     </option>
   </component>
@@ -758,22 +688,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>177</line>
+          <line>176</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>171</line>
+          <line>170</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="100" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py</url>
-          <line>86</line>
+          <line>85</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1088,20 +1013,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
           <caret line="67" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1140,16 +1057,6 @@
         <state relative-caret-position="350">
           <caret line="744" column="20" lean-forward="false" selection-start-line="744" selection-start-column="8" selection-end-line="744" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,28 +1104,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="e#1#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="348">
+          <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/models/crnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
-          <caret line="71" column="81" lean-forward="false" selection-start-line="71" selection-start-column="81" selection-end-line="71" selection-end-column="81" />
+          <caret line="71" column="55" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/tool/create_dataset3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+          <folding>
+            <element signature="e#1#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+        <state relative-caret-position="186">
+          <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
