@@ -2,7 +2,8 @@
 import  os
 import lmdb
 import torch
-import numpy
+import numpy as np
+import torch
 
 # a = "../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/"
 # b = os.listdir(a)
@@ -17,7 +18,7 @@ import numpy
 
 #
 # print(numpy.__version__)    #numpy版本： 1.16.0 升级为1.16.4
-# print(torch.__version__)
+print(torch.__version__)
 #
 #
 # # pytorch1.0最新API——CTCLoss参数研究                                                                                #一共16张图片，batchsize为1.
@@ -36,14 +37,59 @@ import numpy
 # print(sum(target_lengths))
 
 
-# 去除string的‘b
-a = ("b' A0H5466902'", "b' OY82034214'", "b' BN09049018'", "b' PK38902215'", "b' XI72789559'")
-b = []
-for i in a:
-  i = i[3:13]
-  b.append(i)
-b = tuple(b)
-print(b)
+# # 去除string的‘b
+# a = ("b' A0H5466902'", "b' OY82034214'", "b' BN09049018'", "b' PK38902215'", "b' XI72789559'")
+# b = []
+# for i in a:
+#   i = i[3:13]
+#   b.append(i)
+# b = tuple(b)
+# print(b)
+# # 错误做法，有'b说明时byte，要用decode变为string。或者先ecode再decode
+
+
+
+
+# squeeze
+# a = np.array([[[1,2,3],[3,4,5],[11,22,33],[44,55,66]],[[6,6,6],[7,7,7],[8,8,8],[9,9,9]]])
+# print(a.shape)
+# q, preds = a.max(2)
+# print(preds.shape)
+# print(q)
+# print(preds)
+# preds = preds.squeeze()
+# print(preds)
+
+# a = np.array([[[1,2,3],[3,4,5],[11,22,33],[44,55,66]],[[6,6,6],[7,7,7],[8,8,8],[9,9,9]]])
+# a = torch.Tensor(a)
+# print(a.shape)
+# print(a)
+# print(a.squeeze(2).shape)
+# print(a.squeeze(2))
+# q, preds = a.max(2)
+# print(preds.shape)
+# print(preds)
+# preds = preds.squeeze(0)
+# print(preds.shape)
+# print(preds)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
