@@ -8,7 +8,7 @@ from torch.autograd import Variable
 import pandas as pd
 import numpy as np
 
-saved_model_path = "expr/netCRNN_24_500.pth"
+saved_model_path = "expr/netCRNN_84_500.pth"
 
 
 
