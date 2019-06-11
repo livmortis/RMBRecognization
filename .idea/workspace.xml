@@ -12,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50669485">
+    <splitter split-orientation="horizontal" split-proportion="0.6116984">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="crnnExperiment.py" pinned="false" current-in-tab="false">
@@ -42,8 +42,8 @@
           <file leaf-file-name="test_xzy.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="95">
-                  <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+                <state relative-caret-position="302">
+                  <caret line="64" column="25" lean-forward="true" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
                   <folding>
                     <element signature="e#1#13#0" expanded="true" />
                   </folding>
@@ -770,8 +770,13 @@
           <line>42</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="111" />
+      <option name="time" value="112" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1195,8 +1200,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="302">
+          <caret line="64" column="25" lean-forward="true" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
           <folding>
             <element signature="e#1#13#0" expanded="true" />
           </folding>

@@ -56,13 +56,15 @@ def test_by_xzy(net, test_dataset):
 
 
     for pred, name in zip(sim_preds, cpu_img_name):
-      img_name_List.extend(str(name))
-      img_pred_List.extend(str(pred))
+      img_name_List.append(str(name))
+      img_pred_List.append(str(pred))
 
   img_pred_List = np.array(img_pred_List)
   img_name_List = np.array(img_name_List)
+  print(img_pred_List[0])
+  print(img_name_List[0])
 
-  df = pd.DataFrame({'name':img_name_List, 'label':img_pred_List})
+  df = pd.DataFrame({'name':img_name_List, 'label':img_pred_List})    #ValueError: arrays must all be same length
   column_order = ['name','label']
   df = df[column_order]
   predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/crnn_result.csv'
