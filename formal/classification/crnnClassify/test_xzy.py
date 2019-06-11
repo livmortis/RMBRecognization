@@ -35,7 +35,7 @@ def test_by_xzy(net, test_dataset):
   img_pred_List = []
 
   for i in range(len(data_loader)):
-    data = val_iter.next()
+    data = val_iter.next()    #batch must contain tensors, numbers, dicts or lists; found <class 'PIL.Image.Image'>
     i += 1
     cpu_images, cpu_img_name = data
     batch_size = cpu_images.size(0)
@@ -84,7 +84,8 @@ def test_by_xzy(net, test_dataset):
 if __name__ == "__main__":
   test_lmdb_path = "../../../../dataset_formal/classify_data/crnnData/testDataLMDB"
 
-  test_dataset = dataset.lmdbDataset(root=test_lmdb_path, type="test")
+  test_dataset = dataset.lmdbDataset(root=test_lmdb_path,
+                                     transform=dataset.resizeNormalize((100, 32)), type="test")
 
   nclass = len(alphabet) + 1
   nc = 1
