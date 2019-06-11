@@ -40,9 +40,9 @@ def test_by_xzy(net, test_dataset):
     cpu_images, cpu_img_name = data
     batch_size = cpu_images.size(0)
     utils.loadData(image, cpu_images)
-    t, l = converter.encode(cpu_img_name)
-    utils.loadData(text, t)
-    utils.loadData(length, l)
+    # t, l = converter.encode(cpu_img_name)
+    # utils.loadData(text, t)
+    # utils.loadData(length, l)
 
     preds = net(image)
 
