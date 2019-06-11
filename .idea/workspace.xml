@@ -12,44 +12,64 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="crnnExperiment.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/crnnExperiment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-              <folding>
-                <element signature="e#1#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_xzy.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-93">
-              <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-              <folding>
-                <element signature="e#1#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.47568712">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="crnnExperiment.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/crnnExperiment.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="336">
+                  <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#1#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+                  <folding>
+                    <element signature="e#0#37#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="test_xzy.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="197">
+                  <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#1#13#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="197">
+                  <caret line="153" column="12" lean-forward="false" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#37#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -60,8 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>origin_path</find>
-      <find>imgW</find>
       <find>adam</find>
       <find>optimizer</find>
       <find>cnn</find>
@@ -72,7 +90,6 @@
       <find>image</find>
       <find>p</find>
       <find>crnn.</find>
-      <find>test_dataset</find>
       <find>max_iter</find>
       <find>crnn</find>
       <find>net</find>
@@ -90,6 +107,9 @@
       <find>imgDir</find>
       <find>imagePath</find>
       <find>load</find>
+      <find>PIL.Image.Image</find>
+      <find>Image</find>
+      <find>test_dataset</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -151,11 +171,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="13" />
-    <option name="y" value="37" />
-    <option name="width" value="1561" />
-    <option name="height" value="793" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="192" />
+    <option name="y" value="23" />
+    <option name="width" value="1245" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -413,14 +433,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="13" y="37" width="1561" height="793" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1551948" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2320917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19588876" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -740,8 +760,13 @@
           <line>46</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="109" />
+      <option name="time" value="110" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1088,7 +1113,7 @@
         <state relative-caret-position="-921">
           <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="22" />
           <folding>
-            <element signature="e#37#47#0" expanded="true" />
+            <element signature="e#37#47#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1153,22 +1178,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        <state relative-caret-position="197">
+          <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="10" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#1#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/test_xzy.py">
+    <entry file="file://$PROJECT_DIR$/formal/classification/crnnClassify/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+        <state relative-caret-position="197">
+          <caret line="153" column="12" lean-forward="false" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="12" />
           <folding>
-            <element signature="e#1#13#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
