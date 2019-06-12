@@ -28,16 +28,17 @@ tf.app.flags.DEFINE_integer('num_readers', 4, '')
 tf.app.flags.DEFINE_string('gpu', '0', '')
 
 # tf.app.flags.DEFINE_string('checkpoint_path', 'checkpoints_mlt/', '')
-tf.app.flags.DEFINE_string('checkpoint_path', '../../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
+tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
 
 # tf.app.flags.DEFINE_string('logs_path', 'logs_mlt/', '')
-tf.app.flags.DEFINE_string('logs_path', '../../../../dataset_formal/detect_data/CTPNData/logs_mlt/', '')
+tf.app.flags.DEFINE_string('logs_path', '../../../dataset_formal/detect_data/CTPNData/logs_mlt/', '')
 
 # tf.app.flags.DEFINE_string('pretrained_model_path', 'data/vgg_16.ckpt', '')
-tf.app.flags.DEFINE_string('pretrained_model_path', '../../../../dataset_formal/detect_data/CTPNData/vgg_16.ckpt', '')
+tf.app.flags.DEFINE_string('pretrained_model_path', '../../../dataset_formal/detect_data/CTPNData/vgg_16.ckpt', '')
 
 tf.app.flags.DEFINE_boolean('restore', True, '')
-tf.app.flags.DEFINE_integer('save_checkpoint_steps', 2000, '')
+# tf.app.flags.DEFINE_integer('save_checkpoint_steps', 2000, '')
+tf.app.flags.DEFINE_integer('save_checkpoint_steps', 500, '')
 FLAGS = tf.app.flags.FLAGS
 
 

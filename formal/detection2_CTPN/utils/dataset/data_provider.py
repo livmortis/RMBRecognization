@@ -9,7 +9,7 @@ import numpy as np
 from utils.dataset.data_util import GeneratorEnqueuer
 
 # DATA_FOLDER = "data/dataset/mlt/"
-DATA_FOLDER = "../../../../dataset_formal/detect_data/CTPNData/"     #以train.py的视角。因为解释运行一般是在train.py所在的目录进行。
+DATA_FOLDER = "../../../dataset_formal/detect_data/CTPNData/"     #以train.py的视角。因为解释运行一般是在train.py所在的目录进行。
 
 
 def get_training_data():

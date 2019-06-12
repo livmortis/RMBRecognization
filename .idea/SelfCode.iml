@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/formal" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/formal/classification/denseClassify/code/ocr" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/formal/classification/crnnClassify" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/formal/detection2_CTPN" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/formal/classification/denseClassify" />
       <excludeFolder url="file://$MODULE_DIR$/formal/classification/denseClassify/code/ocr/tools" />
       <excludeFolder url="file://$MODULE_DIR$/formal/detection" />
