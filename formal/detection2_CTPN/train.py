@@ -38,7 +38,7 @@ tf.app.flags.DEFINE_string('pretrained_model_path', '../../../dataset_formal/det
 
 tf.app.flags.DEFINE_boolean('restore', True, '')
 # tf.app.flags.DEFINE_integer('save_checkpoint_steps', 2000, '')
-tf.app.flags.DEFINE_integer('save_checkpoint_steps', 500, '')
+tf.app.flags.DEFINE_integer('save_checkpoint_steps', 50, '')
 FLAGS = tf.app.flags.FLAGS
 
 
