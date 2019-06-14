@@ -93,8 +93,14 @@ def main(argv=None):
 
             im_fn_list = get_images()
             ii = 0
-            for im_fn in im_fn_list[:2]:          #修改这里
-                im_fn = "../../../dataset_warm_up/train_data/WBNGQ9R7.jpg"      #测试
+            for im_fn in im_fn_list[:3]:          #修改这里
+                if ii ==0:
+                    im_fn = "../../../dataset_warm_up/train_data/13DGOXW9.jpg"      #测试
+                elif ii==1:
+                    im_fn = "../../../dataset_warm_up/train_data/WBNGQ9R7.jpg"  # 测试
+                else:
+                    im_fn = "../../../dataset_warm_up/train_data/013MNV9B.jpg"  # 测试
+
                 ii += 1
                 print(str(ii)+'==============='+str(ii))
                 print(im_fn)
@@ -116,18 +122,20 @@ def main(argv=None):
                 textsegs = textsegs[:, 1:5]   # 每张图片N个poly，textsegs是这些poly的四个坐标。
 
                 textdetector = TextDetector(DETECT_MODE='H')
-                boxes = textdetector.detect(textsegs, scores[:, np.newaxis], img.shape[:2])   #xzy 方法内部已修改，只显示一个框
-                boxes = np.array(boxes, dtype=np.int)
-
-                cost_time = (time.time() - start)
-                print("cost time: {:.2f}s".format(cost_time))
-
-                for i, box in enumerate(boxes):
-                    # cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
-                    #               thickness=2)
-                    img = img[int(box[1]): int(box[5]), int(box[0]): int(box[2]) ]    # xzy 裁剪
 
                 try:
+
+                    boxes = textdetector.detect(textsegs, scores[:, np.newaxis], img.shape[:2])   #xzy 方法内部已修改，只显示一个框
+                    boxes = np.array(boxes, dtype=np.int)
+
+                    cost_time = (time.time() - start)
+                    print("cost time: {:.2f}s".format(cost_time))
+
+                    for i, box in enumerate(boxes):
+                        # cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
+                        #               thickness=2)
+                        img = img[int(box[1]): int(box[5]), int(box[0]): int(box[2]) ]    # xzy 裁剪
+
                     img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
                 except Exception as e:
