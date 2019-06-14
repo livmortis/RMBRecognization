@@ -78,3 +78,33 @@ class TextProposalGraphBuilder:
                 # have equal scores.
                 graph[index, succession_index] = True
         return Graph(graph)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

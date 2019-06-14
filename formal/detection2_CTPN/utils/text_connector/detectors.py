@@ -6,6 +6,18 @@ from .text_connect_cfg import Config as TextLineCfg
 from .text_proposal_connector import TextProposalConnector
 from .text_proposal_connector_oriented import TextProposalConnector as TextProposalConnectorOriented
 
+'''xzy'''
+def isMaxScore(scores):
+    maxIndex = scores.argmax()
+    newScores = []
+    for i in range(len(scores)):
+        if i == maxIndex:
+            newScores.append(True)
+        else:
+            newScores.append(False)
+    return np.array(newScores)
+
+
 
 class TextDetector:
     def __init__(self, DETECT_MODE="H"):
@@ -33,16 +45,62 @@ class TextDetector:
         keep_inds = self.filter_boxes(text_recs)
         return text_recs[keep_inds]
 
+
+
     def filter_boxes(self, boxes):
         heights = np.zeros((len(boxes), 1), np.float)
         widths = np.zeros((len(boxes), 1), np.float)
         scores = np.zeros((len(boxes), 1), np.float)
         index = 0
+        maxScore = 0 #xzy
         for box in boxes:
             heights[index] = (abs(box[5] - box[1]) + abs(box[7] - box[3])) / 2.0 + 1
             widths[index] = (abs(box[2] - box[0]) + abs(box[6] - box[4])) / 2.0 + 1
             scores[index] = box[8]
             index += 1
 
-        return np.where((widths / heights > TextLineCfg.MIN_RATIO) & (scores > TextLineCfg.LINE_MIN_SCORE) &
-                        (widths > (TextLineCfg.TEXT_PROPOSALS_WIDTH * TextLineCfg.MIN_NUM_PROPOSALS)))[0]
+
+        # return np.where((widths / heights > TextLineCfg.MIN_RATIO) & (scores > TextLineCfg.LINE_MIN_SCORE) &
+        #                 (widths > (TextLineCfg.TEXT_PROPOSALS_WIDTH * TextLineCfg.MIN_NUM_PROPOSALS)))[0]
+
+        return np.where(    (widths / heights > TextLineCfg.MIN_RATIO) &
+                            (isMaxScore(scores)) &      # xzy 改造为只显示score最大的框
+                            (widths > (TextLineCfg.TEXT_PROPOSALS_WIDTH * TextLineCfg.MIN_NUM_PROPOSALS))
+                        )   [0]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

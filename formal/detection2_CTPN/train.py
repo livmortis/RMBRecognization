@@ -18,11 +18,10 @@ from utils.dataset import data_provider as data_provider
 
 '''
 
-tf.app.flags.DEFINE_float('learning_rate', 1e-4, '')
+tf.app.flags.DEFINE_float('learning_rate', 3e-5, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
 tf.app.flags.DEFINE_integer('max_steps', 100000, '')    #xzy
-# tf.app.flags.DEFINE_integer('decay_steps', 30000, '')
-tf.app.flags.DEFINE_integer('decay_steps', 10000, '')   #xzy
+tf.app.flags.DEFINE_integer('decay_steps', 30000, '')   #xzy 弃用
 tf.app.flags.DEFINE_float('decay_rate', 0.1, '')
 tf.app.flags.DEFINE_float('moving_average_decay', 0.997, '')
 tf.app.flags.DEFINE_integer('num_readers', 4, '')
@@ -56,8 +55,9 @@ def main(argv=None):
     input_im_info = tf.placeholder(tf.float32, shape=[None, 3], name='input_im_info')
 
     global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
-    learning_rate = tf.Variable(FLAGS.learning_rate, trainable=False)
-    tf.summary.scalar('learning_rate', learning_rate)
+    learning_rate = FLAGS.learning_rate     #xzy 为了避免加载预训练时，强制加载预训练的学习率（lr= 1e-5,太小了），而手动设置lr。
+    # learning_rate = tf.Variable(FLAGS.learning_rate, trainable=False)
+    # tf.summary.scalar('learning_rate', learning_rate)
     opt = tf.train.AdamOptimizer(learning_rate)
 
     gpu_id = int(FLAGS.gpu)
@@ -115,14 +115,18 @@ def main(argv=None):
 
             summary_writer.add_summary(summary_str, global_step=step)
 
-            if step != 0 and step % FLAGS.decay_steps == 0:
-                sess.run(tf.assign(learning_rate, learning_rate.eval() * FLAGS.decay_rate))
+            # if step != 0 and step % FLAGS.decay_steps == 0:
+            #     sess.run(tf.assign(learning_rate, learning_rate.eval() * FLAGS.decay_rate))       #xzy 手动修改学习率（源码为3万epoch改一次..）
 
-            if step % 10 == 0:
-                avg_time_per_step = (time.time() - start) / 10
+            # if step % 10 == 0:
+            if step % 1 == 0:       #xzy 每个epoch打印一次
+                # avg_time_per_step = (time.time() - start) / 10
+                avg_time_per_step = (time.time() - start)   #xzy 每个epoch打印一次
                 start = time.time()
+                # print('Step {:06d}, model loss {:.4f}, total loss {:.4f}, {:.2f} seconds/step, LR: {:.6f}'.format(
+                #     step, ml, tl, avg_time_per_step, learning_rate.eval()))
                 print('Step {:06d}, model loss {:.4f}, total loss {:.4f}, {:.2f} seconds/step, LR: {:.6f}'.format(
-                    step, ml, tl, avg_time_per_step, learning_rate.eval()))
+                    step, ml, tl, avg_time_per_step, learning_rate))    #xzy 手动设置学习率
 
             if (step + 1) % FLAGS.save_checkpoint_steps == 0:
                 filename = ('ctpn_{:d}'.format(step + 1) + '.ckpt')
