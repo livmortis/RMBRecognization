@@ -34,6 +34,24 @@ npy_path = '../../../dataset_formal/detect_data/CTPNData/'
 # tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
 # FLAGS = tf.app.flags.FLAGS
 
+cluster = 1
+
+if cluster==1:
+    a= 0
+    b = 8000
+elif cluster==2:
+    a= 8000
+    b = 16000
+elif cluster ==3:
+    a= 16000
+    b= 24000
+elif cluster ==4:
+    a= 24000
+    b= 32000
+elif cluster ==5:
+    a = 32000
+    b = 39620
+    print("wrong cluster")
 
 
 def get_images():
@@ -93,14 +111,7 @@ def main(argv=None):
 
             im_fn_list = get_images()
             ii = 0
-            for im_fn in im_fn_list[:3]:          #修改这里
-                if ii ==0:
-                    im_fn = "../../../dataset_warm_up/train_data/13DGOXW9.jpg"      #测试
-                elif ii==1:
-                    im_fn = "../../../dataset_warm_up/train_data/WBNGQ9R7.jpg"  # 测试
-                else:
-                    im_fn = "../../../dataset_warm_up/train_data/013MNV9B.jpg"  # 测试
-
+            for im_fn in im_fn_list[int(a):int(b)]:          #修改这里
                 ii += 1
                 print(str(ii)+'==============='+str(ii))
                 print(im_fn)
@@ -140,7 +151,7 @@ def main(argv=None):
 
                     img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
-                except Exception as e:
+                except Exception as e:      #xzy   Corrupt JPEG data: premature end of data segment
                     immmm = cv2.imread("../../../dataset_warm_up/train_data/0BRO7XVG.jpg")      #xzy 可能WBNGQ9R7.jpg出错
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), immmm[:, :, ::-1])
                     print(str(im_fn)+" is broken!!!!!!!!")

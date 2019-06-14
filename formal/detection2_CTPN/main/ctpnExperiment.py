@@ -53,10 +53,17 @@ import numpy as np
 
 
 
-print(str(os.path.basename("../../../dataset_warm_up/train_data/8LEV6DXN.jpg")))
+# print(str(os.path.basename("../../../dataset_warm_up/train_data/8LEV6DXN.jpg")))
 
 
 
 
-
+# for in测试
+a = np.asarray([0,1,2,3,4,5,6,7,8,9])
+for i in a[0:3]:
+  print(i)
+for j in a[3:6]:
+  print(j)
+for l in a[6:9]:
+  print(l)
 
