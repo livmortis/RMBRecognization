@@ -26,6 +26,8 @@ tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_da
 FLAGS = tf.app.flags.FLAGS
 
 
+npy_path = '../../../dataset_formal/detect_data/CTPNData/'
+
 # tf.app.flags.DEFINE_string('test_data_path', 'data/demo/', '')
 # tf.app.flags.DEFINE_string('output_path', 'data/res/', '')
 # tf.app.flags.DEFINE_string('gpu', '0', '')
@@ -38,6 +40,7 @@ def get_images():
     files = []
     exts = ['jpg', 'png', 'jpeg', 'JPG']
     for parent, dirnames, filenames in os.walk(FLAGS.test_data_path):
+        filenames.sort()                                #xzy 加入排序，多gpu同时预测
         for filename in filenames:
             for ext in exts:
                 if filename.endswith(ext):
@@ -89,8 +92,11 @@ def main(argv=None):
             saver.restore(sess, model_path)
 
             im_fn_list = get_images()
-            for im_fn in im_fn_list:
-                print('===============')
+            ii = 0
+            for im_fn in im_fn_list[:2]:          #修改这里
+                im_fn = "../../../dataset_warm_up/train_data/WBNGQ9R7.jpg"      #测试
+                ii += 1
+                print(str(ii)+'==============='+str(ii))
                 print(im_fn)
                 start = time.time()
                 try:
@@ -105,7 +111,6 @@ def main(argv=None):
                 bbox_pred_val, cls_prob_val = sess.run([bbox_pred, cls_prob],
                                                        feed_dict={input_image: [img],
                                                                   input_im_info: im_info})
-
                 textsegs, _ = proposal_layer(cls_prob_val, bbox_pred_val, im_info)
                 scores = textsegs[:, 0]
                 textsegs = textsegs[:, 1:5]   # 每张图片N个poly，textsegs是这些poly的四个坐标。
@@ -122,8 +127,16 @@ def main(argv=None):
                     #               thickness=2)
                     img = img[int(box[1]): int(box[5]), int(box[0]): int(box[2]) ]    # xzy 裁剪
 
-                img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
-                cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
+                try:
+                    img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
+                    cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
+                except Exception as e:
+                    immmm = cv2.imread("../../../dataset_warm_up/train_data/0BRO7XVG.jpg")      #xzy 可能WBNGQ9R7.jpg出错
+                    cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), immmm[:, :, ::-1])
+                    print(str(im_fn)+" is broken!!!!!!!!")
+                    #TODO  写一个txt记录错误图片名
+
+
 
                 # with open(os.path.join(FLAGS.output_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",   #xzy 取消写txt
                 #           "w") as f:
