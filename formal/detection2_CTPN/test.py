@@ -13,24 +13,24 @@ from nets import model_train as model
 from utils.rpn_msr.proposal_layer import proposal_layer
 from utils.text_connector.detectors import TextDetector
 
-# tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/train_data/', '')  #检测比赛训练集
-# # tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/public_test_data/', '')  #检测比赛测试集
-#
-# tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_train', '') #训练集poly输出路径
-# # tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_test', '')  #测试集poly输出路径
-#
+tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/train_data/', '')  #检测比赛训练集
+# tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/public_test_data/', '')  #检测比赛测试集
+
+tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_train', '') #训练集poly输出路径
+# tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_test', '')  #测试集poly输出路径
+
+tf.app.flags.DEFINE_string('gpu', '0', '')
+
+# tf.app.flags.DEFINE_string('checkpoint_path', '../checkpoints_mlt/', '')
+tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
+FLAGS = tf.app.flags.FLAGS
+
+
+# tf.app.flags.DEFINE_string('test_data_path', 'data/demo/', '')
+# tf.app.flags.DEFINE_string('output_path', 'data/res/', '')
 # tf.app.flags.DEFINE_string('gpu', '0', '')
-#
-# # tf.app.flags.DEFINE_string('checkpoint_path', '../checkpoints_mlt/', '')
 # tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
 # FLAGS = tf.app.flags.FLAGS
-
-
-tf.app.flags.DEFINE_string('test_data_path', '../data/demo/', '')
-tf.app.flags.DEFINE_string('output_path', '../data/res/', '')
-tf.app.flags.DEFINE_string('gpu', '0', '')
-tf.app.flags.DEFINE_string('checkpoint_path', '../checkpoints_mlt/', '')
-FLAGS = tf.app.flags.FLAGS
 
 
 
