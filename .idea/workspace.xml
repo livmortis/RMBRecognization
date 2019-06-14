@@ -38,8 +38,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formal/detection2_CTPN/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="101" column="73" lean-forward="false" selection-start-line="101" selection-start-column="73" selection-end-line="101" selection-end-column="73" />
+            <state relative-caret-position="498">
+              <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
               <folding>
                 <element signature="e#15#24#0" expanded="true" />
               </folding>
@@ -124,12 +124,12 @@
       <find>checkpoint_path</find>
       <find>save_checkpoint_steps</find>
       <find>decay_steps</find>
-      <find>img</find>
       <find>bbox_pred_val_list</find>
       <find>im_fn</find>
       <find>im</find>
       <find>parent</find>
       <find>gpu</find>
+      <find>img</find>
     </findStrings>
     <replaceStrings>
       <replace>nameList</replace>
@@ -1134,14 +1134,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/formal/detection2_CTPN/utils/text_connector/detectors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection2_CTPN/main/ctpnExperiment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -1162,10 +1154,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/formal/detection2_CTPN/utils/text_connector/detectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/formal/detection2_CTPN/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="101" column="73" lean-forward="false" selection-start-line="101" selection-start-column="73" selection-end-line="101" selection-end-column="73" />
+        <state relative-caret-position="498">
+          <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
           <folding>
             <element signature="e#15#24#0" expanded="true" />
           </folding>

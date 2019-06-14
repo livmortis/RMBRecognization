@@ -111,19 +111,21 @@ def main(argv=None):
                     print("Error reading image {}!".format(im_fn))
                     continue
 
-                img, (rh, rw) = resize_image(im)
-                h, w, c = img.shape
-                im_info = np.array([h, w, c]).reshape([1, 3])
-                bbox_pred_val, cls_prob_val = sess.run([bbox_pred, cls_prob],
-                                                       feed_dict={input_image: [img],
-                                                                  input_im_info: im_info})
-                textsegs, _ = proposal_layer(cls_prob_val, bbox_pred_val, im_info)
-                scores = textsegs[:, 0]
-                textsegs = textsegs[:, 1:5]   # 每张图片N个poly，textsegs是这些poly的四个坐标。
-
-                textdetector = TextDetector(DETECT_MODE='H')
-
                 try:
+
+                    img, (rh, rw) = resize_image(im)
+                    h, w, c = img.shape
+                    im_info = np.array([h, w, c]).reshape([1, 3])
+                    bbox_pred_val, cls_prob_val = sess.run([bbox_pred, cls_prob],
+                                                           feed_dict={input_image: [img],
+                                                                      input_im_info: im_info})
+                    textsegs, _ = proposal_layer(cls_prob_val, bbox_pred_val, im_info)
+                    scores = textsegs[:, 0]
+                    textsegs = textsegs[:, 1:5]   # 每张图片N个poly，textsegs是这些poly的四个坐标。
+
+                    textdetector = TextDetector(DETECT_MODE='H')
+
+
 
                     boxes = textdetector.detect(textsegs, scores[:, np.newaxis], img.shape[:2])   #xzy 方法内部已修改，只显示一个框
                     boxes = np.array(boxes, dtype=np.int)
