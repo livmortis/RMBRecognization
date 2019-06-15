@@ -26,7 +26,7 @@ tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_da
 FLAGS = tf.app.flags.FLAGS
 
 
-npy_path = '../../../dataset_formal/detect_data/CTPNData/'
+# npy_path = '../../../dataset_formal/detect_data/CTPNData/'        #弃用保存npy，不是等长矩阵
 
 # tf.app.flags.DEFINE_string('test_data_path', 'data/demo/', '')
 # tf.app.flags.DEFINE_string('output_path', 'data/res/', '')
@@ -37,20 +37,24 @@ npy_path = '../../../dataset_formal/detect_data/CTPNData/'
 cluster = 1
 
 if cluster==1:
-    a= 0
-    b = 8000
+    a = 0
+    b = 10000
 elif cluster==2:
-    a= 8000
-    b = 16000
+    a = 10000
+    b = 20000
 elif cluster ==3:
-    a= 16000
-    b= 24000
+    a = 20000
+    b = 30000
 elif cluster ==4:
-    a= 24000
-    b= 32000
-elif cluster ==5:
-    a = 32000
+    a = 30000
     b = 39620
+elif cluster ==5:
+    a = 0
+    b = 10000
+elif cluster ==6:
+    a = 10000
+    b = 20000
+else:
     print("wrong cluster")
 
 
@@ -110,8 +114,8 @@ def main(argv=None):
             saver.restore(sess, model_path)
 
             im_fn_list = get_images()
-            ii = 0
-            for im_fn in im_fn_list[int(a):int(b)]:          #修改这里
+            ii = a
+            for im_fn in im_fn_list[int(a): int(b)]:          #修改这里
                 ii += 1
                 print(str(ii)+'==============='+str(ii))
                 print(im_fn)
@@ -153,7 +157,7 @@ def main(argv=None):
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
                 except Exception as e:      #xzy   Corrupt JPEG data: premature end of data segment
                     immmm = cv2.imread("../../../dataset_warm_up/train_data/0BRO7XVG.jpg")      #xzy 可能WBNGQ9R7.jpg出错
-                    cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), immmm[:, :, ::-1])
+                    cv2.imwrite(os.path.join(FLAGS.output_path, "xzywa"+str(os.path.basename(im_fn))), immmm[:, :, ::-1])
                     print(str(im_fn)+" is broken!!!!!!!!")
                     #TODO  写一个txt记录错误图片名
 
