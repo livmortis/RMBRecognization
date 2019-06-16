@@ -46,7 +46,7 @@ parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
 parser.add_argument('--alphabet', type=str, default='0123456789ABCDEFGHIJKLMNOPQRSTUWXYZ')       #xzy   RMB识别，没有V
 parser.add_argument('--expr_dir', default='expr', help='Where to store samples and models')
-parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
+parser.add_argument('--displayInterval', type=int, default=100, help='Interval to be displayed')
 parser.add_argument('--n_test_disp', type=int, default=10, help='Number of samples to display when test')
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
@@ -224,12 +224,12 @@ for epoch in range(opt.nepoch):
         loss_avg.add(cost)
         i += 1
 
-        if i % opt.displayInterval == 0:
+        if i % opt.displayInterval == 0:            #displayInterval=100, 代表100个batch显示一次 （即6400张图片）
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
 
-            avg_time_per_step = (time.time() - start)   #xzy
-            print("during time is: "+ str(avg_time_per_step) +" seconds")
+            avg_time_per_step = int(time.time() - start)   #xzy
+            print("during time is: "+ str(avg_time_per_step) +" seconds per 100batches")
             start = time.time()
             loss_avg.reset()
 
