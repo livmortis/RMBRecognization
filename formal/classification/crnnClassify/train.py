@@ -26,8 +26,8 @@ need_load = False
 saved_model_path = "expr/netCRNN_24_500.pth"
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/trainDataLMDB")
-parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/valDataLMDB")
+parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
+parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_byCTPN_MDB")
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
