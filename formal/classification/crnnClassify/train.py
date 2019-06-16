@@ -16,6 +16,8 @@ import utils
 import dataset
 
 import models.crnn as crnn
+import time
+
 
 '''
 需要手动添加的参数：
@@ -208,6 +210,8 @@ def trainBatch(net, criterion, optimizer):
     return cost
 
 
+start = time.time()
+
 for epoch in range(opt.nepoch):
     train_iter = iter(train_loader)
     i = 0
@@ -223,6 +227,10 @@ for epoch in range(opt.nepoch):
         if i % opt.displayInterval == 0:
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
+
+            avg_time_per_step = (time.time() - start)   #xzy
+            print("during time is: "+ str(avg_time_per_step) +" seconds")
+            start = time.time()
             loss_avg.reset()
 
         if i % opt.valInterval == 0:
