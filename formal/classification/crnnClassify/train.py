@@ -19,13 +19,14 @@ import models.crnn as crnn
 import time
 
 
+
 '''
 需要手动添加的参数：
 --cuda
 '''
 
-need_load = False
-saved_model_path = "expr/netCRNN_24_500.pth"
+need_load = True
+saved_model_path = "expr/netCRNN_99_500.pth"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
@@ -46,12 +47,12 @@ parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
 parser.add_argument('--alphabet', type=str, default='0123456789ABCDEFGHIJKLMNOPQRSTUWXYZ')       #xzy   RMB识别，没有V
 parser.add_argument('--expr_dir', default='expr', help='Where to store samples and models')
-parser.add_argument('--displayInterval', type=int, default=100, help='Interval to be displayed')
+parser.add_argument('--displayInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--n_test_disp', type=int, default=10, help='Number of samples to display when test')
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
 # parser.add_argument('--saveInterval', type=int, default=1000, help='Interval to be displayed')    #xzy 错误！！ 当前epoch到不了1000就永远无法保存！！！
-parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--lr', type=float, default=0.0008, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is rmsprop)')
 parser.add_argument('--adadelta', action='store_true', help='Whether to use adadelta (default is rmsprop)')
@@ -138,6 +139,9 @@ loss_avg = utils.averager()
 if True:
     optimizer = optim.Adam(crnn.parameters(), lr=opt.lr,
                            betas=(opt.beta1, 0.999))
+
+    lrSchedule = optim.lr_scheduler.ReduceLROnPlateau(optimizer,'min',factor=0.8,patience=100,verbose=True)
+
 # elif opt.adadelta:
 #     optimizer = optim.Adadelta(crnn.parameters())
 # else:
@@ -229,7 +233,7 @@ for epoch in range(opt.nepoch):
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
 
             avg_time_per_step = int(time.time() - start)   #xzy
-            print("during time is: "+ str(avg_time_per_step) +" seconds per 100batches")
+            print("during time is: "+ str(avg_time_per_step) +" seconds per epoch")
             start = time.time()
             loss_avg.reset()
 
@@ -240,3 +244,5 @@ for epoch in range(opt.nepoch):
         if i % opt.saveInterval == 0:
             torch.save(
                 crnn.state_dict(), '{0}/netCRNN_{1}_{2}.pth'.format(opt.expr_dir, epoch, i))
+
+    lrSchedule.step(cost)
