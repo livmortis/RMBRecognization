@@ -39,7 +39,7 @@ parser.add_argument('--imgW', type=int, default=100, help='the width of the inpu
 # parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
 parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
 # parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
-parser.add_argument('--nepoch', type=int, default=100, help='number of epochs to train for')
+parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
 # TODO(meijieru): epoch -> iter
 parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
