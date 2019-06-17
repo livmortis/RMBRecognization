@@ -40,7 +40,7 @@ parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden
 # parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
 parser.add_argument('--nepoch', type=int, default=100, help='number of epochs to train for')
 # TODO(meijieru): epoch -> iter
-parser.add_argument('--cuda', action='store_true', help='enables cuda')
+parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--pretrained', default='', help="path to pretrained model (to continue training)") # xzy 去掉
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
