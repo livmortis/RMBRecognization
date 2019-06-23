@@ -90,7 +90,7 @@ def main(argv=None):
         train_op = tf.no_op(name='train_op')
 
     saver = tf.train.Saver(tf.global_variables(), max_to_keep=100)
-    summary_writer = tf.summary.FileWriter(FLAGS.logs_path + StyleTime, tf.get_default_graph())
+    summary_writer = tf.summary.FileWriter(FLAGS.logs_path + StyleTime + mianzhi, tf.get_default_graph())
 
     init = tf.global_variables_initializer()
 
