@@ -27,8 +27,8 @@ mianzhi = '_0_2'
 # mianzhi = '_50'
 # mianzhi = '_100'
 
-lrboundaries =     [55000, 57000, 59000, 61000, 63000, 65000, 67000, 69000, 71000]
-lrvalues =      [1e-6, 8e-7,  6e-7,   4e-7, 2e-7,   9e-8,  7e-8,  5e-8,  3e-8, 1e-8]
+lrboundaries =    [55000.0, 57000.0, 59000.0, 61000.0, 63000.0, 65000.0, 67000.0, 69000.0, 71000.0]
+lrvalues =      [1e-6,    8e-7,    6e-7,   4e-7,     2e-7,   9e-8,     7e-8,   5e-8,    3e-8,   1e-8]
 
 tf.app.flags.DEFINE_float('learning_rate', 1e-6, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
