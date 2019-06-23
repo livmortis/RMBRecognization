@@ -106,7 +106,8 @@ def main(argv=None):
     with tf.Session(config=config) as sess:
         if FLAGS.restore:
             ckpt = tf.train.latest_checkpoint(FLAGS.checkpoint_path)
-            restore_step = int(ckpt.split('/')[-1].split('.')[0].split('_')[-1])
+            # restore_step = int(ckpt.split('/')[-1].split('.')[0].split('_')[-1])
+            restore_step = int(ckpt.split('/')[-1].split('.')[0].split('_')[1])     #xzy 1800标签版本，ckpt文件命名更改。
             print("continue training from previous checkpoint {}".format(restore_step))
             saver.restore(sess, ckpt)
         else:
