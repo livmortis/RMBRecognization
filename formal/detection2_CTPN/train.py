@@ -72,7 +72,7 @@ def main(argv=None):
     # learning_rate = tf.Variable(FLAGS.learning_rate, trainable=False)
     # learning_rate = FLAGS.learning_rate     #xzy 为了避免加载预训练时，强制加载预训练的学习率（lr= 1e-5,太小了），而手动设置lr。
     learning_rate = tf.train.piecewise_constant(global_step,lrboundaries,lrvalues)    #xzy 1800训练时加入学习率策略
-    tf.summary.scalar('learning_rate', learning_rate)
+    # tf.summary.scalar('learning_rate', learning_rate)
     opt = tf.train.AdamOptimizer(learning_rate)
 
     gpu_id = int(FLAGS.gpu)
