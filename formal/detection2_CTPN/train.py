@@ -72,7 +72,7 @@ def main(argv=None):
     # learning_rate = tf.Variable(FLAGS.learning_rate, trainable=False)
     # learning_rate = FLAGS.learning_rate     #xzy 为了避免加载预训练时，强制加载预训练的学习率（lr= 1e-5,太小了），而手动设置lr。
     learning_rate = tf.train.piecewise_constant(global_step,lrboundaries,lrvalues)    #xzy 1800训练时加入学习率策略
-    # tf.summary.scalar('learning_rate', learning_rate)
+    tf.summary.scalar('learning_rate', learning_rate)
     opt = tf.train.AdamOptimizer(learning_rate)
 
     gpu_id = int(FLAGS.gpu)
@@ -139,10 +139,10 @@ def main(argv=None):
                 # avg_time_per_step = (time.time() - start) / 10
                 avg_time_per_step = (time.time() - start)   #xzy 每个epoch打印一次
                 start = time.time()
-                # print('Step {:06d}, model loss {:.4f}, total loss {:.4f}, {:.2f} seconds/step, LR: {:.6f}'.format(
-                #     step, ml, tl, avg_time_per_step, learning_rate.eval()))
                 print('Step {:06d}, model loss {:.4f}, total loss {:.4f}, {:.2f} seconds/step, LR: {:.6f}'.format(
-                    step, ml, tl, avg_time_per_step, learning_rate))    #xzy 手动设置学习率
+                    step, ml, tl, avg_time_per_step, learning_rate.eval()))     #xzy 6.24更新，添加lr策略后，learning_rate又成了tensor
+                # print('Step {:06d}, model loss {:.4f}, total loss {:.4f}, {:.2f} seconds/step, LR: {:.6f}'.format(
+                #     step, ml, tl, avg_time_per_step, learning_rate))    #xzy 手动设置学习率
 
             if (step + 1) % FLAGS.save_checkpoint_steps == 0:
                 filename = ('ctpn_{:d}'.format(step + 1) +mianzhi+'.ckpt')
