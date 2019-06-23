@@ -9,13 +9,42 @@ import numpy as np
 from utils.dataset.data_util import GeneratorEnqueuer
 
 # DATA_FOLDER = "data/dataset/mlt/"
-DATA_FOLDER = "../../../dataset_formal/detect_data/CTPNData/"     #以train.py的视角。因为解释运行一般是在train.py所在的目录进行。
+# DATA_FOLDER = "../../../dataset_formal/detect_data/CTPNData/"     #以train.py的视角。因为解释运行一般是在train.py所在的目录进行。
+
+DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_img"                 #xzy 1800标注图片 + 分面值训练
+DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_label/"            #xzy 1800标注图片 + 分面值训练
+
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_2_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_2_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_5_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_5_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/2_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/2_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/5_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/5_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_label/"
+#
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_label/"
+
 
 
 def get_training_data():
     img_files = []
     exts = ['jpg', 'png', 'jpeg', 'JPG']
-    for parent, dirnames, filenames in os.walk(os.path.join(DATA_FOLDER, "image")):
+    # for parent, dirnames, filenames in os.walk(os.path.join(DATA_FOLDER, "image")):
+    for parent, dirnames, filenames in os.walk(DATA_FOLDER_IMG):        #xzy 1800标注图片 + 分面值训练
         for filename in filenames:
             for ext in exts:
                 if filename.endswith(ext):
@@ -38,7 +67,8 @@ def load_annoataion(p):
 
 def generator(vis=False):
     image_list = np.array(get_training_data())
-    print('{} training images in {}'.format(image_list.shape[0], DATA_FOLDER))
+    # print('{} training images in {}'.format(image_list.shape[0], DATA_FOLDER))
+    print('{} training images in {}'.format(image_list.shape[0], DATA_FOLDER_IMG))  #xzy 1800标注图片 + 分面值训练
     index = np.arange(0, image_list.shape[0])
     while True:
         np.random.shuffle(index)
@@ -51,7 +81,8 @@ def generator(vis=False):
 
                 _, fn = os.path.split(im_fn)
                 fn, _ = os.path.splitext(fn)
-                txt_fn = os.path.join(DATA_FOLDER, "label", fn + '.txt')
+                # txt_fn = os.path.join(DATA_FOLDER, "label", fn + '.txt')
+                txt_fn = os.path.join(DATA_FOLDER_LABEL, fn + '.txt')  #xzy 1800标注图片 + 分面值训练
                 if not os.path.exists(txt_fn):
                     print("Ground truth for image {} not exist!".format(im_fn))
                     continue

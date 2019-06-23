@@ -17,10 +17,22 @@ from utils.dataset import data_provider as data_provider
 --restore   是否读取模型
 
 '''
+mianzhi = '_0_1'
+# mianzhi = '_0_2'
+# mianzhi = '_0_5'
+# mianzhi = '_1'
+# mianzhi = '_2'
+# mianzhi = '_5'
+# mianzhi = '_10'
+# mianzhi = '_50'
+# mianzhi = '_100'
 
-tf.app.flags.DEFINE_float('learning_rate', 3e-5, '')
+tf.app.flags.DEFINE_float('learning_rate', 6e-6, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
 tf.app.flags.DEFINE_integer('max_steps', 100000, '')    #xzy
+tf.app.flags.DEFINE_boolean('restore', True, '')
+
+
 tf.app.flags.DEFINE_integer('decay_steps', 30000, '')   #xzy 弃用
 tf.app.flags.DEFINE_float('decay_rate', 0.1, '')
 tf.app.flags.DEFINE_float('moving_average_decay', 0.997, '')
@@ -36,7 +48,6 @@ tf.app.flags.DEFINE_string('logs_path', '../../../dataset_formal/detect_data/CTP
 # tf.app.flags.DEFINE_string('pretrained_model_path', 'data/vgg_16.ckpt', '')
 tf.app.flags.DEFINE_string('pretrained_model_path', '../../../dataset_formal/detect_data/CTPNData/vgg_16.ckpt', '')
 
-tf.app.flags.DEFINE_boolean('restore', True, '')
 # tf.app.flags.DEFINE_integer('save_checkpoint_steps', 2000, '')
 tf.app.flags.DEFINE_integer('save_checkpoint_steps', 50, '')
 FLAGS = tf.app.flags.FLAGS
@@ -129,7 +140,7 @@ def main(argv=None):
                     step, ml, tl, avg_time_per_step, learning_rate))    #xzy 手动设置学习率
 
             if (step + 1) % FLAGS.save_checkpoint_steps == 0:
-                filename = ('ctpn_{:d}'.format(step + 1) + '.ckpt')
+                filename = ('ctpn_{:d}'.format(step + 1) +mianzhi+'.ckpt')
                 filename = os.path.join(FLAGS.checkpoint_path, filename)
                 saver.save(sess, filename)
                 print('Write model to: {:s}'.format(filename))
