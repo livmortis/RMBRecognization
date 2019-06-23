@@ -17,8 +17,8 @@ from utils.dataset import data_provider as data_provider
 --restore   是否读取模型
 
 '''
-mianzhi = '_0_1'
-# mianzhi = '_0_2'
+# mianzhi = '_0_1'
+mianzhi = '_0_2'
 # mianzhi = '_0_5'
 # mianzhi = '_1'
 # mianzhi = '_2'
@@ -27,9 +27,12 @@ mianzhi = '_0_1'
 # mianzhi = '_50'
 # mianzhi = '_100'
 
-tf.app.flags.DEFINE_float('learning_rate', 3e-6, '')
+lrboundaries = [53500, 55000, 57000, 59000, 61000, 63000, 65000, 67000, 69000, 71000]
+lrvalues =      [1e-6, 8e-7,  6e-7,   4e-7, 2e-7,   9e-8,  7e-8,  5e-8,  3e-8, 1e-8]
+
+tf.app.flags.DEFINE_float('learning_rate', 1e-6, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
-tf.app.flags.DEFINE_integer('max_steps', 100000, '')    #xzy
+tf.app.flags.DEFINE_integer('max_steps', 72000, '')    #xzy
 tf.app.flags.DEFINE_boolean('restore', True, '')
 
 
@@ -66,9 +69,10 @@ def main(argv=None):
     input_im_info = tf.placeholder(tf.float32, shape=[None, 3], name='input_im_info')
 
     global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
-    learning_rate = FLAGS.learning_rate     #xzy 为了避免加载预训练时，强制加载预训练的学习率（lr= 1e-5,太小了），而手动设置lr。
     # learning_rate = tf.Variable(FLAGS.learning_rate, trainable=False)
-    # tf.summary.scalar('learning_rate', learning_rate)
+    # learning_rate = FLAGS.learning_rate     #xzy 为了避免加载预训练时，强制加载预训练的学习率（lr= 1e-5,太小了），而手动设置lr。
+    learning_rate = tf.train.piecewise_constant(global_step,lrboundaries,lrvalues)    #xzy 1800训练时加入学习率策略
+    tf.summary.scalar('learning_rate', learning_rate)
     opt = tf.train.AdamOptimizer(learning_rate)
 
     gpu_id = int(FLAGS.gpu)
