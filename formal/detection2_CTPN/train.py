@@ -27,7 +27,7 @@ mianzhi = '_0_1'
 # mianzhi = '_50'
 # mianzhi = '_100'
 
-tf.app.flags.DEFINE_float('learning_rate', 6e-6, '')
+tf.app.flags.DEFINE_float('learning_rate', 3e-6, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
 tf.app.flags.DEFINE_integer('max_steps', 100000, '')    #xzy
 tf.app.flags.DEFINE_boolean('restore', True, '')
@@ -57,7 +57,7 @@ def main(argv=None):
     os.environ['CUDA_VISIBLE_DEVICES'] = FLAGS.gpu
     now = datetime.datetime.now()
     StyleTime = now.strftime("%Y-%m-%d-%H-%M-%S")
-    os.makedirs(FLAGS.logs_path + StyleTime)
+    os.makedirs(FLAGS.logs_path + StyleTime + mianzhi)
     if not os.path.exists(FLAGS.checkpoint_path):
         os.makedirs(FLAGS.checkpoint_path)
 
