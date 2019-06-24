@@ -13,28 +13,104 @@ from nets import model_train as model
 from utils.rpn_msr.proposal_layer import proposal_layer
 from utils.text_connector.detectors import TextDetector
 
-tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/train_data/', '')  #检测比赛训练集
-# tf.app.flags.DEFINE_string('test_data_path', '../../../dataset_warm_up/public_test_data/', '')  #检测比赛测试集
 
-tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_train', '') #训练集poly输出路径
-# tf.app.flags.DEFINE_string('output_path', '../../../dataset_formal/detect_data/polyImg_CTPN_test', '')  #测试集poly输出路径
+
+train_or_test_1800 = 'train'
+# train_or_test_1800 = 'test'
+# train_or_test_1800 = 'no_seperate_mianzhi_train'
+# train_or_test_1800 = 'no_seperate_mianzhi_test'
+mianzhi = 0.1
+
+
+t_path = ''
+c_path = ''
+o_path = ''
+if train_or_test_1800 == 'train':
+    if mianzhi == 0.1:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_1_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_1/'
+    if mianzhi == 0.2:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_2_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_2/'
+    if mianzhi == 0.5:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_5_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_5/'
+    if mianzhi == 1:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/1_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_1/'
+    if mianzhi == 2:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/2_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_2/'
+    if mianzhi == 5:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/5_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_5/'
+    if mianzhi == 10:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/10_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_10/'
+    if mianzhi == 50:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/50_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_50/'
+    if mianzhi == 100:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/100_all_img/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_100/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_train_1800'
+elif  train_or_test_1800 == 'test':
+    if mianzhi == 0.1:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_1_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_1/'
+    if mianzhi == 0.2:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_2_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_2/'
+    if mianzhi == 0.5:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/0_5_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_0_5/'
+    if mianzhi == 1:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/1_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_1/'
+    if mianzhi == 2:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/2_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_2/'
+    if mianzhi == 5:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/5_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_5/'
+    if mianzhi == 10:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/10_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_10/'
+    if mianzhi == 50:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/50_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_50/'
+    if mianzhi == 100:
+        t_path = '../../../dataset_formal/detect_data/CTPNData/100_all_img_t/'
+        c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt_100/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_test_1800'
+
+elif train_or_test_1800 == 'no_seperate_mianzhi_train':
+    t_path = '../../../dataset_warm_up/train_data/'              #检测比赛训练集
+    c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_train'   #训练集poly输出路径
+
+elif train_or_test_1800 == 'no_seperate_mianzhi_test':
+    t_path = '../../../dataset_warm_up/public_test_data/'            #检测比赛测试集
+    c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_test'    #测试集poly输出路径
+else:
+    print('sth wrong')
+
+
+tf.app.flags.DEFINE_string('test_data_path', t_path, '')
+tf.app.flags.DEFINE_string('checkpoint_path', c_path, '')
+tf.app.flags.DEFINE_string('output_path', o_path, '')
 
 tf.app.flags.DEFINE_string('gpu', '0', '')
 
-# tf.app.flags.DEFINE_string('checkpoint_path', '../checkpoints_mlt/', '')
-tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
 FLAGS = tf.app.flags.FLAGS
 
 
 # npy_path = '../../../dataset_formal/detect_data/CTPNData/'        #弃用保存npy，不是等长矩阵
 
-# tf.app.flags.DEFINE_string('test_data_path', 'data/demo/', '')
-# tf.app.flags.DEFINE_string('output_path', 'data/res/', '')
-# tf.app.flags.DEFINE_string('gpu', '0', '')
-# tf.app.flags.DEFINE_string('checkpoint_path', '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/', '')
-# FLAGS = tf.app.flags.FLAGS
 
-cluster = 1
+
+cluster = 0     # 0代表不使用多卡同步计算
 
 if cluster==1:
     a = 0
@@ -54,8 +130,13 @@ elif cluster ==5:
 elif cluster ==6:
     a = 10000
     b = 20000
+elif cluster ==0:
+    a = 0
+    b = None
 else:
     print("wrong cluster")
+
+
 
 
 def get_images():
