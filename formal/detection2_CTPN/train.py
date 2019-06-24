@@ -19,20 +19,20 @@ from utils.dataset import data_provider as data_provider
 '''
 # mianzhi = '_0_1'
 # mianzhi = '_0_2'
-mianzhi = '_0_5'
-# mianzhi = '_1'
+# mianzhi = '_0_5'
+mianzhi = '_1'
 # mianzhi = '_2'
 # mianzhi = '_5'
 # mianzhi = '_10'
 # mianzhi = '_50'
 # mianzhi = '_100'
 
-lrboundaries =    [55000.0, 57000.0, 59000.0, 61000.0, 63000.0, 65000.0, 67000.0, 69000.0, 71000.0, 73000.0, 75000.0, 77000.0]
-lrvalues =      [1e-6,    8e-7,    6e-7,   4e-7,     2e-7,   9e-8,     7e-8,   5e-8,    4e-8,   3e-8,     2e-8,    1e-8,     9e-9]
+lrboundaries =    [55000.0, 57000.0, 59000.0, 61000.0, 63000.0, 65000.0, 67000.0, 69000.0, 71000.0, 73000.0, 75000.0, 77000.0, 79000.0, 85000.0]
+lrvalues =      [1e-6,    8e-7,    6e-7,   4e-7,     2e-7,   9e-8,     7e-8,   5e-8,    4e-8,   3e-8,     2e-8,    1e-8,     9e-9,   8e-9,    7e-9 ]
 
 tf.app.flags.DEFINE_float('learning_rate', 1e-6, '')
 # tf.app.flags.DEFINE_integer('max_steps', 50000, '')
-tf.app.flags.DEFINE_integer('max_steps', 80000, '')    #xzy
+tf.app.flags.DEFINE_integer('max_steps', 90000, '')    #xzy
 tf.app.flags.DEFINE_boolean('restore', True, '')
 
 
