@@ -23,8 +23,8 @@ from utils.dataset import data_provider as data_provider
 # mianzhi = '_1'
 # mianzhi = '_2'
 # mianzhi = '_5'
-mianzhi = '_10'
-# mianzhi = '_50'
+# mianzhi = '_10'
+mianzhi = '_50'
 # mianzhi = '_100'
 
 lrboundaries =    [55000.0, 57000.0, 59000.0, 61000.0, 63000.0, 65000.0, 67000.0, 69000.0, 71000.0, 73000.0, 75000.0, 77000.0, 79000.0, 85000.0]

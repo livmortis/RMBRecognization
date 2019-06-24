@@ -29,11 +29,11 @@ from utils.dataset.data_util import GeneratorEnqueuer
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/5_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/5_ctpn_label/"
 # #
-DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_img"
-DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_label/"
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/10_ctpn_label/"
 #
-# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_img"
-# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_label/"
+DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_img"
+DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/50_ctpn_label/"
 #
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_label/"
