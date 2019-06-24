@@ -22,8 +22,8 @@ from utils.dataset import data_provider as data_provider
 # mianzhi = '_0_5'
 # mianzhi = '_1'
 # mianzhi = '_2'
-mianzhi = '_5'
-# mianzhi = '_10'
+# mianzhi = '_5'
+mianzhi = '_10'
 # mianzhi = '_50'
 # mianzhi = '_100'
 
