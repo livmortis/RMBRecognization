@@ -172,9 +172,11 @@ def resize_image(img):
 
 
 def main(argv=None):
-    if os.path.exists(FLAGS.output_path):
-        shutil.rmtree(FLAGS.output_path)
-    os.makedirs(FLAGS.output_path)
+    if train_or_test_1800 == 'no_seperate_mianzhi_train'  or train_or_test_1800 == 'no_seperate_mianzhi_test':
+        if os.path.exists(FLAGS.output_path):
+            shutil.rmtree(FLAGS.output_path)
+        os.makedirs(FLAGS.output_path)
+
     os.environ['CUDA_VISIBLE_DEVICES'] = FLAGS.gpu
 
     with tf.get_default_graph().as_default():
