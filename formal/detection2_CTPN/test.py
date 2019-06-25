@@ -111,6 +111,8 @@ FLAGS = tf.app.flags.FLAGS
 
 
 cluster = 0     # 0代表不使用多卡同步计算
+a = 0
+b = None
 
 if cluster==1:
     a = 0
@@ -196,7 +198,12 @@ def main(argv=None):
 
             im_fn_list = get_images()
             ii = a
-            for im_fn in im_fn_list[int(a): int(b)]:          #修改这里
+            if cluster == 0:
+                b = b
+            else:
+                b = int(b)
+
+            for im_fn in im_fn_list[int(a): b]:          #修改这里
                 ii += 1
                 print(str(ii)+'==============='+str(ii))
                 print(im_fn)
@@ -237,7 +244,7 @@ def main(argv=None):
                     img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
                 except Exception as e:      #xzy   Corrupt JPEG data: premature end of data segment
-                    immmm = cv2.imread("../../../dataset_warm_up/train_data/0BRO7XVG.jpg")      #xzy 可能WBNGQ9R7.jpg出错
+                    immmm = cv2.imread("../../../dataset_formal/detect_data/CTPNData/0_2_all_img/0A2TX8IH.jpg")      #xzy 可能WBNGQ9R7.jpg出错
                     cv2.imwrite(os.path.join(FLAGS.output_path, "xzywa"+str(os.path.basename(im_fn))), immmm[:, :, ::-1])
                     print(str(im_fn)+" is broken!!!!!!!!")
                     #TODO  写一个txt记录错误图片名
