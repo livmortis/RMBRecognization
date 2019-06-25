@@ -111,8 +111,6 @@ FLAGS = tf.app.flags.FLAGS
 
 
 cluster = 0     # 0代表不使用多卡同步计算
-a = 0
-b = None
 
 if cluster==1:
     a = 0
@@ -198,10 +196,6 @@ def main(argv=None):
 
             im_fn_list = get_images()
             ii = a
-            if cluster == 0:
-                b = b
-            else:
-                b = int(b)
 
             for im_fn in im_fn_list[int(a): b]:          #修改这里
                 ii += 1
