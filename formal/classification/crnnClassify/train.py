@@ -28,7 +28,7 @@ writer = SummaryWriter('log3')
 '''
 
 need_load = True
-saved_model_path = "expr/netCRNN_449_500.pth"
+saved_model_path = "expr/netCRNN_472_500.pth"
 
 parser = argparse.ArgumentParser()
 # parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
@@ -38,7 +38,7 @@ parser.add_argument('--trainRoot', help='path to dataset', default="../../../../
 parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_9mianzhi_MDB")
 
 
-parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--lr', type=float, default=0.00018, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
 parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 
