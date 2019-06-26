@@ -148,7 +148,9 @@ def oneHot(v, v_length, nc):
 
 
 def loadData(v, data):
-    v.data.resize_(data.size()).copy_(data)
+    with torch.no_grad():   #xzy 如果是pytorch1.1.0版本
+
+        v.data.resize_(data.size()).copy_(data)
 
 
 def prettyPrint(v):
