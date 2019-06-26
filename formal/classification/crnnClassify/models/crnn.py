@@ -68,7 +68,7 @@ class CRNN(nn.Module):
     def forward(self, input):
         # conv features
         conv = self.cnn(input)
-        print(conv) if log_for_explore else None
+        print("after cnn : "+str(conv)) if log_for_explore else None
         b, c, h, w = conv.size()
         assert h == 1, "the height of conv must be 1"           #xzy 这里图片宽高改变后会报错
         conv = conv.squeeze(2)
@@ -76,6 +76,6 @@ class CRNN(nn.Module):
 
         # rnn features
         output = self.rnn(conv)
-        print(output) if log_for_explore else None
+        print("after rnn : "+ str(output)) if log_for_explore else None
 
         return output
