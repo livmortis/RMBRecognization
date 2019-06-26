@@ -239,7 +239,7 @@ for epoch in range(opt.nepoch):
         i += 1
 
         if i % opt.displayInterval == 0:            #displayInterval=100, 代表100个batch显示一次 （即6400张图片）
-            writer.add_scalar("Train/Loss", loss_avg.val(), epoch)
+            writer.add_scalar("log3/", loss_avg.val(), epoch)
 
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
