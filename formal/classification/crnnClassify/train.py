@@ -38,7 +38,7 @@ parser.add_argument('--trainRoot', help='path to dataset', default="../../../../
 parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_9mianzhi_MDB")
 
 
-parser.add_argument('--lr', type=float, default=0.0001, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
 parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 
