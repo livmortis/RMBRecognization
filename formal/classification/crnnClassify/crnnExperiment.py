@@ -6,6 +6,7 @@ import numpy as np
 import torch
 from PIL import Image
 import cv2
+import pandas as pd
 
 
 # a = "../../../../dataset_formal/detect_data/polyImg_Reg-gpu_pad5455/"
@@ -89,9 +90,22 @@ import cv2
 
 
 # 制作单独验证集
-for i in range(10,13):
-  print(i)
-  print("yes")
+# for i in range(10,13):
+#   print(i)
+#   print("yes")
+
+
+result = '../../../../dataset_formal/classify_data/crnnData/result/fixed_crnn_with_ctpn_gpu_score97_485_date6_19_1200epoch401 copy.csv'
+df = pd.read_csv(result)
+predList = df['label']
+wrong = []
+for pred in predList:
+  if len(pred) != 10:
+    print(pred)
+    wrong.append(pred)
+
+print(len(wrong))
+
 
 
 

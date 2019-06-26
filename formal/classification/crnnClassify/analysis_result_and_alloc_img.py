@@ -219,11 +219,122 @@ def allocate_1500_label_to_9_file():
 
 
 
+
+
+
+'''39620张图片'''
+
+
+
+def allocate_39620_img_to_9_file():
+  warm_train_result = '../../../../dataset_warm_up/train_face_value_label.csv'
+
+  # img1500_path = '../../../../dataset_formal/detect_data/arti_labeled_img_1500'
+  img39620_path = '../../../../dataset_warm_up/train_data'
+
+  img_0_1 = '../../../../dataset_formal/detect_data/CTPNData/0_1_all_img'
+  img_0_2 = '../../../../dataset_formal/detect_data/CTPNData/0_2_all_img'
+  img_0_5 = '../../../../dataset_formal/detect_data/CTPNData/0_5_all_img'
+  img_1 = '../../../../dataset_formal/detect_data/CTPNData/1_all_img'
+  img_2 = '../../../../dataset_formal/detect_data/CTPNData/2_all_img'
+  img_5 = '../../../../dataset_formal/detect_data/CTPNData/5_all_img'
+  img_10 = '../../../../dataset_formal/detect_data/CTPNData/10_all_img'
+  img_50 = '../../../../dataset_formal/detect_data/CTPNData/50_all_img'
+  img_100 = '../../../../dataset_formal/detect_data/CTPNData/100_all_img'
+
+  train_result_df = pd.read_csv(warm_train_result)
+
+  img39620List = os.listdir(img39620_path)
+  for img in tqdm(img39620List):
+    # print(img)
+    type = train_result_df.loc[train_result_df['name'] == str(img)][' label'].values[0]
+    img =  '../../../../dataset_warm_up/train_data/'+str(img)
+    # print(type)
+    if type == 0.1:
+      shutil.copy(img, img_0_1)
+    elif type == 0.2:
+      shutil.copy(img, img_0_2)
+    elif type == 0.5:
+      shutil.copy(img, img_0_5)
+    elif type == 1:
+      shutil.copy(img, img_1)
+    elif type == 2:
+      shutil.copy(img, img_2)
+    elif type == 5:
+      shutil.copy(img, img_5)
+    elif type == 10:
+      shutil.copy(img, img_10)
+    elif type == 50:
+      shutil.copy(img, img_50)
+    elif type == 100:
+      shutil.copy(img, img_100)
+
+  print("done")
+
+
+
+
+
+
+
+'''20000张图片'''
+
+
+
+def allocate_20000_img_to_9_file():
+  warm_train_result = '../../../../dataset_warm_up/pred_result/result-final-score100.csv'
+
+  img20000_path = '../../../../dataset_warm_up/public_test_data'
+
+  img_0_1 = '../../../../dataset_formal/detect_data/CTPNData/0_1_all_img_t'
+  img_0_2 = '../../../../dataset_formal/detect_data/CTPNData/0_2_all_img_t'
+  img_0_5 = '../../../../dataset_formal/detect_data/CTPNData/0_5_all_img_t'
+  img_1 = '../../../../dataset_formal/detect_data/CTPNData/1_all_img_t'
+  img_2 = '../../../../dataset_formal/detect_data/CTPNData/2_all_img_t'
+  img_5 = '../../../../dataset_formal/detect_data/CTPNData/5_all_img_t'
+  img_10 = '../../../../dataset_formal/detect_data/CTPNData/10_all_img_t'
+  img_50 = '../../../../dataset_formal/detect_data/CTPNData/50_all_img_t'
+  img_100 = '../../../../dataset_formal/detect_data/CTPNData/100_all_img_t'
+
+  train_result_df = pd.read_csv(warm_train_result)
+
+  img20000List = os.listdir(img20000_path)
+  for img in tqdm(img20000List):
+    # print(img)
+    type = train_result_df.loc[train_result_df['name'] == str(img)]['label'].values[0]
+    img =  '../../../../dataset_warm_up/public_test_data/'+str(img)
+    # print(type)
+    if type == 0.1:
+      shutil.copy(img, img_0_1)
+    elif type == 0.2:
+      shutil.copy(img, img_0_2)
+    elif type == 0.5:
+      shutil.copy(img, img_0_5)
+    elif type == 1:
+      shutil.copy(img, img_1)
+    elif type == 2:
+      shutil.copy(img, img_2)
+    elif type == 5:
+      shutil.copy(img, img_5)
+    elif type == 10:
+      shutil.copy(img, img_10)
+    elif type == 50:
+      shutil.copy(img, img_50)
+    elif type == 100:
+      shutil.copy(img, img_100)
+
+  print("done")
+
+
+
+
 if __name__ == "__main__":
   # wrong_length_distribute()
   # allocate_300_label_to_9_file()
   # allocate_1500_img_to_9_file()
-  allocate_1500_label_to_9_file()
+  # allocate_1500_label_to_9_file()
+  # allocate_39620_img_to_9_file()
+  allocate_20000_img_to_9_file()
 
 
 

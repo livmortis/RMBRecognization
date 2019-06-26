@@ -18,7 +18,9 @@ import dataset
 import models.crnn as crnn
 import time
 
+from tensorboardX import SummaryWriter
 
+writer = SummaryWriter()
 
 '''
 需要手动添加的参数：
@@ -29,8 +31,19 @@ need_load = True
 saved_model_path = "expr/netCRNN_99_500.pth"
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
-parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_byCTPN_MDB")
+# parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
+# parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_byCTPN_MDB")
+# 9面值ctpn训练裁剪的poly作为数据集：
+parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_9mianzhi_MDB")
+parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_9mianzhi_MDB")
+
+
+parser.add_argument('--lr', type=float, default=0.0008, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
+parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
+
+
+
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image to network')
@@ -39,9 +52,7 @@ parser.add_argument('--imgW', type=int, default=100, help='the width of the inpu
 # parser.add_argument('--imgW', type=int, default=288, help='the width of the input image to network')
 parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
 # parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
-parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
 # TODO(meijieru): epoch -> iter
-parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
 # parser.add_argument('--pretrained', default='', help="path to pretrained model (to continue training)") # xzy 去掉
 # parser.add_argument('--alphabet', type=str, default='0123456789abcdefghijklmnopqrstuvwxyz')
@@ -52,7 +63,6 @@ parser.add_argument('--n_test_disp', type=int, default=10, help='Number of sampl
 parser.add_argument('--valInterval', type=int, default=500, help='Interval to be displayed')
 parser.add_argument('--saveInterval', type=int, default=500, help='Interval to be displayed')
 # parser.add_argument('--saveInterval', type=int, default=1000, help='Interval to be displayed')    #xzy 错误！！ 当前epoch到不了1000就永远无法保存！！！
-parser.add_argument('--lr', type=float, default=0.0008, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is rmsprop)')
 parser.add_argument('--adadelta', action='store_true', help='Whether to use adadelta (default is rmsprop)')
@@ -229,6 +239,8 @@ for epoch in range(opt.nepoch):
         i += 1
 
         if i % opt.displayInterval == 0:            #displayInterval=100, 代表100个batch显示一次 （即6400张图片）
+            writer.add_scalar("Train/Loss", loss_avg.val(), epoch)
+
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
 
@@ -236,6 +248,8 @@ for epoch in range(opt.nepoch):
             print("during time is: "+ str(avg_time_per_step) +" seconds per epoch")
             start = time.time()
             loss_avg.reset()
+
+
 
         if i % opt.valInterval == 0:
             val(crnn, test_dataset, criterion)
@@ -246,3 +260,5 @@ for epoch in range(opt.nepoch):
                 crnn.state_dict(), '{0}/netCRNN_{1}_{2}.pth'.format(opt.expr_dir, epoch, i))
 
     lrSchedule.step(cost)
+
+writer.close()
