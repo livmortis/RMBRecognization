@@ -1,5 +1,6 @@
 import torch.nn as nn
 import numpy as np
+import torch
 
 log_for_explore = True
 class BidirectionalLSTM(nn.Module):
@@ -69,7 +70,7 @@ class CRNN(nn.Module):
     def forward(self, input):
         # conv features
         print("input : "+str(input)) if log_for_explore else None
-        print("is input include nan?: "+ str(np.any(np.isnan(input))))
+        print("is input include nan?: "+ str(np.any(np.isnan(torch.Tensor.cpu(input)))))
         conv = self.cnn(input)
         print("after cnn : "+str(conv)) if log_for_explore else None
         b, c, h, w = conv.size()
