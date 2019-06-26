@@ -20,7 +20,7 @@ import time
 
 from tensorboardX import SummaryWriter
 
-writer = SummaryWriter()
+writer = SummaryWriter('log3')
 
 '''
 需要手动添加的参数：
@@ -239,7 +239,7 @@ for epoch in range(opt.nepoch):
         i += 1
 
         if i % opt.displayInterval == 0:            #displayInterval=100, 代表100个batch显示一次 （即6400张图片）
-            writer.add_scalar("log3/", loss_avg.val(), epoch)
+            writer.add_scalar("log2/", loss_avg.val(), epoch)
 
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
