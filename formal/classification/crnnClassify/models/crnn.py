@@ -67,6 +67,7 @@ class CRNN(nn.Module):
 
     def forward(self, input):
         # conv features
+        print("input : "+str(input)) if log_for_explore else None
         conv = self.cnn(input)
         print("after cnn : "+str(conv)) if log_for_explore else None
         b, c, h, w = conv.size()
