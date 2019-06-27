@@ -8,7 +8,7 @@ from torch.autograd import Variable
 import pandas as pd
 import numpy as np
 
-saved_model_path = "expr/netCRNN_84_500.pth"
+saved_model_path = "expr/netCRNN_472_500.pth"
 
 
 
@@ -67,7 +67,7 @@ def test_by_xzy(net, test_dataset):
   df = pd.DataFrame({'name':img_name_List, 'label':img_pred_List})    #ValueError: arrays must all be same length
   column_order = ['name','label']
   df = df[column_order]
-  predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_ctpn.csv'
+  predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_1800ctpn.csv'
   df.to_csv(predictionFile, index=False)
 
   print("\nover")
