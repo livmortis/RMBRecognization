@@ -72,8 +72,9 @@ class CRNN(nn.Module):
         print("input : "+str(input)) if log_for_explore else None
         print("is input include nan1?: "+ str((np.isnan(torch.Tensor.cpu(input)))))
         print("is input include nan2?: "+ str(np.sum(np.array(np.isnan(torch.Tensor.cpu(input))))))
-
         print("is input include nan3?: "+ str(np.any(np.array(np.isnan(torch.Tensor.cpu(input))))))
+        print("max of input: " + str(np.max(np.array(np.isnan(torch.Tensor.cpu(input))))))
+        print("min of input: " + str(np.min(np.array(np.isnan(torch.Tensor.cpu(input))))))
         conv = self.cnn(input)
         print("after cnn : "+str(conv)) if log_for_explore else None
         b, c, h, w = conv.size()
