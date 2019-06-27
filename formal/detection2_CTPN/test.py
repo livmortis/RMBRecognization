@@ -15,10 +15,14 @@ from utils.text_connector.detectors import TextDetector
 
 
 
-train_or_test_1800 = 'train'
+# train_or_test_1800 = 'train'
 # train_or_test_1800 = 'test'
 # train_or_test_1800 = 'no_seperate_mianzhi_train'
 # train_or_test_1800 = 'no_seperate_mianzhi_test'
+train_or_test_1800 = 'no_seperate_tight_train'
+# train_or_test_1800 = 'no_seperate_tight_test'
+
+
 mianzhi = 0.1
 
 
@@ -93,6 +97,17 @@ elif train_or_test_1800 == 'no_seperate_mianzhi_test':
     t_path = '../../../dataset_warm_up/public_test_data/'            #检测比赛测试集
     c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/'
     o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_test'    #测试集poly输出路径
+
+elif train_or_test_1800 == 'no_seperate_tight_train':
+    t_path = '../../../dataset_warm_up/train_data/'
+    c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_train_tight'
+
+elif train_or_test_1800 == 'no_seperate_tight_test':
+    t_path = '../../../dataset_warm_up/public_test_data/'
+    c_path = '../../../dataset_formal/detect_data/CTPNData/checkpoints_mlt/'
+    o_path = '../../../dataset_formal/detect_data/polyImg_CTPN_test_tight'
+
 else:
     print('sth wrong')
 
@@ -240,10 +255,9 @@ def main(argv=None):
                     img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
                     cv2.imwrite(os.path.join(FLAGS.output_path, os.path.basename(im_fn)), img[:, :, ::-1])
                 except Exception as e:      #xzy   Corrupt JPEG data: premature end of data segment
-                    immmm = cv2.imread("../../../dataset_formal/detect_data/CTPNData/0_2_all_img/0A2TX8IH.jpg")      #xzy 可能WBNGQ9R7.jpg出错
+                    immmm = cv2.imread("../../../dataset_warm_up/train_data/13X6EGWI.jpg")      #xzy 可能WBNGQ9R7.jpg出错
                     cv2.imwrite(os.path.join(FLAGS.output_path, "xzywa"+str(os.path.basename(im_fn))), immmm[:, :, ::-1])
                     print(str(im_fn)+" is broken!!!!!!!!")
-                    #TODO  写一个txt记录错误图片名
 
 
 
