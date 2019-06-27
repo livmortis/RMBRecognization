@@ -11,17 +11,18 @@ from utils.dataset.data_util import GeneratorEnqueuer
 # DATA_FOLDER = "data/dataset/mlt/"
 # DATA_FOLDER = "../../../dataset_formal/detect_data/CTPNData/"     #以train.py的视角。因为解释运行一般是在train.py所在的目录进行。
 
-# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_img"                 #xzy 1800标注图片 + 分面值训练
-# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_label/"            #xzy 1800标注图片 + 分面值训练
 
+# xzy 1800标注图片 + 分面值训练
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_1_ctpn_label/"
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_2_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_2_ctpn_label/"
 #
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/0_5_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/0_5_ctpn_label/"
 #
-DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_img"
-DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_label/"
+# DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_img"
+# DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_label/"
 
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/2_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/2_ctpn_label/"
@@ -38,7 +39,9 @@ DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/1_ctpn_label/"
 # DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_img"
 # DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/100_ctpn_label/"
 
-
+#紧凑标注1000图片后训练
+DATA_FOLDER_IMG = "../../../dataset_formal/detect_data/CTPNData/1000tight_ctpn_img"
+DATA_FOLDER_LABEL = "../../../dataset_formal/detect_data/CTPNData/1000tight_ctpn_label/"
 
 def get_training_data():
     img_files = []
