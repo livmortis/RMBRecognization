@@ -2,7 +2,7 @@ import torch.nn as nn
 import numpy as np
 import torch
 
-log_for_explore = True
+log_for_explore = False
 class BidirectionalLSTM(nn.Module):
 
     def __init__(self, nIn, nHidden, nOut):
@@ -70,11 +70,11 @@ class CRNN(nn.Module):
     def forward(self, input):
         # conv features
         print("input : "+str(input)) if log_for_explore else None
-        print("is input include nan1?: "+ str((np.isnan(torch.Tensor.cpu(input)))))
-        print("is input include nan2?: "+ str(np.sum(np.array(np.isnan(torch.Tensor.cpu(input))))))
-        print("is input include nan3?: "+ str(np.any(np.array(np.isnan(torch.Tensor.cpu(input))))))
-        print("max of input: " + str(np.max(np.array(torch.Tensor.cpu(input)))))
-        print("min of input: " + str(np.min(np.array(torch.Tensor.cpu(input)))))
+        print("is input include nan1?: "+ str((np.isnan(torch.Tensor.cpu(input)))))if log_for_explore else None
+        print("is input include nan2?: "+ str(np.sum(np.array(np.isnan(torch.Tensor.cpu(input))))))if log_for_explore else None
+        print("is input include nan3?: "+ str(np.any(np.array(np.isnan(torch.Tensor.cpu(input))))))if log_for_explore else None
+        print("max of input: " + str(np.max(np.array(torch.Tensor.cpu(input)))))if log_for_explore else None
+        print("min of input: " + str(np.min(np.array(torch.Tensor.cpu(input)))))if log_for_explore else None
         conv = self.cnn(input)
         print("after cnn : "+str(conv)) if log_for_explore else None
         b, c, h, w = conv.size()
