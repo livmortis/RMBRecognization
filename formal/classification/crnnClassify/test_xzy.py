@@ -68,7 +68,9 @@ def test_by_xzy(net, test_dataset):
   column_order = ['name','label']
   df = df[column_order]
   # predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_ctpn.csv'
-  predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_1800ctpn.csv'
+  # predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_1800ctpn.csv'
+  # predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_with_1800ctpn_continue.csv'
+  predictionFile = '../../../../dataset_formal/classify_data/crnnData/result/result_crnn_tight_ctpn.csv'
   df.to_csv(predictionFile, index=False)
 
   print("\nover")
@@ -86,7 +88,8 @@ def test_by_xzy(net, test_dataset):
 
 if __name__ == "__main__":
   # test_lmdb_path = "../../../../dataset_formal/classify_data/crnnData/test_byCTPN_MDB"
-  test_lmdb_path = "../../../../dataset_formal/classify_data/crnnData/test_9mianzhi_MDB"
+  # test_lmdb_path = "../../../../dataset_formal/classify_data/crnnData/test_9mianzhi_MDB"
+  test_lmdb_path = "../../../../dataset_formal/classify_data/crnnData/test_tight_MDB"
 
   test_dataset = dataset.lmdbDataset(root=test_lmdb_path,
                                      transform=dataset.resizeNormalize((100, 32)), type="test")
