@@ -20,7 +20,10 @@ import time
 
 from tensorboardX import SummaryWriter
 
-writer = SummaryWriter('log3')
+writer = SummaryWriter('log_tbx')
+
+log_for_explore = True
+
 
 '''
 需要手动添加的参数：
@@ -29,16 +32,21 @@ writer = SummaryWriter('log3')
 
 need_load = True
 saved_model_path = "expr/netCRNN_472_500.pth"
+PATIENT = 100
 
 parser = argparse.ArgumentParser()
 # parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_byCTPN_MDB")
 # parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_byCTPN_MDB")
 # 9面值ctpn训练裁剪的poly作为数据集：
-parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_9mianzhi_MDB")
-parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_9mianzhi_MDB")
+# parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_9mianzhi_MDB")
+# parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_9mianzhi_MDB")
+
+# 紧凑手标1000标签训练裁剪的poly作为数据集：
+parser.add_argument('--trainRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/train_tight_MDB")
+parser.add_argument('--valRoot', help='path to dataset', default="../../../../dataset_formal/classify_data/crnnData/val_tight_MDB")
 
 
-parser.add_argument('--lr', type=float, default=0.00018, help='learning rate for Critic, not used by adadealta')
+parser.add_argument('--lr', type=float, default=0.001, help='learning rate for Critic, not used by adadealta')
 parser.add_argument('--nepoch', type=int, default=10000, help='number of epochs to train for')
 parser.add_argument('--cuda', action='store_true', help='enables cuda', default=True)
 
@@ -106,6 +114,11 @@ converter = utils.strLabelConverter(opt.alphabet)
 criterion = torch.nn.CTCLoss()
 
 
+def backward_hook(self, grad_input, grad_output):
+    for g in grad_output:
+        g[g != g] = 0
+
+
 # custom weights initialization called on crnn
 def weights_init(m):
     classname = m.__class__.__name__
@@ -117,6 +130,7 @@ def weights_init(m):
 
 
 crnn = crnn.CRNN(opt.imgH, nc, nclass, opt.nh)
+crnn.register_backward_hook(backward_hook)  # xzy   注册hook函数，将nan强改为0，以解决pytorh1.0.1自带CTCLoss训练时权重出现nan问题。
 crnn.apply(weights_init)
 
 image = torch.FloatTensor(opt.batchSize, 3, opt.imgH, opt.imgH)
@@ -137,9 +151,11 @@ if need_load:  #xzy
 print(crnn)
 
 
-image = Variable(image)
-text = Variable(text)
-length = Variable(length)
+#xzy 看pytorch版本
+# image = Variable(image)
+# text = Variable(text)
+# length = Variable(length)
+
 
 # loss averager
 loss_avg = utils.averager()
@@ -150,7 +166,7 @@ if True:
     optimizer = optim.Adam(crnn.parameters(), lr=opt.lr,
                            betas=(opt.beta1, 0.999))
 
-    lrSchedule = optim.lr_scheduler.ReduceLROnPlateau(optimizer,'min',factor=0.8,patience=100,verbose=True)
+    lrSchedule = optim.lr_scheduler.ReduceLROnPlateau(optimizer,'min',factor=0.8,patience=PATIENT,verbose=True)
 
 # elif opt.adadelta:
 #     optimizer = optim.Adadelta(crnn.parameters())
@@ -206,6 +222,9 @@ def val(net, dataset, criterion, max_iter=100):
     print('Test loss: %f, accuray: %f' % (loss_avg.val(), accuracy))
 
 
+
+
+
 def trainBatch(net, criterion, optimizer):
     data = train_iter.next()
     cpu_images, cpu_texts = data
@@ -214,9 +233,12 @@ def trainBatch(net, criterion, optimizer):
     t, l = converter.encode(cpu_texts)
     utils.loadData(text, t)
     utils.loadData(length, l)
-
     preds = crnn(image)
     preds_size = Variable(torch.IntTensor([preds.size(0)] * batch_size))
+    print("on train, preds is: " + str(preds)) if log_for_explore else None
+    print("on train, preds after logsoftmax is: " + str(preds.log_softmax(2))) if log_for_explore else None
+    print("on train, preds_size is: " + str(preds_size)) if log_for_explore else None
+    print("on train, target_size is: " + str(length)) if log_for_explore else None
     cost = criterion(preds, text, preds_size, length) / batch_size
     crnn.zero_grad()
     cost.backward()
@@ -239,7 +261,7 @@ for epoch in range(opt.nepoch):
         i += 1
 
         if i % opt.displayInterval == 0:            #displayInterval=100, 代表100个batch显示一次 （即6400张图片）
-            writer.add_scalar("log2/", loss_avg.val(), epoch)
+            writer.add_scalar("Loss/", loss_avg.val(), epoch)
 
             print('[%d/%d][%d/%d] Loss: %f' %
                   (epoch, opt.nepoch, i, len(train_loader), loss_avg.val()))
