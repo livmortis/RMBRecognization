@@ -41,9 +41,9 @@ epoch = 15
 
 
 # 训练时需要修改：
-TEST_WITH_LITTLE_DATA =True
+TEST_WITH_LITTLE_DATA =False
 TEST_NUM = 50
-USE_GPU = False
+USE_GPU = True
 EXIST_TRAIN_DATA_NPY = False    # 只在云主机上第一次训练读取数据时，设为False。之后.npy文件只要存在，都设为True。
 EXIST_TEST_DATA_NPY = False    # 只在云主机上第一次测试读取数据时，设为False。之后.npy文件只要存在，都设为True。
 
