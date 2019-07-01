@@ -87,12 +87,12 @@ def load_test():
   print("begin to load test data")
   i = 0
   for one_test_name in tqdm(test_name_list):
-    try:
-      one_test_image = Image.open(test_data_path + str(one_test_name))
-    except:
-      # PLYNBX7G.jpg为空
-      print("\nthis picture is broken: "+ str(one_test_name))
-      one_test_image = Image.open(test_data_path + "0A2MIKHN.jpg")  #随便挑选第一张替换
+    # try:
+    one_test_image = Image.open(test_data_path + str(one_test_name))
+    # except:
+    #   # PLYNBX7G.jpg为空
+    #   print("\nthis picture is broken: "+ str(one_test_name))
+    #   one_test_image = Image.open(test_data_path + "0A2MIKHN.jpg")  #随便挑选第一张替换
 
     if one_test_image.mode != "RGB":
       one_test_image.convert("RGB")

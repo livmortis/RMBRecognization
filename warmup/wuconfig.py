@@ -20,10 +20,11 @@ map_dict_reverse = { 0: 0.1,
 value_num = len(map_dict_reverse)
 
 train_data_path = '../../dataset_warm_up/train_data/'
-test_data_path = '../../dataset_warm_up/public_test_data/'
+# test_data_path = '../../dataset_warm_up/public_test_data/'  #热身赛
+test_data_path = '../../dataset_final/private_test_data/'   #决赛
 csv_file = '../../dataset_warm_up/train_face_value_label.csv'
 model_saved_path = '../../dataset_warm_up/saved_model/'
-pred_result_file = '../../dataset_warm_up/pred_result/result.csv'
+pred_result_file = '../../dataset_warm_up/pred_result/result_finalgame.csv'
 trainData_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/trainData.npy'
 trainLabel_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/trainLabel.npy'
 testData_npy_saved_file =  '../../dataset_warm_up/saved_dataNpy_model/testData.npy'
